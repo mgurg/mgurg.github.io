@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Hello worls"
+title: "Hello world"
 categories: junk
 author: "Michał"
 meta: "Springfield"
