@@ -1,22 +1,23 @@
-title: Yizheng's Blog
-author: Yizheng Huang
-email: huangyz0918@gmail.com
-description: Hard work always pays off.
-url: "https://mgurg.github.io/" 
+title: Python 
+author: Michał
+email: donotemailme@gmail.com
+description: notatki z nauki
+url: "https://mgurg.github.io" 
 
 # Build settings
 remote_theme: huangyz0918/moving
+
 plugins:
   - jekyll-feed
 
 moving:
-  about_you: Hard work always pays off
+  about_you: notatki z nauki
   avatar_url: https://i.loli.net/2019/09/07/wiBh3uMWRUaLX5K.png 
   date_format: "%b %d"
   back_to: "Index"
   social_links:
     rss: RSS
-    github:  huangyz0918
-    facebook: huangyz0918
-    linkedin: yizheng-huang
+    github:  mgurg
+    facebook: 
+    linkedin: 
 
