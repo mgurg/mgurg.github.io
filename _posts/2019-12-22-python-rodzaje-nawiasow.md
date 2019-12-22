@@ -7,7 +7,7 @@ author: "Michał"
 
 nawiasy okrągłe `(...)` : 
 
-funkcje print`('Hello world!')` czy tuple `(1, 2, 3)`
+funkcje `print('Hello world!')` czy tuple `(1, 2, 3)`
 
 Definiowanie tuple: 
 
