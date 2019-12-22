@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "01) Rodzaje nawiasów"
+title: "01) Python: Rodzaje nawiasów"
 categories: python
 author: "Michał"
 ---
