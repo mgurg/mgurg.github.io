@@ -12,7 +12,7 @@ Funkcje `print('Hello world!')` czy tuple `(1, 2, 3)`
 
 Definiowanie tuple: 
 ```python
-`my_tuple = (0, 1, 2)`
+my_tuple = (0, 1, 2)
 ```
 ### Nawiasy kwadratowe `[...]` 
 
@@ -20,7 +20,7 @@ Listy `[1, 2, 3]`, dostęp do poszczególnych elementów w list czy tuple: `my_l
 
 Definiowanie list:
 ```python
-`my_list= [4, 5, 5, 3, 4]`
+my_list= [4, 5, 5, 3, 4]
 ```
 
 ### Nawiasy klamrowe `{...}` 
