@@ -16,7 +16,7 @@ my_tuple = (0, 1, 2)
 ```
 ### Nawiasy kwadratowe `[...]` 
 
-Listy `[1, 2, 3]`, dostęp do poszczególnych elementów w list czy tuple: `my_list[0]` lub `my_tuple[0]`
+Listy `[1, 2, 3]`, dostęp do poszczególnych elementów w `list` czy `tuple` odbywa się z apomocą indeksów: `my_list[0]` lub `my_tuple[0]`
 
 Definiowanie list:
 ```python
