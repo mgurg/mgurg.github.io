@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Python: list comprohension"
+title: "Python: list comprehension"
 categories: python
 author: "Michał"
 ---
@@ -18,7 +18,7 @@ for i in liczby:
 liczby3
 ```
 
-List comprohension:
+List comprehension:
 ```python
 liczby3 = [i**3 for i in liczby if i >0 ]
 liczby3
@@ -56,7 +56,7 @@ squares = [
 print(squares)
 ```
 
-*List comprohension* są wydajniejsze od pętli for, zapis jest bardziej zwarty
+*List comprehension* są wydajniejsze od pętli for, zapis jest bardziej zwarty
 
 
 

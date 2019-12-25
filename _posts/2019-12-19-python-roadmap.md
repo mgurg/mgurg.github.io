@@ -6,10 +6,10 @@ author: "Michał"
 ---
 
 
-Python Basics
-Numpy
-Pandas
-MatplotLib
+ - Python podstawy
+ - Numpy 
+ - Pandas 
+ - MatplotLib
 
 
 
