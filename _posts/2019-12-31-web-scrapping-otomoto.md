@@ -37,7 +37,7 @@ lastPage = int(carSoup.select('.page')[-1].text)
 ```
 W wyniku działania powyższego skryptu otrzymywałem część strony z której mogłem wyczytać jedynie liczę stron z ogłoszeniami. W danych brakowało listingu ofert. 
 
-W nowej wersji serwisu ogłoszenia są zapisane jako JSON, który był obcinany przez bibliotekę *Requests*
+W nowej wersji serwisu ogłoszenia są zapisane jako JSON, który był obcinany przez bibliotekę *Requests*.
 Z 32 ogłoszeń które były na stronie dostępnych było 8.
 ```javascript
 if (c.indexOf(name) == 0) {
@@ -57,3 +57,47 @@ Skoro dotychczasowy sposób przestał działać to musiałem mocno zastanowić s
 ### To może OLX?
 Skoro na olx i tak są ogłoszenia z otomoto, to może prościej będzie się dobrać do danych od tej strony? Dodatkowo przykładając się do pracy od początku będę miał nie tylko ogłoszenia z otomoto, ale również z OLX co otwiera drogę do tworzenia ciekawszych analiz. Szybki przegląd ogłoszeń wskazywał na to że ogłoszenia z tekstem **CID5** w linku do oferty pochodzą z OLX, pozostałe są z otomoto.
 
+Niestety, próba pobrania treści strony dawała taki sam wynik jak w przypadku otomoto: brak listingu ogłoszeń w pliku HTML
+
+### A co z RSS?
+
+Poszukiwania danych dostępnych w strawnej formie zaprowadziły mnie do treści RSS. Początkowa dane te wyglądały nawet lepiej niż te które zamierzałem pobierać w wyniku przetwarzania całej strony. Oprócz podstawowych danych miałem dostęp do całej bazy dodatkowych informacji + fragment treści ogłoszenia.
+
+
+```xml
+<item>
+   <title>Toyota Yaris Model po Liftingu, bardzo zadbany, silnik 1,33 benzyna 101KM</title>
+   <link>https://www.otomoto.pl/oferta/toyota-yaris-model-po-liftingu-bardzo-zadbany-silnik-1-33-benzyna-101km-ID6CBUEt.html</link>
+   <guid>https://www.otomoto.pl/oferta/toyota-yaris-model-po-liftingu-bardzo-zadbany-silnik-1-33-benzyna-101km-ID6CBUEt.html</guid>
+   <pubDate>Wed, 01 Jan 2020 19:20:18 CET</pubDate>
+   <description><![CDATA[Marka pojazdu: Toyota, Model pojazdu: Yaris, Wersja: II (2005-2011), Rok produkcji: 2009 , Przebieg: 124 000 km, Pojemność skokowa: 1 300 cm3, Rodzaj paliwa: Benzyna, Moc: 101 KM, Skrzynia biegów: Manualna, Napęd: Na przednie koła, Filtr cząstek stałych: Nie, Uszkodzony: Nie, Typ: Auta miejskie, Liczba drzwi: 5 , Liczba miejsc: 5 , Kolor: Srebrny, Metalik: Tak, Perłowy: Nie, Matowy: Nie, Akryl (niemetalizowany): Nie, Dodatkowe wyposażenie: ABS, Centralny zamek, Elektryczne szyby przednie, Elektrycznie ustawiane lusterka, Immobilizer, Poduszka powietrzna kierowcy, Poduszka powietrzna pasażera, Radio fabryczne, Wspomaganie kierownicy, ESP (stabilizacja toru jazdy), Gniazdo AUX, Gniazdo USB, Isofix, Klimatyzacja manualna, Komputer pokładowy, MP3, Poduszka powietrzna chroniąca kolana, Poduszki boczne przednie, Poduszki boczne tylne, Tapicerka welurowa, Kierownica po prawej (Anglik): Nie, Cena: 19 700 PLN, VAT marża: Nie, Możliwość finansowania: Nie, Faktura VAT: Nie, Leasing: Nie, Kraj pochodzenia: Niemcy, Zarejestrowany w Polsce: Nie, Pierwszy właściciel: Nie, Bezwypadkowy: Nie, Serwisowany w ASO: Nie, Zarejestrowany jako zabytek: Nie, Tuning: Nie, Homologacja ciężarowa: Nie, <br/>Witam, Mam do sprzedania  Toyote  Yaris z roku 2009 po Liftingu  z niezawodnym silnikiem benzynowym na łańcuszku rozrządu o pojemności  1,33cm3,  101KM z  sześciobiegową skrzynia biegów. Auto  jest w bardzo dobrym stanie technicznym i wizualnym , czyste i zadbane. Samochód  na bieżąco serwisowany, p... <a href="https://www.otomoto.pl/oferta/toyota-yaris-model-po-liftingu-bardzo-zadbany-silnik-1-33-benzyna-101km-ID6CBUEt.html">https://www.otomoto.pl/oferta/toyota-yaris-model-po-liftingu-bardzo-zadbany-silnik-1-33-benzyna-101km-ID6CBUEt.html</a><img src="https://apollo-ireland.akamaized.net/v1/files/eyJmbiI6ImRleHIwYTZhZzl4bjItT1RPTU9UT1BMIiwidyI6W3siZm4iOiJ3ZzRnbnFwNnkxZi1PVE9NT1RPUEwiLCJzIjoiMTYiLCJwIjoiMTAsLTEwIiwiYSI6IjAifV19.EB9TsnzfR5SZBj0qRS3RLReQkYuTmTTKaGa02ySA-3Y/image;s=732x488;cars_;/936362001_;slot=1;filename=eyJmbiI6ImRleHIwYTZhZzl4bjItT1RPTU9UT1BMIiwidyI6W3siZm4iOiJ3ZzRnbnFwNnkxZi1PVE9NT1RPUEwiLCJzIjoiMTYiLCJwIjoiMTAsLTEwIiwiYSI6IjAifV19.EB9TsnzfR5SZBj0qRS3RLReQkYuTmTTKaGa02ySA-3Y_rev001.jpg">]]></description>
+   <category>Osobowe</category>
+</item>
+```
+
+Niestety szybko okazało się że mając tylko te dane ciężko będzie pozyskiwać mi kluczowe dla mnie informacje: jak długo ogłoszenie jest aktywne, oraz jak zmienia się cena ustawiona przez sprzedającego. RSS informuje wyłącznie o nowych wpisach n stronie. Chcąc śledzić każde ogłoszenie musiałbym codziennie parsować strony sprzedaży każdego samochodu z osobna.
+
+### Jeżeli nie *Requests*, to co?
+
+W ten sposób wróciłem do początku, musiałem wymyślić jakikolwiek sposób pobierania stron z otomoto, który dawałby mi pełny HTML razem z ogłoszeniami. Przegląd internetu pokazał że są dostępne jeszcze dwa rozwiązania mojego problemu:
+- Selenium
+- Scrapy
+
+Zacząłem od Selenium które na podstawi opisów wydawało się ciekawszym i pewniejszym rozwiązaniem. Jest to narzędzie do automatyzacji testów web aplikacji, ale skoro można wywołać go z poziomu Pythona to uznałem że powinno się nadać. Jego zaletą jest to że korzysta z silników rzeczywistych przeglądarek, które renderują stronę WWW. 
+
+```python
+from selenium import webdriver
+
+driver = webdriver.Firefox()
+driver.set_window_size(1120, 550)
+driver.get("https://www.otomoto.pl/osobowe/toyota/yaris/ii-2005-2011/")
+
+a = driver.page_source
+
+print(driver.page_source)
+driver.quit()
+```
+
+Niestety wyniki które uzyskałem nie różniły się od tego co dawało *Requests* Być może to kwestia konfiguracji lub słabej znajomości tego narzędzia. Oprócz tego że nie potrafiłem uzyskać interesujących mnie danych to cały proces był powolny, a w jego trakcie otwierało się nowe okno przeglądarki. Tę ostatnią niedogodność próbowałem obejść( jak się okazało niewspieranym już) PhantomJS.
+
+Ostatnim sposobem jaki mi pozostał było wykorzystanie Scrapy. Mimo iż tutaj również na początku miałem wiele problemów z konfiguracją to ostatecznie udało mi się pobrać treść którą potrzebowałem. O samym Scrapy i jego konfiguracji powstanie osobny wpis.
