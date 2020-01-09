@@ -4,14 +4,6 @@ title: "Konfiguracja Scrapy"
 categories: python
 author: "Michał"
 ---
-
----
-layout: post
-title: "Konfiguracja Scrapy"
-categories: python
-author: "Michał"
----
-
 Opisałem drogę w wyniku której zacząłem używać scrapy, dzisiaj chciałym pokazać jak skonfigurowałem to narzędzie żeby móc pobierać dane z otomoto.
 
 ## Instalacja i pierwsze testy
@@ -82,4 +74,28 @@ Niestety pierwszy rezultat może być rozczarowujący, nie udało się pobrać n
 2020-01-09 19:00:05 [scrapy.downloadermiddlewares.retry] DEBUG: Gave up retrying <GET https://www.otomoto.pl/osobowe/toyota/yaris/ii-2005-2011/> (failed 3 times): User timeout caused connection failure: Getting https://www.otomoto.pl/osobowe/toyota/yaris/ii-2005-2011/ took longer than 180.0 seconds..
 ```
 
-Zrobiłem ten test próbując inne adresy URL i w zależności od strony udawało się dane pobrać a raz nie. Okazało się że niektóre witryny bronią się przed dostępem do treści przy pomocy automatów. Rozwiązaniem okazało się podanie `user agent`.
+Zrobiłem ten test próbując inne adresy URL i w zależności od strony udawało się dane pobrać a raz nie. Okazało się że niektóre witryny bronią się przed dostępem do treści przy pomocy automatów. Rozwiązaniem okazało się podanie `user agent` :
+
+```batch
+ scrapy shell https://www.otomoto.pl/osobowe/toyota/yaris/ii-2005-2011/ -s USER_AGENT='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36'
+```
+
+```batch
+2020-01-09 19:28:00 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://www.otomoto.pl/osobowe/toyota/yaris/ii-2005-2011/> (referer: None)
+[s] Available Scrapy objects:
+[s]   scrapy     scrapy module (contains scrapy.Request, scrapy.Selector, etc)
+[s]   crawler    <scrapy.crawler.Crawler object at 0x03824250>
+[s]   item       {}
+[s]   request    <GET https://www.otomoto.pl/osobowe/toyota/yaris/ii-2005-2011/>
+[s]   response   <200 https://www.otomoto.pl/osobowe/toyota/yaris/ii-2005-2011/>
+[s]   settings   <scrapy.settings.Settings object at 0x043B1A50>
+[s]   spider     <DefaultSpider 'default' at 0x47359f0>
+[s] Useful shortcuts:
+[s]   fetch(url[, redirect=True]) Fetch URL and update local objects (by default, redirects are followed)
+[s]   fetch(req)                  Fetch a scrapy.Request and update local objects
+[s]   shelp()           Shell help (print this help)
+[s]   view(response)    View response in a browser
+```
+
+Podgląd pobranych danych w przeglądarce umożliwia komenda `view(response)`
+Jeżeli chcemy zobaczyć kod strony to możemy go wyświetlić przy pomocy `print response.text`
