@@ -1,3 +1,10 @@
+---
+layout: post
+title: "Konfiguracja Scrapy (część II)"
+categories: python
+author: "Michał"
+---
+
 
 W [poprzedniej części](https://mgurg.github.io/python/2020/01/02/scrapy-konfiguracja.html) pokazałem w jaki sposób przeprowadzić podstawowe testy z *scrapy* korzystając wyłącznie z okna shell bez tworzenia projektu. Ponieważ próby wyszły pomyślnie to zacząłem dostosowywać to narzędzie do swoich potrzeb.
 
