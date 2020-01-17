@@ -107,6 +107,15 @@ lub bezposrednio o zalogowaniu:
 source ~/environments/my_env/bin/activate
 ```
 
+pip install -r requirements.txt
+
+numpy
+scipy
+pandas
+matplotlib
+scikit-learn
+seaborn
+
 ## Jupyter
 
 Instalacja:
@@ -160,4 +169,32 @@ Połączenie (na komputerze lokalnym):
 
 ```
 http://localhost:8000
+```
+
+### Git
+
+```
+sudo apt-get install git
+```
+
+Konfiguracja:
+
+```
+git config --global user.name "user_name"
+git config --global user.email "email_id"
+```
+
+### Serwer FTP
+
+
+```
+sudo apt install vsftpd
+```
+
+
+### Pozostałe:
+strefa czasowa
+
+```
+sudo dpkg-reconfigure tzdata
 ```
