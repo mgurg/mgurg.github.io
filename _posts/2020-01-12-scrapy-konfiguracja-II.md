@@ -91,4 +91,4 @@ Uruchomianie projektu wykonuje się komenda:
 scrapy crawl quotes_spider
 ``` 
 
-To jest minimalna konfiguracja projektu w *scrapy* jednak zeby zadziałałon ze stroną otomoto.pl konieczna będzie dalsza konfiguracja.
+To jest minimalna konfiguracja projektu w *scrapy* jednak zeby zadziałał on ze stroną otomoto.pl konieczna będzie dalsza konfiguracja.
