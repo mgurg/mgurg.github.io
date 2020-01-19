@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Konfiguracja Scrapy (część III)"
+title: "Konfiguracja Scrapy (część IV)"
 categories: python
 author: "Michał"
 ---
