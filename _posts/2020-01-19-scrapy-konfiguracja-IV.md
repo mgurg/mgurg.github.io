@@ -69,6 +69,8 @@ MAILTO=""
 33 4 * * * ~/scrapy/getdata.sh
 ```
 
+Ułatwieniem przy definiowaniu powtarzalny reguł w cron może być strona [crontab.guru](https://crontab.guru/#33_4_*_*_*) 
+
 Weryfikacja działania cron
 
 ```
