@@ -104,7 +104,7 @@ source ./activate
 lub bezposrednio o zalogowaniu:
 
 ```bash
-source ~/environments/my_env/bin/activate
+source ~/environments/ml_env/bin/activate
 ```
 
 pip install -r requirements.txt
