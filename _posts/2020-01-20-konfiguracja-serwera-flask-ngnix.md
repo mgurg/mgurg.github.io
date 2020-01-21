@@ -376,3 +376,7 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 
 
 
+Po przejściu pod adres `http://192.166.219.228/` będzie ponownie widoczny niebieski napis **Hello There!** W przypadku błędu *502 Bad gateway* należy sprawdzić dokładnie składnie plików z dwóch ostatnich punktów
+
+Opisane na podstawie: https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-18-04
+
