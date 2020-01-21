@@ -1,5 +1,5 @@
 ---
-layout: post/
+layout: post
 title: "Konfiguracja serwera VPS II: ngnix + gunicorn + flask"
 categories: python
 author: "Michał"
