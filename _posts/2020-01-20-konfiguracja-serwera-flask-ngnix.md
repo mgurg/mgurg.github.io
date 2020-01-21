@@ -1,9 +1,10 @@
 ---
 layout: post/
-title: "Konfiguracja serwera VPS II: ngnix + flask"
+title: "Konfiguracja serwera VPS II: ngnix + gunicorn + flask"
 categories: python
 author: "Michał"
 ---
+
 
 ## Serwer WWW – ngnix
 
