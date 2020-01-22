@@ -23,9 +23,13 @@ To co faktycznie się nauczyłem :) :
 
 TODO: tabele, osadzanie grafik
 
-`git` - na razie w bardzo podstawowym stopniu. Bardziej obsługa Githuba niż git. Rozumiem zasadę działania, ale moja interakcja ogranicza 
+`git` - na razie w bardzo podstawowym stopniu. Bardziej obsługa Githuba niż git. Rozumiem [zasadę działania repozytorium](https://github.com/tomcl/HowToUseGitTJWC), ale moja interakcja ogranicza się na razie do push/pull w Github desktop.
 
- ```mermaid
+TODO: 
+
+
+
+```mermaid
 graph TD
   A[00: Nigdy nie commitujemy do mastera!] -->
   B(01: Feature branch: <br/>git checkout -b feature branch <br/> -pracujemy na feature branches <br/> konwencja: te gałęzie są prywatne) -->
@@ -33,7 +37,7 @@ graph TD
   D(03: Praca - repeat: ) -->
   E(04: Porządki w historii: )
 		
- ```
+```
 
 
 
