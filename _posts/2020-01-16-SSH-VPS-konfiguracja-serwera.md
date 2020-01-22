@@ -7,13 +7,19 @@ author: "Michał"
 
 # Podstawowa konfiguracja
 
-```bash
-adduser phi
-```
+Dodanie nowego użytkownika którego będziemy używać do pracy zamiast konta `root`
 
 ```bash
-gpasswd -a phi sudo
+adduser lambda
 ```
+
+Dodanie użytkownika `lambda` do grupy administratorów:
+
+```bash
+gpasswd -a lambda sudo
+```
+
+Wyłączenie możliwości logowania użytkownika `root` poprzez SSH
 
 ```bash
 sudo nano /etc/ssh/sshd_config
@@ -23,7 +29,7 @@ sudo nano /etc/ssh/sshd_config
 PermitRootLogin yes
 ```
 
-zamienić na 
+zamienić na: 
 
 ```bash
 PermitRootLogin no
@@ -40,7 +46,7 @@ sudo service ssh restart
 
 # Python
 
-## Podstawy
+## Instalacja podstawowych pakietów 
 
 ```bash
 python3 -V
@@ -66,17 +72,19 @@ sudo apt install build-essential libssl-dev libffi-dev python3-dev
 
 ## Virtual Environment
 
-Instalacja venv
+Instalacja `venv`
 
 ```bash
 sudo apt install python3-venv
 ```
 
+Utworzenie folderu `environments` w którym znajda się kolejne środowiska wirtualne:
+
 ```bash
 mkdir environments
 cd environments
 ```
-Stworzenie środowiska
+Stworzenie pierwszego środowiska: `ml_env` 
 
 ```bash
 python3.6 -m venv ml_env
@@ -92,7 +100,7 @@ $ ls ml_env
 Aktywacja środowiska:
 
 ```bash
-source ml_env/bin/activate
+source ~/environments/ml_env/bin/activate
 ```
 
 ewentualnie przejście do folderu bin i uruchomić
@@ -101,44 +109,49 @@ ewentualnie przejście do folderu bin i uruchomić
 source ./activate
 ```
 
-lub bezposrednio o zalogowaniu:
+Poprawność wykonywania komendy powinna być widoczna w oknie konsoli:
 
-```bash
-source ~/environments/ml_env/bin/activate
+```
+(ml_env) user@host:~$
 ```
 
-pip install -r requirements.txt
+W nowo utworzonym (i aktywnym!) środowisku można doinstalować pozostałe biblioteki:
 
-numpy
-scipy
-pandas
-matplotlib
-scikit-learn
-seaborn
+```
+pip install -r requirements.txt
+```
+
+Zawartość pliku `requirements.txt`:
+
+> numpy
+> scipy
+> pandas
+> matplotlib
+> scikit-learn
+> seaborn
 
 ## Jupyter
 
 Instalacja:
 
-```
+```bash
 python3 -m pip install jupyter
 ```
 
 Test po instalacji:
 
-```
-$ jupyter notebook
+```bash
+jupyter notebook
 ```
 
 Wygenerowanie pliku konfiguracyjnego:
 
 ```
 jupyter notebook --generate-config
-Writing default config to: /home/phi/.jupyter/jupyter_notebook_config.py
-
+Writing default config to: /home/lambda/.jupyter/jupyter_notebook_config.py
 ```
 
-ustawienie hasła
+Ustawienie hasła:
 
 ```
 jupyter notebook password

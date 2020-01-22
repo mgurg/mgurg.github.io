@@ -1,53 +1,78 @@
 ---
 layout: post
-title: "Konfiguracja serwera VPS II: ngnix + gunicorn + flask"
+title: "Konfiguracja serwera VPS II: nginx + gunicorn + flask"
 categories: python
 author: "Michał"
 ---
 
 
-## Serwer WWW – ngnix
+## Serwer WWW – nginx
 
-Do wyboru jest Apache i nginx. Rzut monetą wskazał na drugi webserver. Komenda do instalacji:
+Do wyboru jest Apache i nginx. Rzut monetą wskazał na drugi webserver (ok, tak naprawdę to wybrany z premedytacją). Komenda do instalacji:
 
 
 ```bash
-sudo apt-get install nginx
+sudo apt-get install ngnix
 ```
 
-Po wpisaniu IP servera (`192.166.219.228`) powinien pojawić się komunikat powitalny ngnix
+Po wpisaniu IP servera (`192.166.219.228`) powinien pojawić się komunikat powitalny nginx
 
 
 ```
-Welcome to nginx!
+Welcome to ngnix!
 
-If you see this page, the nginx web server is successfully installed and working. Further configuration is required.
+If you see this page, the ngnix web server is successfully installed and working. Further configuration is required.
 ```
 
-Ewentualnie można wymusić start/restart/stop serwera ręcznie
+W razie potrzeby można wymusić start/restart/stop serwera ręcznie poniższymi komendami:
 
 ```bash
-sudo systemctl start nginx
-sudo systemctl restart nginx
-sudo systemctl stop nginx
+sudo systemctl start ngnix
+sudo systemctl restart ngnix
+sudo systemctl stop ngnix
 ```
 
-Status serwer ngnix
+Status serwer nginx:
 
 ```bash
-systemctl status nginx
+systemctl status ngnix
 ```
 
-Konfiguracja firewalla:
+### Firewall
+
+Do konfiguracji firewalla można użyć (wyświetli dostępne domyślnie tryby):
 
 ```bash
 sudo ufw app list
 ```
 
-Konfiguracja ngnix (w osobnym pliku, bez modyfikacji podstawowej konfiguracji)
+Wybranie któregoś z nich odbywa się poprzez:
 
 ```bash
-sudo nano /etc/nginx/sites-available/helloworld
+sudo ufw allow 'Nginx Full'
+```
+
+Sprawdzenie statusu:
+
+```bash
+sudo ufw enable
+sudo ufw status
+```
+
+### Konfiguracja podstawowa
+
+Stworzenie folderu w którym będzie się znajdowała strona "Hello World!" 
+
+
+```bash
+sudo mkdir ./environments/ml_env/www/
+sudo mkdir ./environments/ml_env/www/helloworld/
+```
+
+Konfiguracja nginx (utworzona w osobnym pliku, bez modyfikacji domyślnej konfiguracji)
+
+```bash
+sudo nano /etc/ngnix/sites-available/helloworld
 ```
 
 
@@ -59,7 +84,7 @@ server {
         listen [::]:80;
 
         root /home/lambda/environments/ml_env/www/helloworld/;
-        index index.html index.htm index.nginx-debian.html;
+        index index.html index.htm index.ngnix-debian.html;
 
         server_name 192.166.219.228;
 
@@ -69,13 +94,11 @@ server {
 }
 ```
 
-
-
 Żeby zacząć korzystać z nowych ustawień dla serwera należy stworzyć link konfiguracji ( [dowiązanie symboliczne](https://pl.wikipedia.org/wiki/Dowi%C4%85zanie_symboliczne) ) w katalogu sites-enabled nginx.
 
 
 ```bash
-sudo ln -s /etc/nginx/sites-available/helloworld /etc/nginx/sites-enabled/
+sudo ln -s /etc/ngnix/sites-available/helloworld /etc/ngnix/sites-enabled/
 ```
 
 Gdy używamy długich nazw domen, nginx potrafi zgłosić błąd `could not build the server_names_hash, you should increase server_names_hash_bucket_size: 32` można temu zapobiec poprzez zmianę ustawień w :
@@ -84,8 +107,7 @@ Gdy używamy długich nazw domen, nginx potrafi zgłosić błąd `could not buil
 sudo nano /etc/nginx/nginx.conf
 ```
 
-Trzeba zlokalizować `server_names_hash_bucket_size` usunąć # i zwiększyć wartość z 32 do 64:
-/etc/nginx/nginx.conf
+Trzeba zlokalizować `server_names_hash_bucket_size` usunąć `#` i zwiększyć wartość z 32 do 64:
 
 ```
 ...
@@ -96,28 +118,25 @@ http {
 }
 ...
 ```
-Po wszystkich zmianach należy preprowadzić test składni pliku konfiguracyjnego nginx files:
+Po wszystkich zmianach należy przeprowadzić test składni pliku konfiguracyjnego nginx files:
 
 ```bash
 sudo nginx -t
 ```
 
-Jeżeli wszystko jest ok, tomożna przeładować serwer
+Jeżeli wszystko jest ok, to można przeładować serwer żeby wczytać nowe ustawienia:
 ```bash
 sudo systemctl restart nginx
 ```
 
-Po wejściu na stronę główną pojawi sie podmieniona strona.
+Po wejściu na stronę główną pojawi się podmieniona strona.
 
-Pisane na podstawie: 
-https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04
-https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uswgi-and-nginx-on-ubuntu-18-04
-https://vladikk.com/2013/09/12/serving-flask-with-nginx-on-ubuntu/
+Opisane na podstawie: [How To Install Nginx on Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04) 
 
 
 ## Instalacja Flask
 
-Prerequisites: insatlacja `wheel`
+Prerequisites: instalacja `wheel`
 
 
 ```python
@@ -129,7 +148,7 @@ Komenda do instalacji:
 pip install flask
 ```
 
-Stworzenie folderu w ktorym będzie się znajdowała strona "Hello World!" 
+Stworzenie folderu w którym będzie się znajdowała strona "Hello World!" 
 
 
 ```bash
@@ -137,7 +156,7 @@ sudo mkdir ./environments/ml_env/www/
 sudo mkdir ./environments/ml_env/www/helloworld/
 ```
 
-zmiana uprawnien do folderu:
+zmiana uprawnień do folderu:
 ```bash
 sudo chown -R lambda:lambda ~/environments/ml_env/www/
 ```
@@ -156,7 +175,11 @@ if __name__ == "__main__":
     app.run(host='0.0.0.0')
 ```
 
-W celu przetestowania pliku należy go wykonać
+W celu przetestowania pliku należy go wykonać:
+
+```bash
+python myproject.py
+```
 
 ```bash
 python myproject.py * Serving Flask app "myproject" (lazy loading)
@@ -170,9 +193,9 @@ python myproject.py * Serving Flask app "myproject" (lazy loading)
 
 Po wpisaniu w przeglądarkę adresu `http://192.166.219.228:5000/` pojawi się zmieniona podstrona (niebieski napis **Hello There!**)
 
-Po udanym teście można go wyłączyć poprzez `CTRL-C` , strona testowa przestanie być osiągalna.
+Po udanym teście można go przerwać poprzez `CTRL-C` , strona testowa przestanie być osiągalna.
 
-## Konfiguracja gunicorn
+## Instalacja Gunicorn
 
 Instalacja:
 
@@ -205,7 +228,7 @@ W rezultacie powinniśmy otrzymać informacje o statusie, bez żadnego błędu:
 [2020-01-21 11:27:49 +0100] [25327] [INFO] Booting worker with pid: 25327
 ```
 
-Pod adresem `http://192.166.219.228:5000/`  powinien ponownie być dostępny niebieski napis  **Hello There!**
+Pod adresem `http://192.166.219.228:5000/`  powinien ponownie być widoczny niebieski napis  **Hello There!**
 
 Zakończenie działania: `CTRL-C`
 
@@ -215,17 +238,17 @@ Zakończenie działania: `CTRL-C`
 [2020-01-21 11:38:44 +0100] [25323] [INFO] Shutting down: Master
 ```
 
-Deaktywacja wirtualnego srodowiska:
+Deaktywacja wirtualnego środowiska:
 
 ```
 deactivate
 ```
 
-### Konfiguracja systemu
+### Konfiguracja
 
-Creating a systemd unit file will allow Ubuntu’s init system to  automatically start Gunicorn and serve the Flask application whenever  the server boots.
+Stworzenie pliku *systemd unit* pozwoli systemowi init Ubuntu na automatyczne uruchomienie Gunicorna i obsługę aplikacji Flask przy każdym uruchomieniu serwera.
 
-Create a unit file ending in `.service` within the `/etc/systemd/system` directory to begin:
+Należy stworzyć plik o rozszerzeniu `.service` w katalogu `/etc/systemd/system`:
 
 ```bash
 sudo nano /etc/systemd/system/helloworld.service
@@ -233,7 +256,7 @@ sudo nano /etc/systemd/system/helloworld.service
 
 Zawartość, sekcja `[Unit]`:
 
-```bash
+```b
 [Unit]
 Description=Gunicorn instance to serve helloworld
 After=network.target
@@ -252,7 +275,7 @@ Group=www-data
 
 WorkingDirectory=/home/lambda/environments/ml_env/www/helloworld/
 Environment="PATH=/home/lambda/environments/ml_env/bin"
-ExecStart=/home/lambda/environments/ml_env/bin/gunicorn --workers 3 --bind unix:myproject.sock -m 007 wsgi:app
+ExecStart=/home/lambda/environments/ml_env/bin/gunicorn --workers 3 --bind unix:helloworld.sock -m 007 wsgi:app
 
 ```
 
@@ -275,7 +298,7 @@ ExecStart=/home/lambda/environments/ml_env/bin/gunicorn --workers 3 --bind unix:
 WantedBy=multi-user.target
 ```
 
-To co jest powyżej to kompletny plik usługi systemd. Można teraz uruchomić usługę gunicorn
+To co jest powyżej to kompletny plik usługi `systemd`. Można teraz uruchomić usługę gunicorn
 
 ```bash
 sudo systemctl start helloworld
@@ -320,7 +343,7 @@ Jan 21 11:57:04 michal gunicorn[25865]: [2020-01-21 11:57:04 +0100] [25870] [INF
 ```
 Jeżeli potrzeba wprowadzić zmian w pliku to restart można zrobić poprzez:
 
-```
+```bash
 sudo systemctl disable helloworld
 sudo systemctl stop helloworld
 sudo systemctl start helloworld
@@ -329,9 +352,9 @@ sudo systemctl enable helloworld
 
 
 
-## Konfiguracja Nginx - Proxy Requests
+### Konfiguracja nginx - Proxy Requests
 
-Begin by creating a new server block configuration file in Nginx’s `sites-available` directory.  Let’s call this `helloworld` to keep in line with the rest of the guide:
+Należy zacząć od stworzenia nowego pliku konfiguracyjnego w katalogu nginx `sites-available`.  Będzie miał nazwę `helloworld` aby zachować zgodność z resztą opisu:
 
 Zmiana konfiguracji w `/etc/nginx/sites-available/helloworld` poprzez dodanie wpisu:
 
@@ -375,9 +398,7 @@ nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /etc/nginx/nginx.conf test is successful
 ```
 
-
-
 Po przejściu pod adres `http://192.166.219.228/` będzie ponownie widoczny niebieski napis **Hello There!** W przypadku błędu *502 Bad gateway* należy sprawdzić dokładnie składnie plików z dwóch ostatnich punktów
 
-Opisane na podstawie: https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-18-04
-Dodatkowe informacje: https://www.datadoghq.com/blog/nginx-502-bad-gateway-errors-gunicorn/
+Opisane na podstawie: [How To Serve Flask Applications with Gunicorn and Nginx on Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-18-04)
+Dodatkowe informacje: [NGINX 502 Bad Gateway: Gunicorn](https://www.datadoghq.com/blog/nginx-502-bad-gateway-errors-gunicorn/)
