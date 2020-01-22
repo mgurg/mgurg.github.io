@@ -12,12 +12,12 @@ W [poprzedniej części](https://mgurg.github.io/python/2020/01/02/scrapy-konfig
 ### Tworzenie projektu
 Wykorzystując komendę:
 
-```batch
+```bash
 scrapy startproject scrapy_otomoto
 ```
 
 Utworzymy na dysku następującą strukturę plików
-```batch
+```bash
 >tree /f
 
 D:.
@@ -87,8 +87,10 @@ class OtomotoSpider(scrapy.Spider):
 
 Uruchomianie projektu wykonuje się komenda:
 
-```batch
-scrapy crawl quotes_spider
-``` 
+```bash
+cd .\scrapy_otomoto\scrapy_otomoto\spiders
+scrapy runspider otomoto
+```
 
-To jest minimalna konfiguracja projektu w *scrapy* jednak zeby zadziałał on ze stroną otomoto.pl konieczna będzie dalsza konfiguracja.
+To jest minimalna konfiguracja projektu w *scrapy* jednak żeby zadziałał on ze stroną otomoto.pl konieczna będzie dalsza konfiguracja. W tym przypadku problemem jest (tak samo jak za poprzednim razem) brak podanego `user-agent`.
+

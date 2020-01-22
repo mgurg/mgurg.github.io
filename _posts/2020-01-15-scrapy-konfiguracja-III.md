@@ -5,6 +5,25 @@ categories: python
 author: "Michał"
 ---
 
+W części II  opisałem jak zbudować projekt na dysku, który nie działał. W tej części dokończę opis konfiguracji do etapu "produkcyjnego". Zacznę od prostego pająka:
+
+```python
+import scrapy
+
+class OtomotoSpider(scrapy.Spider):
+    name = 'otomoto'
+    allowed_domains = ['otomoto.pl']
+    start_urls = ['http://otomoto.pl/']
+
+    def parse(self, response):
+        pass
+```
+
+Pierwszym krokiem będzie dodanie `user-agent` tak żeby pająk zaczął spełniać swoje zadanie.
+
+
+
+
 
 ```python
 # -*- coding: utf-8 -*-

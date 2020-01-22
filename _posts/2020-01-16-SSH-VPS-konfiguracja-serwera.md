@@ -130,6 +130,14 @@ Zawartość pliku `requirements.txt`:
 > scikit-learn
 > seaborn
 
+Eksport zainstalowanych bibliotek (razem z numerem wersji) jest możliwy poprzez komendę:
+
+```bash
+pip freeze > requirements.txt
+```
+
+ 
+
 ## Jupyter
 
 Instalacja:

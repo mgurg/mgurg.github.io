@@ -47,13 +47,13 @@ if (c.indexOf(name) == 0) {
 
 ```javascript
 <script type="application/ld+json"> {"@context":"http:\/\/schema.org","@type":"Webpage","url":"https:\/\/www.otomoto.pl\/osobowe\/toyota\/yaris\/ii-2005-2011\/","mainEntity":{"@type":"OfferCatalog","name":"Otomoto","itemListElement":[{"@type":"Offer","priceSpecification":{"@type":"UnitPriceSpecification","price":"14900","priceCurrency":"PLN"},"itemOffered"
-  ```
+```
 
 ## Jak pobrać ogłoszenia
 Skoro dotychczasowy sposób przestał działać to musiałem mocno zastanowić się nad tym w jaki sposób pozyskać dane z ogłoszeń. Rozwiązanie z biblioteką *Requests* uważałem za najbardziej eleganckie i proste i to przy nim chciałem pozostać. Lista pomysłów jakie przyszły mi do głowy:
 
  Pozostać przy *requests* ale sprawdzić inne ustawienia. Jeżeli przepuściłem odpowiedź serwera przez [BeautifulSoup](https://lxml.de/elementsoup.html) to byłem w stanie odzyskać nieco danych (przykład z kodem powyżej). Zacząłem więc eksperymentować z różnymi [parserami](https://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-a-parser). Niestety okazało się że nic więc co dawało mi *lxml* nie jestem w stanie uzyskać.
- 
+
 ### To może OLX?
 Skoro na olx i tak są ogłoszenia z otomoto, to może prościej będzie się dobrać do danych od tej strony? Dodatkowo przykładając się do pracy od początku będę miał nie tylko ogłoszenia z otomoto, ale również z OLX co otwiera drogę do tworzenia ciekawszych analiz. Szybki przegląd ogłoszeń wskazywał na to że ogłoszenia z tekstem **CID5** w linku do oferty pochodzą z OLX, pozostałe są z otomoto.
 

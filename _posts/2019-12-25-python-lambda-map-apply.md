@@ -13,15 +13,14 @@ Funkcja nie posiadająca nazwy, o zwartym zapisie stosowana do prostych zadań. 
 f = lambda x: x * x 
 ```
 
-Może być zapisana wyłącznie w jednej linijce i może zawierać tyylko jedno wyrażenie
+Może być zapisana wyłącznie w jednej linijce i może zawierać tylko jedno wyrażenie
 
 ### Map()
 
-Przekazuje do funkcji element listy jako argument. Wyniik dzialania funcji jest zwracany jako element nowej listy
+Przekazuje do funkcji element listy jako argument. Wynik działania funkcji jest zwracany jako element nowej listy
 
 ```python
 map(function, iterable, ...)
-
 ```
 
 Przykłady:
