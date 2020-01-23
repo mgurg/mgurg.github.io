@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Konfiguracja serwera VPS dla data science/machine learning"
+title: "Konfiguracja serwera VPS dla data science/ML"
 categories: python
 author: "Michał"
 ---
