@@ -159,22 +159,27 @@ jupyter notebook --generate-config
 Writing default config to: /home/lambda/.jupyter/jupyter_notebook_config.py
 ```
 
-Ustawienie hasła:
+Ustawienie hasła (nie będzie konieczne podawanie długiego tokena do autoryzacji):
 
-```
+```bash
 jupyter notebook password
 ```
 
+```bash
+Enter password: **********
+Verify password: **********
+[NotebookPasswordApp] Wrote hashed password to: /home/lambda/.jupyter/jupyter_notebook_config.py
+```
 
 Instalacja JupyterLab
 
-```
+```bash
 sudo -H pip3 install jupyterlab
 ```
 
 uruchomienie JupyterLab
 
-```
+```bash
 $ jupyter lab
 ```
 
@@ -188,11 +193,61 @@ L8000 localhost:8888
 
 Połączenie (na komputerze lokalnym):
 
-```
+```bash
 http://localhost:8000
 ```
 
-### Git
+### Automatyczny start usługi
+
+Należy utworzyć w plik `jupyter.config` w folderze `/etc/systemd/system/`:
+
+```
+[Unit]
+Description=Jupyter Notebook
+
+[Service]
+Type=simple
+PIDFile=/run/jupyter.pid
+ExecStart=/bin/bash -c ". ~/environments/ml_env/bin/activate;jupyter-notebook --notebook-dir=/home/lambda/notebooks"
+User=lambda
+Group=lambda
+WorkingDirectory=/home/lambda/notebooks
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+
+```
+
+Następnie należy wykonać polecenia:
+
+```bash
+sudo systemctl enable jupyter.service
+sudo systemctl daemon-reload
+sudo systemctl start jupyter.service
+
+```
+
+Sprawdzenie statusu:
+
+```bash
+systemctl status jupyter.service
+```
+
+```bash
+* jupyter.service - Jupyter Notebook
+   Loaded: loaded (/etc/systemd/system/jupyter.service; enabled; vendor preset: enabled)
+   Active: active (running) since Fri 2020-01-24 12:44:10 CET; 31min ago
+ Main PID: 13486 (bash)
+    Tasks: 15 (limit: 4681)
+   CGroup: /system.slice/jupyter.service
+           |-13486 /bin/bash -c . ~/environments/ml_env/bin/activate;jupyter-notebook --notebook-dir=/home/lambda/notebooks
+           |-13487 /home/lambda/environments/ml_env/bin/python3 /home/lambda/environments/ml_env/bin/jupyter-notebook --notebook-dir=/home/lambda/notebooks
+           `-13570 /home/lambda/environments/ml_env/bin/python3 -m ipykernel_launcher -f /home/lambda/.local/share/jupyter/runtime/kernel-60191e35-aef5-42cf-9859-2b68d5298c35.json
+```
+
+## Git
 
 ```
 sudo apt-get install git
@@ -200,22 +255,33 @@ sudo apt-get install git
 
 Konfiguracja:
 
-```
+```bash
 git config --global user.name "user_name"
 git config --global user.email "email_id"
 ```
 
-### Serwer FTP
+Klonowanie repozytorium (po przejściu do własciwego folderu):
 
-
+```bash
+cd ~/github
+git clone https://github.com/xxx/py_otomoto.git
 ```
+
+
+
+## Serwer FTP
+
+
+```bash
 sudo apt install vsftpd
 ```
 
 
-### Pozostałe:
-strefa czasowa
+## Pozostałe:
+Konfiguracja strefy czasowej:
 
-```
+```bash
 sudo dpkg-reconfigure tzdata
 ```
+
+
