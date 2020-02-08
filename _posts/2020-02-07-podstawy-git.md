@@ -24,7 +24,7 @@ GIT Workflow (wg. [kursgita.pl](https://kursgita.pl/)):
 
 
 
-**02) Wysłanie gałęzi na serwer **
+**02) Wysłanie gałęzi na serwer**
 
 * git push origin -u <feature branch>
 * nie bać się PUSH! (bo „konwencja prywatności”...)
@@ -77,7 +77,7 @@ GIT Workflow (wg. [kursgita.pl](https://kursgita.pl/)):
 
 
 
-**07) Zmiany na serwer***
+**07) Zmiany na serwer**
 
 * git push
 * błąd?
