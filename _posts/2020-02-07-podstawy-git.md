@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "GIT: Podstawy"
+title: "Git: Podstawy"
 categories: python
 author: "Michał"
 ---
