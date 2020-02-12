@@ -136,7 +136,13 @@ Eksport zainstalowanych bibliotek (razem z numerem wersji) jest możliwy poprzez
 pip freeze > requirements.txt
 ```
 
- 
+ Deaktywacja środowiska venv:
+
+```bash
+deactivate
+```
+
+
 
 ## Jupyter
 

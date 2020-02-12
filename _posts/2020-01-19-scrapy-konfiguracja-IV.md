@@ -33,6 +33,27 @@ Zrobienie z pliku `getdata.sh` pliku wykonywalnego:
 chmod +x hello_world.sh 
 ```
 
+Dla pliku python skrypt bash będzie miał postać:
+
+```
+#!/bin/bash
+source ~/environments/ml_env/bin/activate
+PATH=$PATH:~/environments/ml_env/bin/python
+export PATH
+
+python ~/scrapy/carDataParser.py
+```
+
+Bardzo istotną kwesią jest kodowanie znaków końca linii. Jeżeli skrypt nie działa (przykładowy błąd: `-bash: ./parsedata.sh: /bin/bash^M: bad interpreter: No such file or directory`) to warto to sprawdzić. Znaki końca linii można poprawić komendą:
+
+```
+sed -i -e 's/\r$//' plotdata.sh
+```
+
+lub z pomocą `dos2unix file.txt`
+
+
+
 ### cron
 
 Zadanie będzie wykonywane codziennie o 4:33 w nocy. 
