@@ -55,3 +55,7 @@ Jeżeli zmienna losowa ma rozkład normalny N(μ,σ) to:
 - 68,3 % populacji mieści się w przedziale (-σ; + σ)
 - 95,5 % populacji mieści się w przedziale (-2σ; + 2σ)
 - 99,7 % populacji mieści się w przedziale (- 3σ; + 3σ)
+
+
+
+Odchylenie standardowe  - rozrzut
