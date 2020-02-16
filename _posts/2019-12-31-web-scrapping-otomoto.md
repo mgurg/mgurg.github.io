@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Web scrapping otomoto"
-categories: python
+categories: scrapy
 author: "Michał"
 ---
 
