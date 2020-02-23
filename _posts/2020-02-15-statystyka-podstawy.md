@@ -58,4 +58,28 @@ Jeżeli zmienna losowa ma rozkład normalny N(μ,σ) to:
 
 
 
-Odchylenie standardowe  - rozrzut
+## Odchylenie standardowe 
+
+ Inaczej rozrzut - im niższa wartość sigma (σ) rym bardziej stromy (świecowy) jest rozkład normalny. Intuicyjnie rzecz ujmując, odchylenie standardowe mówi, jak szeroko wartości jakiejś wielkości (na przykład wieku, inflacji, kursu walutowego) są rozrzucone wokół jej średniej[a]. Im mniejsza wartość odchylenia tym obserwacje są bardziej skupione wokół średniej. ([wikipedia](https://pl.wikipedia.org/wiki/Odchylenie_standardowe))
+
+Duże odchylenie standardowe to wada modelu.
+
+
+
+Przekształcenie rozkładu skośnego do normalnego (normalizacja)
+
+Korelacja
+
+korelacja pearsona
+
+Korelacja dla rozkładu normalnego?
+
+
+
+
+
+---
+
+Faktoryzacja
+
+Interpretowalność modelu
