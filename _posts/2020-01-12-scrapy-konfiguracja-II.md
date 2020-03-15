@@ -80,7 +80,21 @@ class OtomotoSpider(scrapy.Spider):
 
     def parse(self, response):
         pass
+```
+Plik konfiguracyjny `scrapy.cfg`:
+```
+# Automatically created by: scrapy startproject
+#
+# For more information about the [deploy] section see:
+# https://scrapyd.readthedocs.io/en/latest/deploy.html
 
+[settings]
+default = scrapy_otomoto.settings
+shell = ipython
+
+[deploy]
+#url = http://localhost:6800/
+project = scrapy_otomoto
 ```
 
 ### Uruchomienie projektu
@@ -89,7 +103,7 @@ Uruchomianie projektu wykonuje się komenda:
 
 ```bash
 cd .\scrapy_otomoto\scrapy_otomoto\spiders
-scrapy runspider otomoto
+scrapy runspider otomoto.py
 ```
 
 To jest minimalna konfiguracja projektu w *scrapy* jednak żeby zadziałał on ze stroną otomoto.pl konieczna będzie dalsza konfiguracja. W tym przypadku problemem jest (tak samo jak za poprzednim razem) brak podanego `user-agent`.
