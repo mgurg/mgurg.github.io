@@ -40,11 +40,10 @@ Z jednej tabeli do drugiej jeżeli Id jest takie samo
 
 ```sql
 UPDATE mtable 
-SET pub_date =
-    (SELECT pub_date
-     FROM otomoto_20200101
-     WHERE (mtable.offer_id) = (otomoto_20200101.offer_id))
-WHERE (offer_id) IN (SELECT offer_id FROM otomoto_20200101);
+SET pub_date = (
+SELECT pub_date FROM otomoto_20200102
+WHERE (mtable.offer_id) = (otomoto_20200102.offer_id))
+WHERE pub_date is null AND ((offer_id) IN (SELECT offer_id FROM otomoto_20200102));
 ```
 
 ## Zapisywanie długich zapytań 
