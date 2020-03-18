@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Konfiguracja Scrapy (część IV)"
-categories: python
+title: "Konfiguracja Scrapy (część IV) - cron"
+categories: scrapy
 author: "Michał"
 ---
 

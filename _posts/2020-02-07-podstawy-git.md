@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Git: Podstawy"
-categories: python
+categories: git
 author: "Michał"
 ---
 

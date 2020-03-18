@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Konfiguracja Scrapy (część I)"
-categories: python
+categories: scrapy
 author: "Michał"
 ---
 Opisałem drogę w wyniku której zacząłem używać scrapy, dzisiaj chciałym pokazać jak skonfigurowałem to narzędzie żeby móc pobierać dane z otomoto.
