@@ -98,4 +98,4 @@ Zrobiłem ten test próbując inne adresy URL i w zależności od strony udawał
 ```
 
 Podgląd pobranych danych w przeglądarce umożliwia komenda `view(response)`
-Jeżeli chcemy zobaczyć kod strony to możemy go wyświetlić przy pomocy `print response.text`
+Jeżeli chcemy zobaczyć kod strony to możemy go wyświetlić przy pomocy `print(response.text)`
