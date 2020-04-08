@@ -51,7 +51,7 @@ git diff --cached
 
 ## .gitignore
 
-Plik który ma zapisane informacje o tym które pliki mają być ignorowane:
+Plik który ma zapisane informacje o tym które pliki mają być ignorowane. Predefiniowane [szablony dla różnych języków](https://github.com/github/gitignore) od Github.
 
 Źródło: [link](https://www.atlassian.com/git/tutorials/saving-changes/gitignore#git-ignore-patterns)
 
