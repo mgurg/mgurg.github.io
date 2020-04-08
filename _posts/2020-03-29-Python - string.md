@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Python: łancuchy znaków"
+title: "Python: string (łancuch znaków)"
 categories: python
 author: "Michał"
 ---
@@ -19,6 +19,26 @@ author: "Michał"
 `" ".join(words)` - łączenie wyrazów
 
 `'80,5'.replace(',', '.')`- zamiana znaków
+
+## Numerowanie znaków
+
+`str = "Python"`
+
+|  P   |  y   |  t   |  h   |  o   |  n   |
+| :--: | :--: | :--: | :--: | :--: | :--: |
+|  0   |  1   |  2   |  3   |  4   |  5   |
+|  -6  |  -5  |  -4  |  -3  |  -2  |  -1  |
+
+```python
+str[3]     #h
+str[:3]    #Pyth
+str[-1]    #n
+str[4:]    #on
+str[-4:-2] # th
+str[::-1]  #nohtyP
+```
+
+
 
 ## Multiline string
 
@@ -41,9 +61,11 @@ Wtedy można dowolnie łamać ciąg znaków
 
 Zapis bardzo długi stringów z wykorzystaniem nawiasu
 
-```
+```python
+# long string
 str = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 
+# use brackets to breake lines
 str2 = ('ssssssssss'
 'ssssssssssssss'
 'ssssssssssss')
@@ -52,7 +74,7 @@ str2 = ('ssssssssss'
 
 ## f-string
 
-String formatujący `f'string'` (python >= 3.6)
+String formatujący `f'string'` (Python >= 3.6)
 
 ```python
 name = "Eric"
@@ -69,8 +91,6 @@ Więcej: [Python 3's f-Strings: An Improved String Formatting Syntax (Guide)](ht
 ### TODO:
 
 str() vs repr() in Python
-
-
 
 stdin, stdout, stderr vs print()
 

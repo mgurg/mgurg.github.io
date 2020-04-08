@@ -6,6 +6,18 @@ author: "Michał"
 ---
 Wszystkie przykłady opisane na podstawie SQLite
 
+Główny podział poleceń w SQL:
+
+- SELECT
+- INSERT
+- UPDATE
+- DELETE
+- funkcje agregujące
+- JOIN
+- Subqueries
+
+
+
 ## Tworzenie nowej tabeli
 
 ```sql
