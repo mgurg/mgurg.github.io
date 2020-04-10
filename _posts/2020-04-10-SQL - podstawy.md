@@ -4,9 +4,11 @@ title: "SQL: Podstawy"
 categories: SQL
 author: "Michał"
 ---
+
+
 Wszystkie przykłady opisane na podstawie SQLite
 
-Główny podział poleceń w SQL:
+## Główny podział poleceń w SQL
 
 - SELECT
 - INSERT

@@ -9,11 +9,19 @@ author: "Michał"
 
 Poniżej to co faktycznie się nauczyłem do tej pory :) :
 
+**[10-04-2020]**
+
+`Scrapy` - Nic nowego nie dodałem do kudu, ale wiem już skądpojawiają się problemy z czytaniem i pisaniem kodu. Odpowiedź to programowanie obiektowe
+
+**TODO:** Objects, Classes, `__Init__`, Class variables, Methods, inheritance
+
+
+
+`Regex` 
+
 **[30-03-2020]**
 
 Robienie własnego projektu który nie jest kalkulatorem ani  TODO listą związanego z przepisywaniem kodu który ktoś wymyślił sprawie że pojawia się masa rzeczy których trzeba się nauczyć choćby w minimalnym stopniu żeby zrobić to co się wymyśliło. Lista tematów które doszły od ostatniego zestawienia:
-
-
 
 `SQL` - Zapis ogłoszeń do plików do `csv` i obróbka ich przy pomocy `pandas` była dobrym pomysłem na start. Skoro jednak mam działający kod dla najprostszego przypadku to  postanowiłem go rozwinąć w coś bardziej użytecznego. Parsowane treści wszystkich ogłoszeń sprawiło że mam znacznie więcej danych, uznałem że wygodniej będzie trzymać je wszystkie w bazie `SQLite`. To wymagało ode mnie nauki podstaw SQL. Na razie mam opanowane elementarne zapytania dla tworzenia tabel, dodawania, odpytywania i łącznia danych
 

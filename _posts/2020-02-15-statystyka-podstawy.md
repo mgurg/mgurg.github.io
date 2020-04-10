@@ -79,6 +79,10 @@ Jeżeli zmienna losowa ma rozkład normalny N(μ,σ) to:
 - 95,5 % populacji mieści się w przedziale (-2σ; + 2σ)
 - 99,7 % populacji mieści się w przedziale (- 3σ; + 3σ)
 
+mean, median and mode są sobie równe. 
+
+![https://commons.wikimedia.org/wiki/File:Normal_Distribution_PDF.svg](https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Normal_Distribution_PDF.svg/1000px-Normal_Distribution_PDF.svg.png)
+
 ## Skośność (Skewness)
 
 Skewness is a measure of asymmetry that indicates whether the observations in a dataset are concentrated on one side. Right (positive) skewness looks like the one in the graph. It means that the s outliers are to the right (long tail to the right). Left (negative) skewness means that the outliers are to the left.
@@ -87,11 +91,23 @@ Skewness is a measure of asymmetry that indicates whether the observations in a 
 
 
 
+## Wariancja
+
+Mierzy rozproszenie danych wokół średniej (σ^2 / s^2)
+
+
+
 ## Odchylenie standardowe 
 
-Inaczej rozrzut - im niższa wartość sigma (σ) tym bardziej stromy (świecowy) jest rozkład normalny. Intuicyjnie rzecz ujmując, odchylenie standardowe mówi, jak szeroko wartości jakiejś wielkości (na przykład wieku, inflacji, kursu walutowego) są rozrzucone wokół jej średniej[a]. Im mniejsza wartość odchylenia tym obserwacje są bardziej skupione wokół średniej. ([wikipedia](https://pl.wikipedia.org/wiki/Odchylenie_standardowe))
+Inaczej rozrzut - im niższa wartość sigma (σ) tym bardziej stromy (świecowy) jest rozkład normalny. Intuicyjnie rzecz ujmując, odchylenie standardowe mówi, jak szeroko wartości jakiejś wielkości (na przykład wieku, inflacji, kursu walutowego) są rozrzucone wokół jej średniej. Im mniejsza wartość odchylenia tym obserwacje są bardziej skupione wokół średniej. ([wikipedia](https://pl.wikipedia.org/wiki/Odchylenie_standardowe)). Duże odchylenie standardowe to wada modelu.
 
-Duże odchylenie standardowe to wada modelu.
+Odchylenie standardowe to miara zmienności dla pojedynczego zbioru danych
+
+Współczynnik zmienności - porównuje dwa lub więcej zbiorów danych.
+
+
+
+
 
 
 
