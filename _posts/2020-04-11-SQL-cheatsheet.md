@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "SQL: Podstawy"
+title: "SQL: cheatsheet"
 categories: SQL
 author: "Michał"
 ---
@@ -375,3 +375,123 @@ FROM   employees e
 5: UNION / UNION ALL
 
 6: self join
+
+## CASES
+
+```
+SELECT e.emp_no,
+       e.first_name,
+       e.last_name,
+       CASE
+         WHEN dm.emp_no IS NOT NULL THEN 'Manager'
+         ELSE 'Employee'
+       end AS is_manager
+FROM   employees e
+       LEFT JOIN dept_manager dm
+              ON dm.emp_no = e.emp_no
+WHERE  e.emp_no > 109990;  
+```
+
+
+
+## SQL VIEW
+
+Wirtualna tabela utworzona z innej istniejącej tabeli lub tabel. "Migawka" z zapisanym stanem zdefiniowanego wcześniej zapytania. Jest ona uaktualniana automatycznie wraz ze zmieniającymi się danymi w oryginalnej tabeli.
+
+```sql
+CREATE OR replace VIEW v_manager_avg_salary
+AS
+  SELECT Round(Avg(salary), 2)
+  FROM   salaries s
+         join dept_manager m
+           ON s.emp_no = m.emp_no;  
+```
+
+
+
+## Indeksy
+
+s
+
+```
+SELECT *
+FROM   salaries
+WHERE  salary > 89000;
+
+CREATE INDEX i_salary ON salaries(salary);
+
+SELECT *
+FROM   salaries
+WHERE  salary > 89000;  
+```
+
+
+
+## Stored routines
+
+- stored procedures (nie zwracają wartości) Użycie: `call` procedure; 
+- functions (user defined, built-in - zwracają pojedynczą wartość) Użycie: `select` function;
+
+Procedura:
+
+```sql
+DELIMITER $$
+
+CREATE PROCEDURE avg_salary()
+BEGIN
+	SELECT
+		AVG(salary)
+	FROM
+	salaries;
+END$$
+
+DELIMITER ;
+
+--to use type:
+CALL avg_salary;
+CALL avg_salary();
+CALL employees.avg_salary;
+CALL employees.avg_salary(); 
+```
+
+Funkcja:
+
+```sql
+DELIMITER $$ 
+
+CREATE FUNCTION emp_info(p_first_name varchar(255), p_last_name varchar(255)) 
+RETURNS decimal(10, 2)
+
+BEGIN
+   DECLARE v_max_from_date date;
+DECLARE v_salary decimal(10, 2);
+SELECT
+   MAX(from_date) INTO v_max_from_date 
+FROM
+   employees e 
+   JOIN
+      salaries s 
+      ON e.emp_no = s.emp_no 
+WHERE
+   e.first_name = p_first_name 
+   AND e.last_name = p_last_name;
+SELECT
+   s.salary INTO v_salary 
+FROM
+   employees e 
+   JOIN
+      salaries s 
+      ON e.emp_no = s.emp_no 
+WHERE
+   e.first_name = p_first_name 
+   AND e.last_name = p_last_name 
+   AND s.from_date = v_max_from_date;
+RETURN v_salary;
+
+END $$ 
+DELIMITER ;
+ 
+SELECT
+   EMP_INFO('Aruna', 'Journel');
+```
+
