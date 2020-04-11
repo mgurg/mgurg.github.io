@@ -5,8 +5,6 @@ categories: Python
 author: "Michał"
 ---
 
-
-
 # OOP
 
 

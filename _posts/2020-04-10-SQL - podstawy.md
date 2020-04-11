@@ -1,26 +1,26 @@
 ---
 layout: post
-title: "SQL: Podstawy"
+title: "SQLite: Podstawy"
 categories: SQL
 author: "Michał"
 ---
 
-
-Wszystkie przykłady opisane na podstawie SQLite
-
-## Główny podział poleceń w SQL
-
-- SELECT
-- INSERT
-- UPDATE
-- DELETE
-- funkcje agregujące
-- JOIN
-- Subqueries
-
-
+Wszystkie przykłady poniżej  opisane na podstawie SQLite
 
 ## Tworzenie nowej tabeli
+
+Ogólny kod:
+```sql
+CREATE TABLE [IF NOT EXISTS] [schema_name].table_name (
+	column_1 data_type PRIMARY KEY,
+   	column_2 data_type NOT NULL,
+	column_3 data_type DEFAULT 0,
+	table_constraints
+) [WITHOUT ROWID];
+```
+
+
+Przykład w python: 
 
 ```sql
 """CREATE TABLE "{table_name}" (
