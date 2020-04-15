@@ -30,36 +30,27 @@ Bazy danych
 
 **Data Manipulation Language (DML)**
 
-SELECT ... FROM ...
+- SELECT ... FROM ...
 
-INSERT ... INTO ... VALUES ...
+- INSERT ... INTO ... VALUES ...
 
-UPDATE ... SET ... WHERE
+- UPDATE ... SET ... WHERE
 
-DELETE ... FROM ... WHERE ...
+- DELETE ... FROM ... WHERE ...
+
 
 **Data Control Language (DCL)**
 
-REVOKE
+- REVOKE
 
-GRANT
+- GRANT
+
 
 **Transaction Control Language (TCL)**
 
-COMMIT
+- COMMIT
 
-ROLLBACK
-
-
-Całość omżan pogrupować jak poniżej:
-
-- SELECT
-- INSERT
-- UPDATE
-- DELETE
-- funkcje agregujące
-- JOIN
-- Subqueries
+- ROLLBACK
 
 ### Primary key
 
@@ -73,7 +64,7 @@ identyfikuje relację pomiędzy tabelami
 | -------------------------- | ---- | ---- | ---- | ---- | ---------------------- |
 | <u>**purchase_number**</u> |      | \|   | ---  | ->   | **<u>customer_id</u>** |
 | date_of_purchase           |      |      |      |      | first_name             |
-| customer_id (**FK**) ---   | ---- | \|   |      |      | last_name              |
+| customer_id (**FK**) ---   | ---  | \|   |      |      | last_name              |
 |                            |      |      |      |      | email_address          |
 
 parent table - referenced table
@@ -96,7 +87,7 @@ DROP FOREIGN KEY sales_ibfk2;
 
 ### Unique key
 
-Musi zawierać unikalne wartości w przeciwieństwie do PK może mieć puste wartości (null). Może występować kilka UK w jednej tabeli.
+Musi zawierać unikalne wartości w przeciwieństwie do PK może mieć puste wartości (NULL). Może występować kilka *Unique Key* w jednej tabeli.
 
 ```sql
 -- add UK
@@ -120,7 +111,23 @@ DROP INDEX email_address;
 
 - jeden do jednego
 
+---
+
+Całość można pogrupować jak poniżej:
+
+- SELECT
+- INSERT
+- UPDATE
+- DELETE
+- funkcje agregujące
+- JOIN
+- Subqueries
+
+---
+
   
+
+
 
 ## SELECT
 
@@ -138,9 +145,9 @@ LIMIT number;
 
 
 
-Podstawowe operacje
+Podstawowe operacje:
 
-1: AND / OR 
+1: `AND` / `OR` 
 
 ```sql
 SELECT
@@ -163,7 +170,7 @@ WHERE
    first_name NOT IN ('John' , 'Mark', 'Jacob'); -- multiple conditoions, wszyscy poza
 ```
 
-3:
+3: LIKE
 
 ```sql
 SELECT   * FROM   employees
@@ -171,7 +178,7 @@ WHERE
    first_name LIKE('_ar%'); -- Mariusz, Marcin _ pojedynczy znak, % dowolny ciąg znaków
 ```
 
-4:
+4: BETWEEN
 
 ```sql
 SELECT   * FROM   salaries
@@ -179,7 +186,7 @@ WHERE
    salary BETWEEN 6600 AND 7000;
 ```
 
-5:
+5: IS NOT NULL
 
 ```sql
 SELECT   dept_name	FROM   departments
@@ -187,7 +194,7 @@ WHERE
    dept_no IS NOT NULL;
 ```
 
-6:
+6: DISTINCT
 
 ```sql
 SELECT DISTINCT -- jak pandas.unique(), zwraca uniklane wartości w kolumnie
@@ -196,7 +203,7 @@ FROM
    employees;
 ```
 
-7:
+7: DESC/ASC - sortowanie rosnąco malejąco
 
 ```sql
 SELECT
@@ -206,20 +213,7 @@ FROM
 ORDER BY hire_date DESC;
 ```
 
-
-
-**Aggregate functions**
-
-COUNT() SUM() MIN() MAX() AVG()
-
-```sql
-SELECT
-   COUNT(DISTINCT first_names) -- pandas.nunique()
-FROM
-   employees
-```
-
-8: Alias -  AS
+8: Alias -  AS (nadanie nowej nazwy)
 
 ```sql
 SELECT
@@ -232,9 +226,7 @@ GROUP BY salary
 ORDER BY salary;
 ```
 
-
-
- 9: HAVING
+ 9: HAVING - używane po GROUP By żeby doprecyzować zapytanie
 
 ```sql
 SELECT
@@ -265,7 +257,7 @@ LIMIT 100;
 
 ## INSERT
 
-1:
+Przykładowa składnia:
 
 ```sql
 INSERT INTO employees
@@ -280,17 +272,15 @@ VALUES
 );
 ```
 
-
-
 ## UPDATE
 
-```
+```sql
 UPDATE departments
 SET
 
    dept_name = 'Data Analysis'
 WHERE
-   dept_no = 'd010'; - be tego warunku nadpisz ewszystkie rekordy
+   dept_no = 'd010'; -- bez tego warunku nadpisz ewszystkie rekordy
 ```
 
 Pamiętać o COMMIT i ROLLBACK
@@ -309,7 +299,7 @@ WHERE
 
 DROP vs TRUNCATE vs DELETE
 
-`DROP`:
+**DROP**:
 
 - usuwa zawartość
 
@@ -317,13 +307,13 @@ DROP vs TRUNCATE vs DELETE
 - usuwa constrains
 - nie może być cofnięty poprzez ROLLBACK
 
-TRUNCATE:
+**TRUNCATE**:
 
 - odpowiednik DELETE bez zdefiniowanego WHERE
 - usuwa zawartość, struktura zostaje zachowana
 - wartości auto-increment zostaną zresetowane (1,2,3 - X - 5 -->  1, 2,3 )
 
-DELETE
+**DELETE**:
 
 - usuwa rekordy rzędami
 - wartości auto-increment pozostają zachowane ()
@@ -332,6 +322,17 @@ DELETE
 
 
 ## AGG
+
+Przykłady funkcji agregujących: COUNT() SUM() MIN() MAX() AVG()
+
+```sql
+SELECT
+   COUNT(DISTINCT first_names) -- pandas.nunique()
+FROM
+   employees
+```
+
+
 
 ```sql
 COUNT() --  zlicza wartości, jako jedyna działa z non-numeruc data
@@ -355,7 +356,7 @@ COALESCE(expr_1, expr_2, exp_n3 ...)--IFNULL z więcej niż dwoma parametrami
 
 1: INNER JOIN - zwraca tylko część wspólną
 
-```
+```sql
 SELECT e.emp_no,
        e.first_name,
        e.last_name,
@@ -378,7 +379,7 @@ FROM   employees e
 
 ## CASES
 
-```
+```sql
 SELECT e.emp_no,
        e.first_name,
        e.last_name,
@@ -413,7 +414,7 @@ AS
 
 s
 
-```
+```sql
 SELECT *
 FROM   salaries
 WHERE  salary > 89000;

@@ -4,6 +4,7 @@ title: "Hello world"
 categories: junk
 author: "Michał"
 meta: "Springfield"
+mermaid: true
 ---
 
 Zażółć gęślą jaźń – zdanie zawierające wszystkie polskie znaki diakrytyczne, służące do demonstrowania możliwości edytorów tekstu w zakresie obsługi alfabetu polskiego
@@ -171,3 +172,11 @@ class ExitNotifyThread(Thread):
         set."""
         return self.exitmessage
 ```
+
+
+<div class="mermaid">
+graph LR
+    A --- B
+    B-->C[Happy]
+    B-->D(Sad);
+</div>
