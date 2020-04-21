@@ -7,11 +7,11 @@ author: "Michał"
 
 
 
-# Regex
+# Wyrażenia regularne
 
 `[aeiou]` - dowolna samogłoska
 
-`[^aeiou]` - dowolna spółgłoska (^ - negacja)
+`[^aeiou]` - dowolna spółgłoska (`^` - negacja)
 
 `[a-z]` - dowolna mała litera z zakresu a-z
 
@@ -50,4 +50,10 @@ pattern = re.compile(r'text') # r - raw string
 pattern.match('text') #szuka na początku tekstu
 pattern.search('sample text') # szuka w całym ciągu znaków
 ```
+
+
+
+### Regex101
+
+Narzędzie do budowania i testowania zapytań : [Regex101](https://regex101.com/)
 

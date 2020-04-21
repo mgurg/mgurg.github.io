@@ -7,6 +7,8 @@ author: "Michał"
 
 # Podstawowa konfiguracja
 
+Opis na podstawie: [Stawiamy własny serwer](https://blog.prokulski.science/index.php/2018/06/14/serwer-vps-dla-r-python/)
+
 Dodanie nowego użytkownika którego będziemy używać do pracy zamiast konta `root`
 
 ```bash
@@ -42,7 +44,11 @@ restart
 ```bash
 sudo service ssh restart
 ```
-
+Aktualizacja systemu:
+```bash
+sudo apt-get update
+sudo apt-get upgrade
+```
 
 # Python
 

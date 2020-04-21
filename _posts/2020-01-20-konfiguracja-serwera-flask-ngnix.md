@@ -86,7 +86,7 @@ server {
         root /home/lambda/environments/ml_env/www/helloworld/;
         index index.html index.htm index.ngnix-debian.html;
 
-        server_name 192.166.219.228;
+        server_name 192.166.219.228 nazwadomeny.pl;
 
         location / {
                 try_files $uri $uri/ =404;

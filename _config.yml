@@ -9,6 +9,9 @@ remote_theme: huangyz0918/moving
 
 plugins:
   - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jemoji 
 
 moving:
   about_you: notatki z nauki

@@ -11,13 +11,11 @@ Poniżej to co faktycznie się nauczyłem do tej pory :) :
 
 **[10-04-2020]**
 
-`Scrapy` - Nic nowego nie dodałem do kudu, ale wiem już skądpojawiają się problemy z czytaniem i pisaniem kodu. Odpowiedź to programowanie obiektowe
+`Scrapy` - Nic nowego nie dodałem do kodu, ale wiem już skąd pojawiają się problemy z czytaniem i pisaniem kodu. Odpowiedź to programowanie obiektowe
 
 **TODO:** Objects, Classes, `__Init__`, Class variables, Methods, inheritance
 
-
-
-`Regex` 
+`Regex`  - poznałem podstawową składnię przy okazji wyciągania danych w formacie JSON
 
 **[30-03-2020]**
 

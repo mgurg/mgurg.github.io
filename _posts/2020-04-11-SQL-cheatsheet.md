@@ -173,7 +173,7 @@ WHERE
 3: LIKE
 
 ```sql
-SELECT   * FROM   employees
+SELECT * FROM employees
 WHERE
    first_name LIKE('_ar%'); -- Mariusz, Marcin _ pojedynczy znak, % dowolny ciąg znaków
 ```
@@ -181,7 +181,7 @@ WHERE
 4: BETWEEN
 
 ```sql
-SELECT   * FROM   salaries
+SELECT * FROM salaries
 WHERE
    salary BETWEEN 6600 AND 7000;
 ```
@@ -189,7 +189,7 @@ WHERE
 5: IS NOT NULL
 
 ```sql
-SELECT   dept_name	FROM   departments
+SELECT dept_name FROM departments
 WHERE
    dept_no IS NOT NULL;
 ```
@@ -277,7 +277,6 @@ VALUES
 ```sql
 UPDATE departments
 SET
-
    dept_name = 'Data Analysis'
 WHERE
    dept_no = 'd010'; -- bez tego warunku nadpisz ewszystkie rekordy
@@ -291,7 +290,7 @@ Pamiętać o COMMIT i ROLLBACK
 
 ON DELETE CASCADE - przy usuwaniu rodzica usuwa wartości w tabeli dziecka
 
-```
+```sql
 DELETE FROM departments
 WHERE
    dept_no = '5';
