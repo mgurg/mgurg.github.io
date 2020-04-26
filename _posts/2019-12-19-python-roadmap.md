@@ -11,13 +11,15 @@ Poniżej to co faktycznie się nauczyłem do tej pory :) :
 
 **[26-04-2020]**
 
-`Flask` - udało mi się szybko zbudować działający serwis który jest całkiem przyjazny dla oka (zasługa Boostrap). Dużo jest jeszcze do dopracowania, ale jako szybki POC sprawdza się znakomicie. Wszystko działa jkuż na serwerze, dane się pobierają, a wykresy generują bez mojego udziału. 
+`Flask` - udało mi się szybko zbudować działający serwis który jest całkiem przyjazny dla oka (zasługa Boostrap). Dużo jest jeszcze do dopracowania, ale jako szybki POC sprawdza się znakomicie. Wszystko działa już na serwerze, dane się pobierają, a wykresy generują bez mojego udziału. 
 
 **TODO:** ataki *CSRF*, walidacja danych w formularzach, nadrobienie braków w konfiguracji NGNIX 
 
 `YAML` - potrzebowałem przerzucić cześć danych konfiguracyjnych do osobnego pliku. Myślałem żeby zrobić to jako JSON (i skreślić jeden punkt TODO), ale okazało się że możliwości są znacznie szersze. Wybrałem YAML, bardziej z ciekawości i chęci zabawy niż z jakiegoś racjonalnego względu.
 
-`Wizualizacja` - udało się wygrać z serwerem VPS, mogę już rysować wykresy przy pomocy `matplotlib` Na razie tworzę najprostsze grafiki, mam za sobą testy z Bokeh. Będę chciał spróbować Plotly
+`Wizualizacja` - udało się wygrać z serwerem VPS, mogę już rysować wykresy przy pomocy `matplotlib` Na razie tworzę najprostsze grafiki, mam za sobą testy z Bokeh. Będę chciał spróbować Plotly.
+
+
 
 
 
@@ -28,6 +30,10 @@ Poniżej to co faktycznie się nauczyłem do tej pory :) :
 **TODO:** Objects, Classes, `__Init__`, Class variables, Methods, inheritance
 
 `Regex`  - poznałem podstawową składnię przy okazji wyciągania danych w formacie JSON
+
+
+
+
 
 **[30-03-2020]**
 
