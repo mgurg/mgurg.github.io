@@ -16,7 +16,7 @@ Bazy danych
 
 ## Główny podział poleceń w SQL
 
-**Data Definition Language (DDL):**
+**Data Definition Language (DDL):** – umieszczanie, aktualizowanie lub usuwanie danych z bazy
 
 - CREATE
 
@@ -28,7 +28,7 @@ Bazy danych
 
 - TRUNCATE
 
-**Data Manipulation Language (DML)**
+**Data Manipulation Language (DML)** – operacje na strukturach bazy danych, czyli np. tworzenie lub kasowanie tabel i baz.
 
 - SELECT ... FROM ...
 
@@ -38,8 +38,7 @@ Bazy danych
 
 - DELETE ... FROM ... WHERE ...
 
-
-**Data Control Language (DCL)**
+**Data Control Language (DCL)** – nadawanie uprawnień do obiektów baz
 
 - REVOKE
 

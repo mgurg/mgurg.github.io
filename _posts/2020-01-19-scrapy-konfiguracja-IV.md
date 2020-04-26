@@ -44,7 +44,9 @@ export PATH
 python ~/scrapy/carDataParser.py
 ```
 
-Bardzo istotną kwesią jest kodowanie znaków końca linii. Jeżeli skrypt nie działa (przykładowy błąd: `-bash: ./parsedata.sh: /bin/bash^M: bad interpreter: No such file or directory`) to warto to sprawdzić. Znaki końca linii można poprawić komendą:
+Bardzo istotną kwestią jest kodowanie znaków końca linii. W systemach unixowych jest to wyłącznie znak `LF`.
+
+Jeżeli skrypt nie działa (przykładowy błąd: `-bash: ./parsedata.sh: /bin/bash^M: bad interpreter: No such file or directory`) to warto to sprawdzić. Znaki końca linii można poprawić komendą:
 
 ```
 sed -i -e 's/\r$//' plotdata.sh
@@ -52,7 +54,7 @@ sed -i -e 's/\r$//' plotdata.sh
 
 lub z pomocą `dos2unix file.txt`
 
-
+Skrypt bash można uruchomić ręcznie dodając `./` przed nazwą pliku wykonywalnego `./plotdata.sh`
 
 ### cron
 
