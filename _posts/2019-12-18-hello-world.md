@@ -5,7 +5,7 @@ categories: junk
 author: "Michał"
 meta: "Springfield"
 mermaid: true
-math:true
+math: true
 ---
 
 Zażółć gęślą jaźń – zdanie zawierające wszystkie polskie znaki diakrytyczne, służące do demonstrowania możliwości edytorów tekstu w zakresie obsługi alfabetu polskiego
