@@ -11,6 +11,8 @@ Praca w firmie z graficznym SVN dała mi podstawy idei systemów kontroli wersji
 
 Pierwszym krokiem była doinstalowanie osobno [git](https://git-scm.com/) tak żeby móc korzystać z niego poprzez edytor (*VS Code*) który daje mi większą kontrolę niż GithubDesktop. Kolejnymi krokami ma być nauczenie się prawidłowego podejścia.
 
+[How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/)
+
 ### Teoria
 
 Obszary:

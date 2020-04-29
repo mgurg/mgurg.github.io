@@ -73,9 +73,13 @@ Robienie własnego projektu który nie jest kalkulatorem ani  TODO listą związ
 
 `Linux` - do tej pory: elementarne podstawy. Logowanie po SSH, poruszanie się po systemie z wykorzystaniem wyłącznie tekstowej konsoli
 
-**TODO**: Prawa dostępu do plików, ~~dowiązania symboliczne~~
+**TODO**: ~~Prawa dostępu do plików~~, ~~dowiązania symboliczne~~
 
 
+
+---
+
+Czego nie robić: [The Little Book of Python Anti-Patterns](https://docs.quantifiedcode.com/python-anti-patterns/index.html)
 
 ---
 
@@ -121,4 +125,4 @@ Ogólna lista (zrobiona przed rozpoczęciem nauki - na podstawie harmonogramu Co
    11. [Wyrażenie regularne](https://mgurg.github.io/python/2020/04/12/Python-Regex.html)
  - Numpy 
  - Pandas 
- - MatplotLib
+ - [MatplotLib](https://mgurg.github.io/linux/2020/04/26/Matplotlib-seaborn.html)

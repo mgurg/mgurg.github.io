@@ -152,7 +152,7 @@ Sequential([
 
 
 
-Konwolucja - nakładanie filtru
+Konwolucja - nakładanie filtru ([Image Kernels Explained Visually](https://setosa.io/ev/image-kernels/))
 
 Pooling - sposób na  zmniejszanie zdjęć przy jednoczesnym zachowaniu najważniejszych informacji w nich zawartych.
 
