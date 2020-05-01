@@ -38,6 +38,12 @@ print(result)
 
 ### Apply
 
+Umożliwia razem z unkcją lambda szybkie iterowanie po kolumnach dataframe:
+
+```python
+df['GPS y'] = df['GPS y'].apply(lambda x : dms2dd(x))
+```
+
 
 
 

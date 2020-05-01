@@ -85,7 +85,7 @@ Czego nie robić: [The Little Book of Python Anti-Patterns](https://docs.quantif
 
 
 
-Ogólna lista (zrobiona przed rozpoczęciem nauki - na podstawie harmonogramu CodersLab):
+Ogólna lista (zrobiona przed rozpoczęciem nauki - na podstawie [harmonogramu](https://github.com/Danutelka?tab=repositories) [CodersLab](https://github.com/wojciechGaudnik/CodersLab)):
 
 
  - Python podstawy
