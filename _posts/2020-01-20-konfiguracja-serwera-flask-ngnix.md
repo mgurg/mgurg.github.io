@@ -6,6 +6,11 @@ author: "Michał"
 ---
 
 
+
+## Teoria
+
+📺 [WSGI for Web Developers](https://www.youtube.com/watch?v=WqrCnVAkLIo)
+
 ## Serwer WWW – nginx
 
 Do wyboru jest Apache i nginx. Rzut monetą wskazał na drugi webserver (ok, tak naprawdę to wybrany z premedytacją). Komenda do instalacji:

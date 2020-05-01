@@ -13,7 +13,7 @@ Poniżej to co faktycznie się nauczyłem do tej pory :) :
 
 `Flask` - udało mi się szybko zbudować działający serwis który jest całkiem przyjazny dla oka (zasługa Boostrap). Dużo jest jeszcze do dopracowania, ale jako szybki POC sprawdza się znakomicie. Wszystko działa już na serwerze, dane się pobierają, a wykresy generują bez mojego udziału. 
 
-**TODO:** ataki *CSRF*, walidacja danych w formularzach, nadrobienie braków w konfiguracji NGNIX 
+**TODO:** Blueprint, errorhandler, ataki *CSRF*, walidacja danych w formularzach, nadrobienie braków w konfiguracji NGNIX 
 
 `YAML` - potrzebowałem przerzucić cześć danych konfiguracyjnych do osobnego pliku. Myślałem żeby zrobić to jako JSON (i skreślić jeden punkt TODO), ale okazało się że możliwości są znacznie szersze. Wybrałem YAML, bardziej z ciekawości i chęci zabawy niż z jakiegoś racjonalnego względu.
 

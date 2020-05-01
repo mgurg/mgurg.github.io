@@ -5,7 +5,11 @@ categories: ML
 author: "Michał"
 ---
 
+
+
 https://renanmf.com/machine-learning-and-deep-learning-software-engineers/
+
+https://youtu.be/JXhC8iNQvxE
 
 
 ## Machine learning - podział
