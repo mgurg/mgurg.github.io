@@ -21,7 +21,6 @@ Powyższa linijka wymusza detekcję procesora na starszą rodzinę niż w rzeczy
 
 Macierz:
 
-
 $$
 M_{2 \times 3} = \left( \begin{array}{ccc}
 x_{11} & x_{12} & x_{12} \\
@@ -29,6 +28,8 @@ x_{21} & x_{22} & x_{23} \\
 \end{array} \right)
 $$
 Dodawanie skalaru do macierzy:
+
+
 $$
 2 + \left( \begin{array}{ccc}
 1 & 2 \\
@@ -45,6 +46,8 @@ $$
 $$
 
 Dodawanie dwóch macierzy:
+
+
 $$
 \left( \begin{array}{ccc}
 1 & 3 \\

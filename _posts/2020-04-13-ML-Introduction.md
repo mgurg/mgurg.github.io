@@ -7,6 +7,8 @@ author: "Michał"
 
 
 
+# Klasyczne uczenie maszynowe
+
 https://renanmf.com/machine-learning-and-deep-learning-software-engineers/
 
 https://youtu.be/JXhC8iNQvxE
@@ -30,7 +32,7 @@ Reinforcement learning
 
 
 
-# Regresja liniowa
+## Regresja liniowa
 
 y = ax+b
 

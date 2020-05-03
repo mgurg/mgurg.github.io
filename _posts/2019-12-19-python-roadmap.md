@@ -94,10 +94,10 @@ Ogólna lista (zrobiona przed rozpoczęciem nauki - na podstawie [harmonogramu](
     - Instrukcje warunkowe if - elseif - else
     - Blok kodu i instrukcja pass
     - Funkcje, zwracane wartości, parametry funkcji
-    - "Magiczne" parametry funkcji: *args i **kwargs
+    - ["Magiczne" parametry funkcji: *args i **kwargs](https://mgurg.github.io/python/2019/12/24/python-args-kwargs.html)
     - Listy i krotki: nawigowanie po kolekcjach
-    - Modyfikowanie list
-    - Krotki i różnice miedzy krotką a listą
+      - Modyfikowanie list
+      - Krotki i różnice miedzy krotką a listą
     - [Lista składana (list comprehension)](https://mgurg.github.io/python/2019/12/23/python-list-comprehension.html)
     - Słowniki
     - Instrukcja "for in" oraz operator "in"

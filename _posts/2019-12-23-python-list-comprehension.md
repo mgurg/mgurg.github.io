@@ -24,6 +24,17 @@ liczby3 = [i**3 for i in liczby if i >0 ]
 liczby3
 ```
 
+Jeszcze jedne przykład:
+```python
+# prosty sposób:
+kwadraty = []
+for x in range(20, 39):
+	kwadraty.append(x)
+	
+# List comprehension
+kwadraty = [x for x in range(20, 39)]
+```
+
 ### Składnia 
 
 [**output expression** _for item in iterable_]

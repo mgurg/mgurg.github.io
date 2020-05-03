@@ -88,6 +88,57 @@ Więcej: [Python 3's f-Strings: An Improved String Formatting Syntax (Guide)](ht
 
 
 
+## Pliki tekstowe
+
+Otwarcie pliku:
+
+```python
+plik = open("scieżka_do_pliku", tryb)
+```
+
+tryby:
+
+* r – tylko do odczytu
+* w – zapisywanie pliku (stary plik o tej samej nazwie będzie usunięty)
+* r+ - do odczytu i zapisu
+* a – dopisywanie do pliku (dane są dopisane do końca istniejącego pliku)
+
+
+
+**plik.read()** – odczytanie całego pliku, zwracany jest string zawierający cały tekst pliku (włącznie ze
+znakami \n) – opc. argument – int określająca ilość bajtów do wczytania
+**plik.readline()** – odczytanie jednej linii z pliku, zwracany jest string z linijką testu, włącznie ze znakiem \n
+**plik.readlines()** – odczytuje cały tekst – zwraca listę stringów - linijek
+
+```python
+for line in plik:
+	print(line, end='')
+```
+
+Pliki należy zamykać po użyciu:
+
+```python
+plik = open(„plik.txt”)
+	# kod
+plik.close()
+```
+
+Otwarcie pliku za pomocą *with* pozwala na automatyczne zamykanie pliku przez Pythona
+
+```python
+with open(„plik.txt”) as plik:
+	print(plik.readline())
+```
+
+
+
+**plik.write(string)** – zapisuje string do pliku w obecnej pozycji kursora, zwraca liczbę zapisanych znaków – należy pamiętać o znaku \n
+**plik.writelines(iterable)** – zapisuje elementy z kolekcji jako poszczególne linie w pliku
+
+Plik musi być otworzony w trybie do zapisu aby móc go zmieniać!
+
+
+
 ### TODO:
 
 str() vs repr() in Python

@@ -69,14 +69,33 @@ sudo apt install python3-pip
 pip3 -V
 >pip 9.0.1 from /usr/lib/python3/dist-packages (python 3.6)
 ```
+Menadżer pakietów dla  Python, komendy w wierszu poleceń:
+```bash
+pip list 				# – lista zainstalowanych pakietów
+pip search 				# – szuka pakietów w repozytorium online
+pip install pakiet 		# – instalowanie modułu
+pip uninstall pakiet	# - odinstalowanie
+pip list –o 			# - sprawdzenie nieaktualnych pakietów
+pip install –U pakiet 	# - update pakietu
+pip freeze> plik.txt 	# – zapisanie informacji do pliku o pakietach
+pip install –r plik.txt # – zainstaluje wszystkie wymagane pakiety
+```
 
 Biblioteki systemowe:
+
 ```bash
 sudo apt install build-essential libssl-dev libffi-dev python3-dev
 ```
-
+Przykład pliku requirements.txt:
+```
+# Moduł warunek wersja
+numpy >= 1.15.2
+pandas == 0.23.4
+```
 
 ## Virtual Environment
+
+Wirtualne środowisko Python – kopia Pythona, ze specyficznymi ustawieniami, zainstalowanymi modułami itp. Dzięki virtualenv możemy mieć środowiska z różnymi wersjami tych samych modułów.
 
 Instalacja `venv`
 

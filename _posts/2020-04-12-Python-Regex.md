@@ -37,6 +37,8 @@ author: "Michał"
 
 `{n}` - powtórzenie dokładnie n razy
 
+`{min, max}` - liczba wystąpień
+
 `^string` - początek rozpoczyna się od string
 
 `string$` - kończy się na string
@@ -51,7 +53,16 @@ pattern.match('text') #szuka na początku tekstu
 pattern.search('sample text') # szuka w całym ciągu znaków
 ```
 
+Przydatne metody dostępne w module re:
+- compile(pattern) – kompiluje, co przyspiesza wyszukiwanie
 
+- findall(pattern, string) – zwraca obiekt z wszystkimi dopasowaniami
+
+- search(pattern, string) – zwraca obiekt z pierwszym dopasowaniem
+
+- match(pattern, string) – zwraca dopasowanie o ile jest na początku string’a
+
+  
 
 ### Regex101
 
