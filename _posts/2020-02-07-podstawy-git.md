@@ -13,6 +13,8 @@ Pierwszym krokiem była doinstalowanie osobno [git](https://git-scm.com/) tak ż
 
 [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/)
 
+[Git Commit Message Style Guide](http://udacity.github.io/git-styleguide/)
+
 ### Teoria
 
 Obszary:

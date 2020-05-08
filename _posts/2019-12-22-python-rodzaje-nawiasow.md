@@ -47,7 +47,18 @@ list5 = list(range(2,5))
 ```
 Możemy indeksować, slice'ować. Do elementu odwołujemy się przez indeks.
 
-Listy zagnieżdzone:
+Sposoby na manipulacje listami:
+
+```python
+L[i], L[i:j], L[i:j:k]
+
+len(), min(), max(), del(L[i])
+
+L.append(), L.extend(), L.count(), L.index(), L.insert(),
+L.pop(), L.remove(), L.reverse(), L.sort()
+```
+
+Listy zagnieżdżone:
 
 ```python
 lista = [[1,2,3],[4,5,6],[7,8,9]]
@@ -57,8 +68,9 @@ lista = [[1,2,3],
 lista[1][2] => 6
 ```
 
-jeśli przypiszemy listę do innej zmiennej to tak naprawdę przypiszemy adres w pamięci do listy
+Jeśli przypiszemy listę do innej zmiennej to tak naprawdę przypiszemy adres w pamięci do listy
 możemy użyć kopiowania list:
+
 ```python
 nowa_lista = lista.copy()
 nowa_lista = list(stara_lista)
@@ -69,6 +81,9 @@ do głębokiego kopiowania (kopiowanie wszystkiego jako wartość) używamy modu
 import copy
 nowy = copy.deepcopy(stary)
 ```
+
+Więcej: [Kopiowanie list i słowników](http://analityk.edu.pl/kopiowanie-list-i-slownikow/)
+
 ### Nawiasy klamrowe `{...}` 
 
 Słownik: `{'key': 'value'}` -  odwołujemy się poprzez klucz a nie indeks:

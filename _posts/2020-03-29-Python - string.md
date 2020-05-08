@@ -86,7 +86,7 @@ f"Hello, {name}. You are {age}."
 
 Więcej: [Python 3's f-Strings: An Improved String Formatting Syntax (Guide)](https://realpython.com/python-f-strings/)
 
-
+Formatowanie : [Using *%* and *.format()* for great good!](https://pyformat.info/)
 
 ## Pliki tekstowe
 

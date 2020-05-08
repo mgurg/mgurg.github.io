@@ -27,6 +27,11 @@ author: "Michał"
 
 `\W` -  dowolny znak nie-alfanumeryczny, odpowiednik `[^a-zA-Z0-9_]`
 
+`\\` – po prostu ukośnik
+`\.` – po prostu kropka (nie jest to dowolny znak)
+`[AB]` – A lub B (umożliwia zdefiniowanie liczby powtórzeń)
+`A|B` – A lub B
+
 ## Powtórzenia
 
 `?` - 0 lub 1 

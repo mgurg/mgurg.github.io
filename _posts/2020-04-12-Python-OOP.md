@@ -32,17 +32,25 @@ Zalety OOP:
   -	można testować zachowanie każdej z klas oddzielnie
   -	zwiększa modularność, zmniejsza kompleksowość
 -	klasy ułatwiają ponowne użycie kodu
-  -	każda z klas tworzy oddzielne "środowisko" - różne klasy mogą mieć takie same nazwy funkcji
-  -	dziedziczenie pozwala aby podklasa, zredefiniowała lub rozszerzyła wybrane właściwości klasy nadrzędnej
+  - każda z klas tworzy oddzielne "środowisko" - różne klasy mogą mieć takie same nazwy funkcji
+  
+  - dziedziczenie pozwala aby podklasa, zredefiniowała lub rozszerzyła wybrane właściwości klasy nadrzędnej
+  
+    
+
+Samochody mają **dane**, jak na przykład liczba kół, drzwi, oraz ilość miejsc siedzących. Wykazują one również **zachowanie**: mogą przyspieszyć, zatrzymać się, pokazać ile paliwa zostało oraz wiele innych.
+
+W programowaniu **object-oriented dane** identyfikujemy jako atrybuty, a zachowanie jako **metody**.
+
+*Dane → Atrybuty i Zachowanie → Metody* 
+
+Przykład prostej klasy:
 
 ```python
 class Samochod(object):
 	# definicje danych
 	# definicje metod
 ```
-
-
-
 class – podobnie jak def
 - słowo object oznacza, że Samochód jest obiektem w Python (object) i dziedziczy z niego wszystkie właściwości
   - Samochod jest podklasą object
