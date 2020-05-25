@@ -7,7 +7,7 @@ author: "Michał"
 
 
 
-### Nawiasy okrągłe `(...)` 
+## Nawiasy okrągłe `(...)` 
 
 Tuple `(1, 2, 3)` -  jest typem niezmiennym, raz zdefiniowanego nie można zmienić.
 
@@ -29,8 +29,23 @@ print(x) # >>> "raz"
 print(y) # >>> "dwa"
 print(z) # >>> "trzy"
 ```
+To co z tuple robi tuple to przecinek:
 
-### Nawiasy kwadratowe `[...]` 
+```python
+not_a_tuple = ('cat')   # <class 'str'>
+now_a_tuple = ('cat',)  # <class 'tuple'>
+
+weekend = 'Saturday', 'Sunday'
+print(type(weekend))  # <class 'tuple'>
+
+empty_tuple = tuple()
+print(type(empty_tuple))  # <class 'tuple'>
+```
+
+Tuples are **faster** and **more memory-efficient** than lists.
+
+
+## Nawiasy kwadratowe `[...]` 
 
 Listy `[1, 2, 3]`, dostęp do poszczególnych elementów w `list` czy `tuple` odbywa się za pomocą indeksów: `my_list[0]` lub `my_tuple[0]`
 
@@ -84,7 +99,15 @@ nowy = copy.deepcopy(stary)
 
 Więcej: [Kopiowanie list i słowników](http://analityk.edu.pl/kopiowanie-list-i-slownikow/)
 
-### Nawiasy klamrowe `{...}` 
+### Set
+
+unordered collection of distinct [hashable](https://docs.python.org/3/glossary.html#term-hashable) objects. 
+
+https://www.programiz.com/python-programming/set
+
+
+
+## Nawiasy klamrowe `{...}` 
 
 Słownik: `{'key': 'value'}` -  odwołujemy się poprzez klucz a nie indeks:
 
@@ -128,6 +151,36 @@ for key, item in osoby.items():
 	print(key, item)
 ```
 
+Definiowanie pustego słownika
+```python
+testable = {}
+testable['key'] = 'value'
+ 
+print(testable['key'])  # value
+```
 
+- random_dict.keys() - ['a', 'b', 'c', 'd', 'e']
+- random_dict.values() - ['20', '40', '60', '80', '100']
+- random_dict.items() - [('a', '20'), ('b', '40'), ('c', '60'), ('d', '80'), ('e', '100')]
 
+```python
+# get method does not throw an error
+print(testable.get('key'))  # value
+print(testable.get('not_a_key'))  # None
+```
+
+```python
+testable = {'key1': 'value1', 'key2': 'value2'}
+ 
+del testable['key1']  # this will remove both the key and the value from dictionary object
+print(testable)  # {'key2', 'value2'}
+ 
+del testable['not_a_key']  # throws a KeyError
+del testable['key1']  # throws a KeyError as we've already deleted the object by the key
+del testable  # deletes the whole dictionary
+
+catalog = {'green table': 5000, 'brown chair': 1500, 'blue sofa': 15000, 'wardrobe': 10000}
+print('blue sofa' in catalog)    # True
+print('yellow chair' in catalog)    # False
+```
 

@@ -146,6 +146,6 @@ x = v.reshape(1,4)
 x = v.reshape(4,1)
 ```
 
-
+[Indexing and slicing numpy arrays](https://www.pythoninformer.com/python-libraries/numpy/index-and-slice/)
 
 [The Ultimate NumPy Tutorial for Data Science Beginners](https://www.analyticsvidhya.com/blog/2020/04/the-ultimate-numpy-tutorial-for-data-science-beginners/)

@@ -49,6 +49,19 @@ range(0, 10, 3) # <0, 3, 6, 9>
 
 *break* – działanie pętli jest przerywane, program przechodzi do kolejnej instrukcji po całym bloku pętli
 
+### Operatory logiczne
+
+- `<` strictly less than
+- `<=` less than or equal
+- `>` strictly greater than
+- `>=` greater than or equal
+- `==` equal
+- `!=` not equal
+- `is` object identity
+- `is not` negated object identity
+- `in` membership
+- `not in` negated membership.
+
 ## enumerate(), zip()
 
 *enumerate()* - funkcja przyjmuje na wejściu listę, zwraca też listę, składająca się z elementów `tuple`. Każdy `tuple` składa z dwóch elementów (pierwszy to indeks bieżącego elementu, drugi to oryginalna wartość)

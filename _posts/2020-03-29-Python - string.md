@@ -20,6 +20,12 @@ author: "Michał"
 
 `'80,5'.replace(',', '.')`- zamiana znaków
 
+`ord()` - zwraca numer Unicode pojedynczego znaku
+
+`chr()` - zwraca znak na podstawie numeru Unicode
+
+
+
 ## Numerowanie znaków
 
 `str = "Python"`
@@ -84,6 +90,25 @@ f"Hello, {name}. You are {age}."
 > 'Hello, Eric. You are 74.'
 ```
 
+Opcje dostępne przed Python 3.6:
+
+```python
+name = 'Alan'
+age = 53
+string = 'Hello, {name}. You are {age}.'.format(name = name, age = age)
+print(string)
+
+name = 'Greg'
+age = 17
+string = 'Hello, {0}. You are {1}.'.format(name, age)
+print(string)
+
+name = 'George'
+age = 27
+string = 'Hello, {}. You are {}.'.format(name, age)
+print(string)
+```
+
 Więcej: [Python 3's f-Strings: An Improved String Formatting Syntax (Guide)](https://realpython.com/python-f-strings/)
 
 Formatowanie : [Using *%* and *.format()* for great good!](https://pyformat.info/)
@@ -93,7 +118,7 @@ Formatowanie : [Using *%* and *.format()* for great good!](https://pyformat.info
 Otwarcie pliku:
 
 ```python
-plik = open("scieżka_do_pliku", tryb)
+plik = open("scieżka_do_pliku", tryb, encoding="utf-8")
 ```
 
 tryby:
@@ -118,7 +143,7 @@ for line in plik:
 Pliki należy zamykać po użyciu:
 
 ```python
-plik = open(„plik.txt”)
+plik = open("plik.txt")
 	# kod
 plik.close()
 ```
@@ -126,13 +151,21 @@ plik.close()
 Otwarcie pliku za pomocą *with* pozwala na automatyczne zamykanie pliku przez Pythona
 
 ```python
-with open(„plik.txt”) as plik:
+with open("plik.txt", encoding="utf-8") as plik:
 	print(plik.readline())
+```
+
+Context manager:
+
+```python
+# invoking a context manager
+with statement as variable_name:
+    ...
 ```
 
 
 
-**plik.write(string)** – zapisuje string do pliku w obecnej pozycji kursora, zwraca liczbę zapisanych znaków – należy pamiętać o znaku \n
+**plik.write(string)** – zapisuje string do pliku w obecnej pozycji kursora, zwraca liczbę zapisanych znaków – należy pamiętać o znaku `\n`
 **plik.writelines(iterable)** – zapisuje elementy z kolekcji jako poszczególne linie w pliku
 
 Plik musi być otworzony w trybie do zapisu aby móc go zmieniać!
@@ -142,6 +175,12 @@ Plik musi być otworzony w trybie do zapisu aby móc go zmieniać!
 ### TODO:
 
 str() vs repr() in Python
+
+output of the `__str__` should be *highly readable* and the output of the `__repr__` should be *unambiguous*. In other words, `__str__` creates a representation for users and `__repr__` creates a representation for developers.
+
+A good rule is to always define the `__repr__` method first since it is the method used by developers in debugging. It is also a fallback method for `__str__`which means that if the `__str__` method isn't defined, in the situations where it's needed, the `__repr__` will be called instead.
+
+
 
 stdin, stdout, stderr vs print()
 

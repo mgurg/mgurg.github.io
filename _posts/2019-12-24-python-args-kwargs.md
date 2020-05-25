@@ -20,6 +20,37 @@ Można to rozpisać jako:
 args = [1, 2]
 my_func(args[0], args[1])
 ```
+Pozwala przekazywać większą ilość argumentów do funkcji:
+
+```python
+def add(a, b, *args):
+    total = a + b
+    for n in args:
+        total += n
+    return total
+
+# The length of `args` is 3
+print(add(1, 2, 3, 4, 5))
+ 
+# The length of `args` is 0
+print(add(1, 2))
+```
+
+```python
+def will_survive(*names):
+    for name in names:
+        print("Will", name, "survive?")
+ 
+ 
+will_survive("Daenerys Targaryen", "Arya Stark", "Brienne of Tarth")
+```
+
+```python
+print(*"fun")        # f u n
+print(*[5, 10, 15])  # 5 10 15
+```
+
+
 
 ## kwarg
 
@@ -36,3 +67,4 @@ xgb_params = {
 model = xgb.XGBRegressor(**xgb_params)
 ```
 
+Notice the difference: `*args` provides access to a **tuple** of remaining values, while `**kwargs` collects remaining key-value pairs in a **dictionary**.
