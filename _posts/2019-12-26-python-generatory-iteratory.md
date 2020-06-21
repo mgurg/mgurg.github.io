@@ -54,6 +54,14 @@ for item in my_list:
 # 2
 # 3
 ```
+```python
+for element in characters:
+    print(element)
+    
+# or
+
+print(*characters)
+```
 
 ## zip()
 

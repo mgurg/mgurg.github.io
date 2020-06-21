@@ -10,9 +10,21 @@ author: "Michał"
 Bazy danych 
 
 - relacyjne (SQL)
+
 - nierelacyjne (NoSQL)
 
   
+  
+## MySQL - instalacja
+
+  ```bash
+sudo apt install mysql-server
+sudo mysql_secure_installation
+  ```
+
+[How To Install MySQL on Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04)
+
+
 
 ## Główny podział poleceń w SQL
 

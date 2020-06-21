@@ -67,6 +67,12 @@ Umożliwia razem z funkcją lambda szybkie iterowanie po kolumnach dataframe:
 df['GPS y'] = df['GPS y'].apply(lambda x : dms2dd(x))
 ```
 
+Jeżeli chcemy przekazać do funkcji kilka argumentów (z jednego wiersza Pandas DataFrame):
+
+```python
+df['newcolumn'] = df.apply(lambda x: fxy(x['A'], x['B']), axis=1)
+```
+
 
 
 [Pythonizmy](https://python101.readthedocs.io/pl/latest/podstawy/pythonizmy.html)

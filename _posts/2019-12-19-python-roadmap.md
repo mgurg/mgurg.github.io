@@ -9,17 +9,23 @@ author: "Michał"
 
 Poniżej to co faktycznie się nauczyłem do tej pory :) :
 
+**[21-06-2020]**
+
+Dawno nie było żadnej aktualizacji, a to wszystko z powodu serwisu [JetBrains Academy](https://hyperskill.org/) Przerobiłem na nim 162 tematy dotyczące Pythona (bez Django) i jestem super zadowolony. Wydaje mi się że domknąłem wszystkie poważniejsze braki jeżeli chodzi o pisanie w tym języku.
+
+Zdecydowanie polecam każdemu naukę poprzez ten serwis. Mnóstwo ćwiczeń, ciekawie i ze szczegółami opisana teoria, i to wszystko  przez jeszcze jakiś czas za darmo.  Pora zrobić roadmap na temat Computer Vision i Machine Learning :)
+
 **[26-04-2020]**
 
 `Flask` - udało mi się szybko zbudować działający serwis który jest całkiem przyjazny dla oka (zasługa Boostrap). Dużo jest jeszcze do dopracowania, ale jako szybki POC sprawdza się znakomicie. Wszystko działa już na serwerze, dane się pobierają, a wykresy generują bez mojego udziału. 
 
-**TODO:** Blueprint, errorhandler, ataki *CSRF*, walidacja danych w formularzach, nadrobienie braków w konfiguracji NGNIX 
+**TODO:** ~~Blueprint~~, ~~errorhandler~~, ataki *CSRF*, ~~walidacja danych w formularzach~~, nadrobienie braków w konfiguracji NGNIX 
 
 `YAML` - potrzebowałem przerzucić cześć danych konfiguracyjnych do osobnego pliku. Myślałem żeby zrobić to jako JSON (i skreślić jeden punkt TODO), ale okazało się że możliwości są znacznie szersze. Wybrałem YAML, bardziej z ciekawości i chęci zabawy niż z jakiegoś racjonalnego względu.
 
 `Wizualizacja` - udało się wygrać z serwerem VPS, mogę już rysować wykresy przy pomocy `matplotlib` Na razie tworzę najprostsze grafiki, mam za sobą testy z Bokeh. Będę chciał spróbować Plotly.
 
-
+**TODO:** ~~Plotly Express~~
 
 
 
@@ -27,11 +33,9 @@ Poniżej to co faktycznie się nauczyłem do tej pory :) :
 
 `Scrapy` - Przy okazji wgryzania się mocniej w scrapy wyszło że powinienem przyłożyć się do programowanie obiektowego. Stąd poniższa lista rzeczy do nadrobienia.
 
-**TODO:** Objects, Classes, `__Init__`, Class variables, Methods, inheritance
+**TODO:** ~~Objects, Classes~~, `__Init__`, ~~Class variables~~, ~~Methods~~,~~inheritance~~
 
 `Regex`  - poznałem podstawową składnię przy okazji wyciągania danych w formacie JSON
-
-
 
 
 
@@ -88,41 +92,42 @@ Czego nie robić: [The Little Book of Python Anti-Patterns](https://docs.quantif
 Ogólna lista (zrobiona przed rozpoczęciem nauki - na podstawie [harmonogramu](https://github.com/Danutelka?tab=repositories) [CodersLab](https://github.com/wojciechGaudnik/CodersLab)):
 
 
- - Python podstawy
+ - Python podstawy:
 
-    - Podstawowe struktury sterujące: pętle
-    - Instrukcje warunkowe if - elseif - else
-    - Blok kodu i instrukcja pass
-    - Funkcje, zwracane wartości, parametry funkcji
+    - ~~Podstawowe struktury sterujące: pętle~~
+    - ~~Instrukcje warunkowe if - elseif - else~~
+    - ~~Blok kodu i instrukcja pass~~
+    - ~~Funkcje, zwracane wartości, parametry funkcji~~
     - ["Magiczne" parametry funkcji: *args i **kwargs](https://mgurg.github.io/python/2019/12/24/python-args-kwargs.html)
-    - Listy i krotki: nawigowanie po kolekcjach
-      - Modyfikowanie list
-      - Krotki i różnice miedzy krotką a listą
+    - ~~Listy i krotki: nawigowanie po kolekcjach~~
+      - ~~Modyfikowanie list~~
+      - ~~Krotki i różnice miedzy krotką a listą~~
     - [Lista składana (list comprehension)](https://mgurg.github.io/python/2019/12/23/python-list-comprehension.html)
-    - Słowniki
-    - Instrukcja "for in" oraz operator "in"
+    - ~~Słowniki~~
+    - ~~Instrukcja "for in" oraz operator "in"~~
     - [Napisy (string), napis jako kolekcja](https://mgurg.github.io/python/2020/03/29/Python-string.html)
-    - Moduły, importowanie modułów, nazw
-    - Tworzenie własnych modułów, pakiety, biblioteki
+    - ~~Moduły, importowanie modułów, nazw~~
+    - ~~Tworzenie własnych modułów, pakiety, biblioteki~~
     - [Virtualenv](https://mgurg.github.io/python/2020/01/16/SSH-VPS-konfiguracja-serwera.html#virtual-environment)
-    - Obsługa wyjątków
+    - ~~Obsługa wyjątków~~
     - Dekoratory
       Protokół HTTP, metody GET i POST
     - [Flask - prosty framework HTTP](https://mgurg.github.io/python/2020/04/21/Flask.html)
     - Metody HTTP we Flasku, odbieranie parametrów
  - Python zaawansownay
 
-    - Pojęcie metody, klasy i właściwości
-   2. Hermetyzacja
-   3. Dziedziczenie
-   4. Konstruktor, inicjalizator
-   5. Nadpisywanie metod i właściwości
-   6. Metody statyczne i metody klasowe
-   7. Dynamiczne własności
-   8. Iteratory
-   9. Generatory
-   10. Wyrażenie generowane (generator expression)
-   11. [Wyrażenie regularne](https://mgurg.github.io/python/2020/04/12/Python-Regex.html)
+    - ~~Pojęcie metody, klasy i właściwości~~
+      - ~~Hermetyzacja~~
+      - ~~Dziedziczenie~~
+      - ~~Konstruktor, inicjalizator~~
+    - Nadpisywanie metod i właściwości
+    - Metody statyczne i metody klasowe
+    - Dynamiczne własności
+    - ~~Iteratory~~
+    - ~~Generatory~~
+    - ~~Wyrażenie generowane (generator expression)~~
+    - [Wyrażenie regularne](https://mgurg.github.io/python/2020/04/12/Python-Regex.html)
  - Numpy 
  - Pandas 
  - [MatplotLib](https://mgurg.github.io/linux/2020/04/26/Matplotlib-seaborn.html)
+ - OpenCV
