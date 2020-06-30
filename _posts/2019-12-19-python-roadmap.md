@@ -114,7 +114,7 @@ Ogólna lista (zrobiona przed rozpoczęciem nauki - na podstawie [harmonogramu](
       Protokół HTTP, metody GET i POST
     - [Flask - prosty framework HTTP](https://mgurg.github.io/python/2020/04/21/Flask.html)
     - Metody HTTP we Flasku, odbieranie parametrów
- - Python zaawansownay
+ - Python zaawansowany:
 
     - ~~Pojęcie metody, klasy i właściwości~~
       - ~~Hermetyzacja~~

@@ -73,6 +73,8 @@ Supervised Learning
 
 zawiera input (feature) [x] i output (target) [y]
 
+### Confusion matrix / ROC Curve
+
 
 
 ### Underfitting - Overfiting
@@ -80,6 +82,14 @@ zawiera input (feature) [x] i output (target) [y]
 *Overfiting* - przeuczenie na danych treningowych. Zbyt małe uogólnienie modelu, za duże skoncentrowanie się na danych treningowych. High training accuracy. Lapie również wszystkie szumy
 
 *Underfiting* - zbyt ogólny model, nie łapie o co chodzi nawet na treningowym. mało dokładny. Low train accuracy.  
+
+📺 [Model Complexity Graph  Detail Explanation](https://www.youtube.com/watch?v=DiR1eaxg4Vg)
+
+### Loss function
+
+[Common Loss functions in machine learning](https://towardsdatascience.com/common-loss-functions-in-machine-learning-46af0ffc4d23)
+
+
 
 
 
@@ -125,6 +135,22 @@ Przejście od warstwy wejściowej do wyjściowej to *Feed Forward*, Droga powrot
 
 [Epoch = Batch * Iterations](https://towardsdatascience.com/epoch-vs-iterations-vs-batch-size-4dfb9c7ce9c9)
 
+---
+
+Batch gradient descent computes the gradient using the whole dataset.  This is great for convex, or relatively smooth error manifolds.  In  this case, we move somewhat directly towards an optimum solution, either local or global.  Additionally, batch gradient descent, given an  annealed learning rate, will eventually find the minimum located in it's basin of attraction.
+
+Stochastic gradient descent (SGD) computes the gradient using a  single sample.  Most applications of SGD actually use a minibatch of  several samples, for reasons that will be explained a bit later.  SGD  works well (Not well, I suppose, but better than batch gradient descent) for error manifolds that have lots of local maxima/minima.  In this  case, the somewhat noisier gradient calculated using the reduced number  of samples tends to jerk the model out of local minima into a region  that hopefully is more optimal.  Single samples are really noisy, while  minibatches tend to average a little of the noise out.  Thus, the amount of jerk is reduced when using minibatches.  A good balance is struck  when the minibatch size is small enough to avoid some of the poor local  minima, but large enough that it doesn't avoid the global minima or  better-performing local minima.  (Incidently, this assumes that the best minima have a larger and deeper basin of attraction, and are therefore  easier to fall into.)
+
+One benefit of SGD is that it's computationally a whole lot faster.   Large datasets often can't be held in RAM, which makes vectorization  much less efficient.  Rather, each sample or batch of samples must be  loaded, worked with, the results stored, and so on.  Minibatch SGD, on  the other hand, is usually intentionally made small enough to be  computationally tractable.
+
+Usually, this computational advantage is leveraged by performing many more iterations of SGD, making many more steps than conventional batch  gradient descent.  This usually results in a model that is very close to that which would be found via batch gradient descent, or better.
+
+The way I like to think of how SGD works is to imagine that I have  one point that represents my input distribution.  My model is attempting to learn that input distribution.  Surrounding the input distribution  is a shaded area that represents the input distributions of all of the  possible minibatches I could sample.  It's usually a fair assumption  that the minibatch input distributions are close in proximity to the  true input distribution.  Batch gradient descent, at all steps, takes  the steepest route to reach the true input distribution.  SGD, on the  other hand, chooses a random point within the shaded area, and takes the steepest route towards this point.  At each iteration, though, it  chooses a new point.  The average of all of these steps will approximate the true input distribution, usually quite well.
+
+https://stats.stackexchange.com/questions/49528/batch-gradient-descent-versus-stochastic-gradient-descent
+
+---
+
 ### Normalizacja
 
 Więcej: [Batch Normalization — Speed up Neural Network Training](https://medium.com/@ilango100/batch-normalization-speed-up-neural-network-training-245e39a62f85)
@@ -135,7 +161,11 @@ Więcej: [Batch Normalization — Speed up Neural Network Training](https://medi
 
 - Stochasting Gradient Descent ( Batch Size ==1)
 
+### Regularyzacja
 
+L1 - feature selection
+
+L2 - zwykle lepsza do trenowania modeli
 
 ## CNN
 
@@ -162,5 +192,7 @@ Konwolucja - nakładanie filtru ([Image Kernels Explained Visually](https://seto
 
 Pooling - sposób na  zmniejszanie zdjęć przy jednoczesnym zachowaniu najważniejszych informacji w nich zawartych.
 
+**Capsule Networks** - rozpoznawanie twarzy [Blog post: capsule networks](https://cezannec.github.io/Capsule_Networks/)
 
+Image augmentation - technika przeciwdziałąnia dla Rotate/scale/translation invariance (PyTorch: torchvision.transforms)
 
