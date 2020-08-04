@@ -282,49 +282,4 @@ sudo systemctl status nginx
              `-15738 nginx: worker process
 ```
 
-### Certbot - certyfikat SSL
 
-[Oficjalna instrukcja instalacji](https://certbot.eff.org/lets-encrypt/ubuntubionic-nginx.html)
-
-```bash
-sudo apt-get install certbot python3-certbot-nginx
-```
-
-Uruchomienie kreatora instalacji:
-```bash
-sudo certbot --nginx
-```
-
-Końcowy komunikat:
-
-> Congratulations! You have successfully enabled https://your_domain.pl
->
-> You should test your configuration at:
-> https://www.ssllabs.com/ssltest/analyze.html?d=your_domain.pl
-> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
->
-> IMPORTANT NOTES:
->  - Congratulations! Your certificate and chain have been saved at:
-   /etc/letsencrypt/live/your_domain.pl/fullchain.pem
-   Your key file has been saved at:
-   /etc/letsencrypt/live/your_domain.pl/privkey.pem
-   Your cert will expire on 2020-10-11. To obtain a new or tweaked
-   version of this certificate in the future, simply run certbot again
-   with the "certonly" option. To non-interactively renew *all* of
-   your certificates, run "certbot renew"
->  - Your account credentials have been saved in your Certbot
-   configuration directory at /etc/letsencrypt. You should make a
-   secure backup of this folder now. This configuration directory will
-   also contain certificates and private keys obtained by Certbot so
-   making regular backups of this folder is ideal.
-
-Po przejściu na adres [strony głównej](https://your_domain.pl) powinnien być widoczny domyślny komunikat NGINX:
-
-> Welcome to nginx!
-> 
-> If you see this page, the nginx web server is successfully installed and working. Further configuration is required.
-> 
-> For online documentation and support please refer to nginx.org.
-Commercial support is available at nginx.com.
-> 
-> Thank you for using nginx.
