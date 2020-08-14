@@ -13,7 +13,9 @@ Poniżej to co faktycznie się nauczyłem do tej pory :) :
 
 Dawno nie było żadnej aktualizacji, a to wszystko z powodu serwisu [JetBrains Academy](https://hyperskill.org/) Przerobiłem na nim 162 tematy dotyczące Pythona (bez Django) i jestem super zadowolony. Wydaje mi się że domknąłem wszystkie poważniejsze braki jeżeli chodzi o pisanie w tym języku.
 
-Zdecydowanie polecam każdemu naukę poprzez ten serwis. Mnóstwo ćwiczeń, ciekawie i ze szczegółami opisana teoria, i to wszystko  przez jeszcze jakiś czas za darmo.  Pora zrobić roadmap na temat Computer Vision i Machine Learning :)
+<img src="{{site.url}}/images/2020_08/hyperskill.png" style="display: block; margin: auto;" />
+
+Zdecydowanie polecam każdemu naukę poprzez ten serwis. Mnóstwo ćwiczeń, ciekawie i ze szczegółami opisana teoria, i to wszystko  przez jeszcze jakiś czas za darmo.  Pora zrobić plan nauki dla Computer Vision i Machine Learning :)
 
 **[26-04-2020]**
 
@@ -51,7 +53,7 @@ Robienie własnego projektu który nie jest kalkulatorem ani  TODO listą związ
 
 `JSON` - Jednym formatem wymiany danych który kojarzyłem był XML. Z racji tego że otomoto trzyma w kodzie strony część informacji w formacie JSON to poznałem jego podstawy z wykorzystaniem biblioteki `json` . Potrafię "spłaszczyć" odczytane dane, tak żeby móc dalej nimi manipulować
 
-**TODO**: Zapisywanie danych w tym formacie
+**TODO**: ~~Zapisywanie danych w tym formacie~~ (potrafię napisać JSON zgodny z RFC 8259 w środku nocy)
 
 
 
@@ -110,8 +112,8 @@ Ogólna lista (zrobiona przed rozpoczęciem nauki - na podstawie [harmonogramu](
     - ~~Tworzenie własnych modułów, pakiety, biblioteki~~
     - [Virtualenv](https://mgurg.github.io/python/2020/01/16/SSH-VPS-konfiguracja-serwera.html#virtual-environment)
     - ~~Obsługa wyjątków~~
-    - Dekoratory
-      Protokół HTTP, metody GET i POST
+    - ~~Dekoratory~~
+      ~~Protokół HTTP, metody GET i POST~~
     - [Flask - prosty framework HTTP](https://mgurg.github.io/python/2020/04/21/Flask.html)
     - Metody HTTP we Flasku, odbieranie parametrów
  - Python zaawansowany:
