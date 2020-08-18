@@ -1,7 +1,9 @@
-_drafts
+*.gem
+.bundle
 .sass-cache
-.jekyll-cache
-.jekyll-metadata
-vendor
-
+_site
+Gemfile.lock
 .DS_Store
+vendor
+.jekyll-cache
+tags
