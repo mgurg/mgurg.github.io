@@ -48,7 +48,20 @@ author: "Michał"
 
 `string$` - kończy się na string
 
+### Greedy vs lazy
 
+Domyślnie wszystkie kwantyfikatory (+, *, {n,m}, {n,} or {,m}, ?) są chciwe (greedy).
+
+Wzorzec `a+` dla frazy `aaa` zwróci najdłuższy możliwy substring (`aaa`)
+
+Jeśli chcemy zmienić to zachowanie, musimy postawić znak zapytania `?` tuż za kwantyfikatorem: `+?`, `*?`, `{n,m}?`. Wtedy otrzymamy najkrótsze dopasowanie.
+
+Znak zapytania gdy następuje bezpośrednio po kwantyfikatorze to przełącza ten kwantyfikator z trybu "chciwego" na "leniwy". 
+
+Przełączenie trybu nia działa dla `{n}` - ściśle określona liczba powtórzeń.
+
+
+### Python 
 
 ```python
 import re
