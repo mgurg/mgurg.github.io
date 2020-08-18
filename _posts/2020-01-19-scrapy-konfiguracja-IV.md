@@ -5,9 +5,10 @@ categories: scrapy
 author: "Michał"
 ---
 
-### Automatyczne pobieranie stron (cron + Scrapy)
 
-W ostatniej części [opisu scrapy](https://mgurg.github.io/python/2020/01/15/scrapy-konfiguracja-III.html) dotarłem do miejsca w którym mam działający skrypt do pobierania treści strony. Mam też [skonfigurowany serwer VPS](https://mgurg.github.io/python/2020/01/16/SSH-VPS-konfiguracja-serwera.html). Kolejnym krokiem jest sprawienie żeby zadanie pobierania ogłoszeń wykonywało się samo co jakiś czas. W moim przypadku będzie to raz na dobę, w środku nocy
+
+W ostatniej części [opisu scrapy](https://mgurg.github.io/python/2020/01/15/scrapy-konfiguracja-III.html) dotarłem do miejsca w którym mam działający skrypt do pobierania treści strony. Mam też [skonfigurowany serwer VPS](https://mgurg.github.io/python/2020/01/16/SSH-VPS-konfiguracja-serwera.html). Kolejnym krokiem jest sprawienie żeby zadanie pobierania ogłoszeń wykonywało się samo co jakiś czas. W moim przypadku będzie to raz na dobę, w środku nocy.
+## Automatyczne pobieranie stron (cron + Scrapy)
 
 ### Skrypt bash
 

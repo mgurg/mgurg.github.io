@@ -5,6 +5,10 @@ categories: python
 author: "Michał"
 ---
 
+
+
+Serwer VPS kosztuje tyle co droższe kraftowe piwo. Kupiłem nie żałuje. Za kilka złotych ciężko oczekiwać wydajność rozwiązań chmurowych i faktycznie pojawiło się kilka zgrzytów :) Poniże krótka instrukcja  konfiguracji (głównie na podstawie nie moich doświadczeń) .  Pojawia się kilka drobnych różnic w stosunku do oryginalnego tekstu Łukasza Prokulskiego, ale mają one charakter kosmetyczny.
+
 # Podstawowa konfiguracja
 
 Opis na podstawie: [Stawiamy własny serwer](https://blog.prokulski.science/index.php/2018/06/14/serwer-vps-dla-r-python/)

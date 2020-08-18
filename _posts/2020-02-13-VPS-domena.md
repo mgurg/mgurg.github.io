@@ -7,7 +7,7 @@ author: "Michał"
 
 
 
-Bazując na poradniku [Łukasza Prokulskiego](https://blog.prokulski.science/index.php/2018/06/14/serwer-vps-dla-r-python/)  
+Opis podpięcia domeny, cały w dalszym ciągu bazując na poradniku [Łukasza Prokulskiego](https://blog.prokulski.science/index.php/2018/06/14/serwer-vps-dla-r-python/) . 
 
 | Domena             | TTL  |       |                 |
 | ------------------ | ---- | ----- | --------------- |
