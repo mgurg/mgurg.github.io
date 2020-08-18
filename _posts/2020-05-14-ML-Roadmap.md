@@ -6,6 +6,12 @@ author: "Michał"
 math: true
 ---
 
+
+
+Zbiór informacji o tym co każdy młody adept ML i DataScience wiedzieć powinien. Temat jest rozległy i nie mam jeszcze pomysłu jak to dobrze ustrukturyzować, ale będę próbował.
+
+
+
 # Mathematics
 
  * Linear Algebra (Vectors; Norm of a vector; Matrices; Transpose of a matrix; The inverse of a matrix; The determinant of a matrix; Trace of a Matrix; Dot product; Eigenvalues; Eigenvectors)
