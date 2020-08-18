@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Machine learning roadap"
+title: "Machine learning 🤖 roadap"
 categories: ML
 author: "Michał"
 math: true

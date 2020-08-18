@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "Roadmap 🛣️"
+title: "Python 🐍 roadmap 🛣️"
 categories: python
 author: "Michał"
 ---
 
 
 
-Poniżej to co faktycznie się nauczyłem do tej pory :) :
+Z różnymi językami programowania miałem do czynienia wielokrotnie, ale żadnego nie nauczyłem się porządnie. Postanowiłem że Python będzie tym pierwszym który opanuje w zaawansowanym stopniu. Dziennik tego co faktycznie się nauczyłem do tej pory :) 
 
 **[21-06-2020]**
 

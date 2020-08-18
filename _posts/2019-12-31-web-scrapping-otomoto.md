@@ -6,7 +6,7 @@ author: "Michał"
 ---
 
 
-## Jak dobrze sprzedać auto?
+
 
 Jestem na etapie sprzedaży używanego samochodu, uznałem że będzie to dobry pretekst do tego żeby lepiej poznać Pythona w zastosowaniach pobierania danych ze stron WWW, analizy danych i wizualizacji.
 

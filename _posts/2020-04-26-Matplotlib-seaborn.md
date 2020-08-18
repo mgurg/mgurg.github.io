@@ -7,13 +7,7 @@ author: "Michał"
 
 
 
-Rozwiązanie problemu z wieszającym się Numpy na serwerze VPS webh.pl:
-
-```bash
-export OPENBLAS_CORETYPE=Sandybridge
-```
-Powyższa linijka wymusza detekcję procesora na starszą rodzinę niż w rzeczywistości.
-
+Matplotlib, Seaborn, Bokeh, Plotly - w Pythonie jest w czym wybierać jeżeli chodzi o biblioteki do wizualizacji.
 
 
 # Matplotlib

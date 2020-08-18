@@ -7,6 +7,8 @@ author: "Michał"
 
 
 
+Machine learning źródła wybrane.
+
 # Klasyczne uczenie maszynowe
 
 https://renanmf.com/machine-learning-and-deep-learning-software-engineers/

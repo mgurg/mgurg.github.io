@@ -5,7 +5,10 @@ categories: python
 author: "Michał"
 ---
 
+Manipulacja tekstem - podstawowe operacje
+
 ## Podstawowe operacje
+
 `text.lower()` - wszystkie litery z małej
 
 `text.upper()` - wszystkie litery z małej
