@@ -8,6 +8,8 @@ math: true
 
 
 
+Tips & Tricks, najciekawsze rzeczy, które pomagają mi w pracy z biblioteką Pandas
+
 ### Replace
 
 ```python

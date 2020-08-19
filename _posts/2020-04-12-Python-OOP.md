@@ -5,8 +5,6 @@ categories: Python
 author: "Michał"
 ---
 
-# OOP
-
 There are four basic principles of OOP. They are **encapsulation, abstraction, inheritance,** and **polymorphism.** 
 
 - **Data encapsulation** is the mechanism of hiding the  internal data of objects from the world. All interaction with the object and its data are performed through its public methods. Encapsulation  allows programmers to protect the object from inconsistency.

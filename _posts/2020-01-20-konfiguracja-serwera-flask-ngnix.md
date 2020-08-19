@@ -7,6 +7,10 @@ author: "Michał"
 
 
 
+Część druga opisu, tym razem NGINX i Flask.
+
+
+
 ## Teoria
 
 📺 [WSGI for Web Developers](https://www.youtube.com/watch?v=WqrCnVAkLIo)
