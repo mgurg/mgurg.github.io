@@ -5,7 +5,11 @@ categories: SQL
 author: "Michał"
 ---
 
+
+
 Wszystkie przykłady poniżej  opisane na podstawie SQLite. 
+
+
 
 ## Tworzenie nowej tabeli
 

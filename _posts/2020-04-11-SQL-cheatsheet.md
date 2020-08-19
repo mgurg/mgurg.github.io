@@ -5,7 +5,7 @@ categories: SQL
 author: "Michał"
 ---
 
-# Bazy danych - podstawowa teoria
+
 
 Bazy danych 
 
