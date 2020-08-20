@@ -13,7 +13,7 @@ Scrapy instalowałem z pomocą pip:
 pip install Scrapy
 ```
 
-Poprawnmość instalacji możemy sprawdzić przy pomocy komendy
+Poprawność instalacji możemy sprawdzić przy pomocy komendy:
 
 ```bash
 C:\>scrapy --version
