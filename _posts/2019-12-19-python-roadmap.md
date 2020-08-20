@@ -87,6 +87,8 @@ Robienie własnego projektu który nie jest kalkulatorem ani  TODO listą związ
 
 Czego nie robić: [The Little Book of Python Anti-Patterns](https://docs.quantifiedcode.com/python-anti-patterns/index.html)
 
+
+
 ---
 
 

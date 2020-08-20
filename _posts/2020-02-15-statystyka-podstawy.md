@@ -7,6 +7,8 @@ author: "Michał"
 
 
 
+Opisane na podstawie książki: "Head first, Statystyka".
+
 ## Rodzaje danych
 
 - Categorical (BMW, Audi, Mercedes; Yes/No)

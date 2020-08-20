@@ -10,7 +10,7 @@ math: true
 
 Zbiór informacji o tym co każdy młody adept ML i DataScience wiedzieć powinien. Temat jest rozległy i nie mam jeszcze pomysłu jak to dobrze ustrukturyzować, ale będę próbował.
 
-
+[Newsletter Uczymy Maszyny](https://us20.campaign-archive.com/home/?u=75f8b217047c7703de3c71ca4&id=9ab9c19314)
 
 # Mathematics
 

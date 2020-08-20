@@ -7,6 +7,8 @@ author: "Michał"
 
 
 
+> Jeżeli rozwiązujesz problem przy pomocy Regexp to masz dwa problemy.
+
 # Wyrażenia regularne
 
 `[aeiou]` - dowolna samogłoska
