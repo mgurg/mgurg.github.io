@@ -1,17 +1,27 @@
 ---
 layout: post
-title: "OpenCV Roadmap"
+title: "OpenCV 🖼️ Roadmap"
 categories: OpenCV
 author: "Michał"
 math: true
 ---
 
-Ogolne informacje o CV
-https://www.reddit.com/r/computervision/
 
-Wykłady AGH: http://home.agh.edu.pl/~jsw/aipofm/
 
-# OpenCV 
+Sztandarowa biblioteka do Computer Vision. Pozanłem Pythona (i kupiłem [OpenCV AI Kit](https://www.kickstarter.com/projects/opencv/opencv-ai-kit) :D ) na tyle, że pora zacząć wykorzystywać go do czegoś bardziej interesującego. 
+
+### Jupyter Notebook
+[Jupyter Notebook](https://nbviewer.jupyter.org/github/mgurg/mgurg.github.io/blob/master/images/ipnyb/opencv.ipynb) - uznałem że w przypadku OpenCV wygodniej będzie umieszczać treść w notatnikach Jupytera niż pisać ją na blogu. Dlatego każdy wpis z OpenCV będzie posiadał odnośnik do niego.
+
+### Przydatne linki
+Zbiór linków z przydatnymi informacjami na start:
+[Reddit: r/computervision/](https://www.reddit.com/r/computervision/)
+
+[Wykłady AGH - Morphological Transformations](http://home.agh.edu.pl/~jsw/aipofm/)
+
+[OpenCV Python Tutorials](https://opencv-python-tutroals.readthedocs.io)
+
+# OpenCV - szybkie wprowadzenie
 
 Szybkie wprowadzenie: [Learn X in Y minutes: OpenCV](https://learnxinyminutes.com/docs/opencv/)
 
@@ -88,8 +98,8 @@ blackhat(A) = close(A) − A
 
 ### Ciekawe projekty
 
-Poczatkujące:
-- [text skew correction](https://www.pyimagesearch.com/2017/02/20/text-skew-correction-opencv-python/)
+Początkujące:
+- [Text skew correction](https://www.pyimagesearch.com/2017/02/20/text-skew-correction-opencv-python/)
 - [Recognizing LCD Digits](https://www.pyimagesearch.com/2017/02/13/recognizing-digits-with-opencv-and-python/)
 - [Rotate Images](https://www.pyimagesearch.com/2017/01/02/rotate-images-correctly-with-opencv-and-python/)
 - [Watermarking images](https://www.pyimagesearch.com/2016/04/25/watermarking-images-with-opencv-and-python/)
@@ -108,6 +118,10 @@ Zaawansowane:
 - [Video: Scene Boundaries detection](https://www.pyimagesearch.com/2019/08/19/simple-scene-boundary-shot-transition-detection-with-opencv/)
 - [Holistically-Nested Edge Detection](https://www.pyimagesearch.com/2019/03/04/holistically-nested-edge-detection-with-opencv-and-deep-learning/)
 - [b&W images Colorization](https://www.pyimagesearch.com/2019/02/25/black-and-white-image-colorization-with-opencv-and-deep-learning/)
+
+## OpenCV - najważniejsze zagadnienia
+
+Lista tematów przerabianych na oficjalnych [kursach od OpenCV](https://opencv.org/courses/)
 
 COMPUTER VISION I
 Module 1 :Getting Started with OpenCV
@@ -142,13 +156,13 @@ Module 4 : Image Enhancement and Filtering
    4. Image Smoothing
    5. Image Gradients
    6. Autofocus Application
-   
+
 Module 5 : Advanced Image Processing and Computational Photography
    1. Hough Transforms
    2. High Dynamic Range Imaging
    3. Seamless Cloning
    4. Image Inpainting
-   
+
 Module 6 : Geometric Transforms and Image Features
    1. Affine Transform
    2. Homography
@@ -167,13 +181,13 @@ Module 7 : Image Segmentation and Recognition
    2. Introduction to AI
    3. Object Detection
    4. Image Classification
-   
+
 Module 8 : Video Analysis
    1. Motion Estimation using Optical Flow
    2. Object Tracking
    3. Kalman Filtering
    4. Meanshift and Camshift
-   
+
 Module 9 : Deep Learning with OpenCV
    1. Image Classification
    2. Object Detection
@@ -186,16 +200,4 @@ Module 9 : Deep Learning with OpenCV
    7. Detection and Tracking
 
 
-[OpenCV Python Tutorials](https://opencv-python-tutroals.readthedocs.io)
 
-# Morphological Transformations  
-
-**Erosion & Dilation**
-
-Erosion: Wartośći pikseli sa uśredniane w dół.
-
-Dilation: wartośći pikseli są uśredniane w górę.
-
-Szeroki opis na [StackOverflow](https://stackoverflow.com/a/30380543)
-[Morphological Transformations](http://www.codebind.com/python/opencv-python-tutorial-beginners-morphological-transformations/)
-[Morphological transformations with OpenCV in Python](http://datahacker.rs/006-morphological-transformations-with-opencv-in-python/)

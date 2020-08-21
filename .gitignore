@@ -1,4 +1,5 @@
-_posts/.ipynb_checkpoints/
+_posts/.ipynb_checkpoints/*
+**/.ipynb_checkpoints/*
 *.gem
 .bundle
 .sass-cache
