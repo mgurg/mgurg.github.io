@@ -6,7 +6,7 @@ author: "Michał"
 ---
 
 
-Python: informacje wybrane. Kiedyś myślałem że będę opisywał dla siebie i potomnych elementy i składnię pythona. Ale potem pojawił się Jetbrains Academy i przestało mnieć to sens. Pozbierałem wszystkie szcząrkowe informacje w jeden  post dla łatwiejszego przesukiwania całości.
+Python: informacje wybrane. Kiedyś myślałem że będę opisywał dla siebie i potomnych elementy i składnię pythona. Ale potem pojawił się [Jetbrains Academy](https://hyperskill.org/join/551d2dc61) i przestało mnieć to sens. Pozbierałem i zarchiwizowałem tutaj wszystkie swoje stare notatki ,ale jeżeli potrzebuje dowiedzieć się czogoś w szczegółach to zaglądam do JetBrains Academy.
 
 # Pętle
 
@@ -75,7 +75,7 @@ list(enumerate(seasons))
 
 # [(0, 'Spring'), (1, 'Summer'), (2, 'Fall'), (3, 'Winter')]
 ```
-Szybkie gebnerowanie słownika:
+Szybkie generowanie słownika:
 ```python
 dict( enumerate(['red', 'blue', 'green']) )
 
@@ -190,7 +190,7 @@ Więcej: [Kopiowanie list i słowników](http://analityk.edu.pl/kopiowanie-list-
 
 ### Set
 
-unordered collection of distinct [hashable](https://docs.python.org/3/glossary.html#term-hashable) objects. 
+Unordered collection of distinct [hashable](https://docs.python.org/3/glossary.html#term-hashable) objects. 
 
 https://www.programiz.com/python-programming/set
 
@@ -463,7 +463,7 @@ print(result)
 
 ## Apply
 
-Umożliwia razem z funkcją lambda szybkie iterowanie po kolumnach dataframe:
+Umożliwia razem z funkcją `lambda` szybkie iterowanie po kolumnach dataframe:
 
 ```python
 df['GPS y'] = df['GPS y'].apply(lambda x : dms2dd(x))
@@ -518,7 +518,7 @@ print(next(my_iterator))  # 3
 print(next(my_iterator))  # StopIteration exception
 ```
 
-Python dla pętli `for`automatycznie utworzy iterator z danego obiektu iterowalnego i będzie otrzymywał jego elementy jeden po drugim za pomocą metody `next`, aż do wyczerpania obiektu iterowalnego.
+Python dla pętli `for` automatycznie utworzy iterator z danego obiektu iterowalnego i będzie otrzymywał jego elementy jeden po drugim za pomocą metody `next`, aż do wyczerpania obiektu iterowalnego.
 
 ```python
 for item in my_list:

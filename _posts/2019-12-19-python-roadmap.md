@@ -7,15 +7,17 @@ author: "Michał"
 
 
 
-Z różnymi językami programowania miałem do czynienia wielokrotnie, ale żadnego nie nauczyłem się porządnie. Postanowiłem że Python będzie tym pierwszym który opanuje w zaawansowanym stopniu. Dziennik tego co faktycznie się nauczyłem do tej pory :) 
+Z różnymi językami programowania miałem do czynienia wielokrotnie, ale żadnego nie nauczyłem się porządnie. Postanowiłem że Python będzie tym pierwszym który opanuje w zaawansowanym stopniu. Powody? Machine learning, Computer Vision i Robot Operating System. Oraz to że ciężko w nim zacząć od pisania okienkowych alpikacji, dzięki czemu nie grozi mi utknięcie na cyzelowaniu GUI zamiast nauki programowania. Poniżej dziennik tego, co faktycznie się nauczyłem do tej pory.
+
+[OpenCV Roadmap](https://mgurg.github.io/opencv/2020/05/12/OPENCV.html)
 
 **[21-06-2020]**
 
-Dawno nie było żadnej aktualizacji, a to wszystko z powodu serwisu [JetBrains Academy](https://hyperskill.org/) Przerobiłem na nim 162 tematy dotyczące Pythona (bez Django) i jestem super zadowolony. Wydaje mi się że domknąłem wszystkie poważniejsze braki jeżeli chodzi o pisanie w tym języku.
+Dawno nie było żadnej aktualizacji, a to wszystko z powodu serwisu [JetBrains Academy](https://hyperskill.org/join/551d2dc61) Przerobiłem na nim 162 tematy dotyczące Pythona (bez Django) i jestem super zadowolony. Wydaje mi się że domknąłem wszystkie poważniejsze braki jeżeli chodzi o pisanie w tym języku.
 
 <img src="{{site.url}}/images/2020_08/hyperskill.png" style="display: block; margin: auto;" />
 
-Zdecydowanie polecam każdemu naukę poprzez ten serwis. Mnóstwo ćwiczeń, ciekawie i ze szczegółami opisana teoria, i to wszystko  przez jeszcze jakiś czas za darmo.  Pora zrobić plan nauki dla Computer Vision i Machine Learning :)
+Zdecydowanie polecam każdemu naukę poprzez ten serwis. Ogrom ćwiczeń, ciekawie i ze szczegółami opisana teoria, i to wszystko przez jeszcze jakiś czas za darmo. Pora zrobić plan nauki dla Computer Vision i Machine Learning :) Myślę że w niedalekiej przyszłości nauczyć się programowania nie wydając 15 000 zł na bootcamp.
 
 **[26-04-2020]**
 
@@ -37,15 +39,15 @@ Zdecydowanie polecam każdemu naukę poprzez ten serwis. Mnóstwo ćwiczeń, cie
 
 **TODO:** ~~Objects, Classes~~, `__Init__`, ~~Class variables~~, ~~Methods~~,~~inheritance~~
 
-`Regex`  - poznałem podstawową składnię przy okazji wyciągania danych w formacie JSON
+`Regex` - poznałem podstawową składnię przy okazji wyciągania danych w formacie JSON
 
 
 
 **[30-03-2020]**
 
-Robienie własnego projektu który nie jest kalkulatorem ani  TODO listą związanego z przepisywaniem kodu który ktoś wymyślił sprawie że pojawia się masa rzeczy których trzeba się nauczyć choćby w minimalnym stopniu żeby zrobić to co się wymyśliło. Lista tematów które doszły od ostatniego zestawienia:
+Robienie własnego projektu który nie jest kalkulatorem ani TODO listą związanego z przepisywaniem kodu który ktoś wymyślił sprawie że pojawia się masa rzeczy których trzeba się nauczyć choćby w minimalnym stopniu żeby zrobić to co się wymyśliło. Lista tematów które doszły od ostatniego zestawienia:
 
-`SQL` - Zapis ogłoszeń do plików do `csv` i obróbka ich przy pomocy `pandas` była dobrym pomysłem na start. Skoro jednak mam działający kod dla najprostszego przypadku to  postanowiłem go rozwinąć w coś bardziej użytecznego. Parsowane treści wszystkich ogłoszeń sprawiło że mam znacznie więcej danych, uznałem że wygodniej będzie trzymać je wszystkie w bazie `SQLite`. To wymagało ode mnie nauki podstaw SQL. Na razie mam opanowane elementarne zapytania dla tworzenia tabel, dodawania, odpytywania i łącznia danych
+`SQL` - Zapis ogłoszeń do plików do `csv` i obróbka ich przy pomocy `pandas` była dobrym pomysłem na start. Skoro jednak mam działający kod dla najprostszego przypadku to postanowiłem go rozwinąć w coś bardziej użytecznego. Parsowane treści wszystkich ogłoszeń sprawiło że mam znacznie więcej danych, uznałem że wygodniej będzie trzymać je wszystkie w bazie `SQLite`. To wymagało ode mnie nauki podstaw SQL. Na razie mam opanowane elementarne zapytania dla tworzenia tabel, dodawania, odpytywania i łącznia danych
 
 **TODO:** ~~Bardziej zawansowane zapytania~~, przyjrzenie się problemowi SQL Injection (rozwiązanie: ORM SqlAlchemy?)
 
@@ -57,7 +59,7 @@ Robienie własnego projektu który nie jest kalkulatorem ani  TODO listą związ
 
 
 
-`Scrapy` - Tworzenie kodu pająka nadal jest dla mnie nieintuicyjne, ale potrafię przekazać do parsowania podstrony serwisu pozyskane w wyniku parsowania innej strony. Dodatkowo w  trakcie pozbywam się od razu tej części pliku HTML która nie jest mi potrzebna tak żeby oszczędzać czas i miejsce na dysku.
+`Scrapy` - Tworzenie kodu pająka nadal jest dla mnie nieintuicyjne, ale potrafię przekazać do parsowania podstrony serwisu pozyskane w wyniku parsowania innej strony. Dodatkowo w trakcie pozbywam się od razu tej części pliku HTML która nie jest mi potrzebna tak żeby oszczędzać czas i miejsce na dysku.
 
  **TODO**: ~~Limitowanie ilości zapytań przy pobieraniu większej ilości podstron~~
 
@@ -65,7 +67,7 @@ Robienie własnego projektu który nie jest kalkulatorem ani  TODO listą związ
 
 **[22-01-2020]**
 
-`Markdown` - wybór bloga opartego o Jekyll prowadzonego na  Github pages sprawił że musiałem nauczyć się formatować tekst w podstawowym stopniu z wykorzystaniem *markdown*. Do tej pory opanowałem podstawowe rzeczy: nagłówki, wypunktowania, linki blok kodu. Stworzenie podstawowego pliku *Readme.md* nie jest już wyzwaniem. Co do edytorów przeszedłem drogę od Notepad++ (brak podglądu formatowania) przez webowy [StackEdit](https://stackedit.io/) (wady: na każdym komputerze inne pliki zapisane w cache, psuje nagłówek postów) po aplikację [Typora](https://www.typora.io/)  (wady: na razie brak)
+`Markdown` - wybór bloga opartego o Jekyll prowadzonego na Github pages sprawił że musiałem nauczyć się formatować tekst w podstawowym stopniu z wykorzystaniem *markdown*. Do tej pory opanowałem podstawowe rzeczy: nagłówki, wypunktowania, linki blok kodu. Stworzenie podstawowego pliku *Readme.md* nie jest już wyzwaniem. Co do edytorów przeszedłem drogę od Notepad++ (brak podglądu formatowania) przez webowy [StackEdit](https://stackedit.io/) (wady: na każdym komputerze inne pliki zapisane w cache, psuje nagłówek postów) po aplikację [Typora](https://www.typora.io/) (wady: na razie brak)
 
 **TODO**: ~~tabele~~, ~~osadzanie grafik~~
 
