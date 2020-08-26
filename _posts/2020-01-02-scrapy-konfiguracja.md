@@ -101,7 +101,7 @@ Podgląd pobranych danych w przeglądarce umożliwia komenda `view(response)`
 Jeżeli chcemy zobaczyć kod strony to możemy go wyświetlić przy pomocy `print(response.text)`
 
 ---
-
+## część II
 W [poprzedniej części](https://mgurg.github.io/python/2020/01/02/scrapy-konfiguracja.html) pokazałem w jaki sposób przeprowadzić podstawowe testy z *scrapy* korzystając wyłącznie z okna shell bez tworzenia projektu. Ponieważ próby wyszły pomyślnie to zacząłem dostosowywać to narzędzie do swoich potrzeb.
 
 
@@ -297,7 +297,7 @@ class OtomotoSpider(scrapy.Spider):
 ```
 
 ---
-
+## Część IV
 W ostatniej części [opisu scrapy](https://mgurg.github.io/python/2020/01/15/scrapy-konfiguracja-III.html) dotarłem do miejsca w którym mam działający skrypt do pobierania treści strony. Mam też [skonfigurowany serwer VPS](https://mgurg.github.io/python/2020/01/16/SSH-VPS-konfiguracja-serwera.html). Kolejnym krokiem jest sprawienie żeby zadanie pobierania ogłoszeń wykonywało się samo co jakiś czas. W moim przypadku będzie to raz na dobę, w środku nocy.
 
 ## Automatyczne pobieranie stron (cron + Scrapy)

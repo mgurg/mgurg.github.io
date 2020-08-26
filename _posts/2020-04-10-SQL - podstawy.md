@@ -1,13 +1,11 @@
 ---
 layout: post
-title: "SQLite: Podstawy"
+title: "SQLite: przykłady"
 categories: SQL
 author: "Michał"
 ---
 
-
-
-Wszystkie przykłady poniżej  opisane na podstawie SQLite. 
+Pierwszym podejściem do baz danych był dla mnie SQLite, wypisałem sobie tutaj kilka informacji które zwróciły moją uwagę. 
 
 
 
