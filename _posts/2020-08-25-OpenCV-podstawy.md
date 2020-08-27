@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "OpenCV - podstawy"
+title: "OpenCV - wprowadzenie"
 categories: OpenCV
 author: "Michał"
 math: true
@@ -11,6 +11,9 @@ Krótka teoria wprowadzająca do OpenCV oraz rozwiązania prostych projektów (o
 # OpenCV - szybkie wprowadzenie
 
 Szybkie wprowadzenie: [Learn X in Y minutes: OpenCV](https://learnxinyminutes.com/docs/opencv/)
+
+### Jupyter Notebook
+**[Jupyter Notebook](https://nbviewer.jupyter.org/github/mgurg/mgurg.github.io/blob/master/images/ipnyb/opencv.ipynb)** - uznałem że w przypadku OpenCV wygodniej będzie umieszczać treść w notatnikach Jupytera niż pisać ją na blogu. Dlatego każdy wpis z OpenCV będzie posiadał odnośnik do niego.
 
 Wczytanie OpenCV, Numpy i Pillow:
 ```python
@@ -68,7 +71,7 @@ cv2.rectangle(img, (10,10), (100,100), (255,0,0), 5 )
 ```
 
 ### Tekst
-```
+```python
 cv2.putText(img, "TXT", (10,190), # lewy dolny pkt
 		cv2.FONT_HERSHEY_SIMPLEX, 1.2, (0,255,200))
 ```
@@ -95,8 +98,93 @@ closing(A) = erode(dilate(A))
 
 Operatory tophat (ekstrakcja obszarów jasnych) i blackhat (ekstrakcja obszarów ciemnych) służą odpowiednio ekstrakcji jasnych i ciemnych obszarów w obrazie (poziom jasności określany w odniesieniu do najbliższego otoczenia). 
 
-tophat(A) = A − open(A)
-blackhat(A) = close(A) − A
+* tophat(A) = A − open(A)
+* blackhat(A) = close(A) − A
+
+### Wykrywanie konturów
+
+```python
+contours, hierarchy = cv2.findContours(image, mode, method)
+```
+
+Obraz należy sprowadzić do postaci czarno-białej. Kontury są tworzone tylko wokół białych obszarów.
+```python
+img = cv2.imread('img/rotate/cnt.png')
+img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+img = cv2.bitwise_not(img)
+```
+Tryby wykrywania konturów:
+
+* `CV_RETR_EXTERNAL` - wykrywa jedynie zewnętrzen kontury, wszystkie kontury zagnieżdzone są ignorowane. 
+
+W hierarchii konturów dwie ostatnie koumny mają wrtość -1
+```python
+[[[ 1 -1 -1 -1]   # kontur 0
+  [ 2  0 -1 -1]   # kontur 1
+  [-1  1 -1 -1]]]  # kontur 2
+```
+
+* `CV_RETR_LIST` - zwraca wszystkie kontury, ale nie określa hierarchii między nimi . Należy stosować jeżeli nie potrzebujemy informacjii o tym czy któryś kontur jest zagnieżdzony wewnątrz kolejnego.
+
+Ponieważ tym razem również nie liczymy hierarchii konturów, to dwie ostatnie koumny mają wrtość -1 Kolumny "Next" i "Previous" mają wymagane wartości
+
+```python
+[[[ 1 -1 -1 -1]  # kontur 0
+  [ 2  0 -1 -1]  # kontur 1
+  [ 3  1 -1 -1]  # kontur 2
+  [ 4  2 -1 -1]  # ...
+  [ 5  3 -1 -1]
+  [ 6  4 -1 -1]
+  [ 7  5 -1 -1]
+  [-1  6 -1 -1]]]
+
+```
+
+* `CV_RETR_CCOMP`  - znajduje kontury i organizuje je w kontury wewnetrzne i zewnetrzne. gives contours and organises them into outer and inner contours. Every contour is either the outline of an object, or the outline of an object inside another object (i.e. hole). The hierarchy is adjusted accordingly. This can be useful if (say) you want to find all holes.
+
+This flag retrieves all the contours and arranges them to a 2-level hierarchy. ie external contours of the object (ie its boundary) are placed in hierarchy-1. And the contours of holes inside object (if any) is placed in hierarchy-2. If any object inside it, its contour is placed again in hierarchy-1 only. And its hole in hierarchy-2 and so on.
+
+```
+[[[ 1 -1 -1 -1]
+  [ 2  0 -1 -1]
+  [ 4  1  3 -1]
+  [-1 -1 -1  2]
+  [ 6  2  5 -1]
+  [-1 -1 -1  4]
+  [ 7  4 -1 -1]
+  [-1  6 -1 -1]]]
+
+```
+
+[OpenCV Countours: Dice](https://nbviewer.jupyter.org/github/arnavdutta/OpenCV-Contours-Hierarchy/blob/master/OpenCV_Contours.ipynb)
+
+* `CV_RETR_TREE` - wylicza pełną hierarchę konturów. Widać np. ze kontur 4 jest zagnieżdzony o 4 poziomy względem konturu zerowego.
+
+```python
+[[[ 6 -1  1 -1]    # kontur 0 - równy 6, rodzic 1
+  [-1 -1  2  0]    # kontur 1 - rodzic 2, dziecko 0
+  [-1 -1  3  1]    # kontur 2 - rodzic 3, dziecko 1
+  [-1 -1  4  2]    # kontur 3 - rodzic konturu 4, dziecko 2 
+  [ 5 -1 -1  3]    # kontur 4 - dziecko konturu 3 (4-ty poziom zagnieżdzenia)
+  [-1  4 -1  3]    # kontur 5 - dziecko konturu 3
+  [ 7  0 -1 -1]    # kontur 6 - równy 7, bezdzietny
+  [-1  6 -1 -1]]]  # kontur 7 - bezdzietny
+
+```
+
+
+Hierarchia obiektów:
+
+```
+[Next (same level), Previous (same level), First_Child, Parent]
+[Next (same level), Previous (same level), First_Child, Parent]
+[Next (same level), Previous (same level), First_Child, Parent]
+...
+```
+* "Next" oznacza następny kontur na tym samym poziomie hierarchii.
+* "Previous" oznacza poprzedni kontur na tym samym poziomie hierarchii.
+* "First_Child" oznacza jego pierwszy kontur dziecka.
+* "Parent" oznacza indeks konturu rodzica.
 
 
 ## Projekty
@@ -105,8 +193,8 @@ blackhat(A) = close(A) − A
 [Rotate Images](https://www.pyimagesearch.com/2017/01/02/rotate-images-correctly-with-opencv-and-python/)
 
 Tematy które pozznałem przy okzaji tego ćwiczenia: 
-* findContours ([RetrievalModes](https://docs.opencv.org/master/d3/dc0/group__imgproc__shape.html#ga819779b9857cc2f8601e6526a3a5bc71))
-* drawCountours
+* findContours  - ([RetrievalModes](https://docs.opencv.org/master/d3/dc0/group__imgproc__shape.html#ga819779b9857cc2f8601e6526a3a5bc71))
+* drawCountours - -1 jako grubość linii powoduje wypełnienie obiektu
 * Konwersja `cv2.COLOR_BGR2RGB` i `cv2.COLOR_BGR2GRAY` to nie to samo co wyłącznie `cv2.COLOR_BGR2GRAY`
 
 [Building a Pokedex in Python: Finding the Game Boy Screen](https://www.pyimagesearch.com/2014/04/21/building-pokedex-python-finding-game-boy-screen-step-4-6/)
