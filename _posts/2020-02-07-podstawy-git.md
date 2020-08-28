@@ -25,6 +25,8 @@ git commit -m "commit description"
 git push
 ```
 
+Zamiast pojedynczego `git add <nazwa>` lub dodającego wszystko `git add .` można wygrać rozwiązanie pośrednie: interakrtywne dodawanie plików z pomocą `git add -p`
+
 Synchronizacja lokalnych danych z zdalnym repozytorium
 ```
 git fetch
@@ -32,7 +34,7 @@ git diff master origin/master
 git merge
 ```
 
-Jreżeli nie chcemy przeglądać zmian to można zrobić to w jednym podejśćiu (cały projekt/ konkretny branch):
+Jeżeli nie chcemy przeglądać zmian to można zrobić to w jednym podejśćiu (cały projekt/ konkretny branch):
 ```
 git pull
 git pull origin feature/C9-113

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Python: Numpy"
+title: "Numpy i Pandas"
 categories: Python
 author: "Michał"
 math: true

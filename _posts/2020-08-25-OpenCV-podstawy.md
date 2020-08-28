@@ -231,6 +231,8 @@ Tematy które pozznałem przy okzaji tego ćwiczenia:
 ### Panorama stitching
 [panorama stitching](https://www.pyimagesearch.com/2016/01/11/opencv-panorama-stitching/)
 
+### Foreground Segmentation and Extraction
+[OpenCV GrabCut: Foreground Segmentation and Extraction](https://www.pyimagesearch.com/2020/07/27/opencv-grabcut-foreground-segmentation-and-extraction/)
 
 
 
