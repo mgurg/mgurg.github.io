@@ -106,7 +106,7 @@ sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
 
 Zamiana wpisu `bind-address = 127.0.0.1` na 
 ```
-bind-address = 127.0.0.1
+bind-address = 0.0.0.0
 ```
 
 Firewall dozwolone adresy IP:
