@@ -124,3 +124,28 @@ Logowanie:
 ```
 mysql -u lammy -h 192.166.219.228 -p
 ```
+
+Jeżeli nie działa to nalezy sprawdzić czy użytkownik może logować się zdalnie. Po zalogowaniu do MySQL:
+
+```
+mysql> SELECT host FROM mysql.user WHERE User = 'lammy';
++-----------+
+| host      |
++-----------+
+| localhost |
++-----------+
+1 row in set (0.02 sec)
+```
+
+Jeśli widzisz wyniki tylko z `localhost` i `127.0.0.1`, nie możesz połączyć się z zewnętrz. Jeśli widzisz inne adresy IP, ale nie ten, z którego się łączysz to połączenie równierz nie będzei możliwe.
+
+```mysql
+CREATE USER 'rammy'@'%' IDENTIFIED BY 'password123';
+
+GRANT CREATE, ALTER, DROP, INSERT, UPDATE, DELETE, SELECT, REFERENCES, RELOAD on *.* TO 'rammy'@'%' WITH GRANT OPTION;
+
+FLUSH PRIVILEGES;
+
+```
+
+

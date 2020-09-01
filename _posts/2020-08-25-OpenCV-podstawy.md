@@ -15,6 +15,8 @@ Szybkie wprowadzenie: [Learn X in Y minutes: OpenCV](https://learnxinyminutes.co
 ### Jupyter Notebook
 **[Jupyter Notebook](https://nbviewer.jupyter.org/github/mgurg/mgurg.github.io/blob/master/images/ipnyb/opencv.ipynb)** - uznałem że w przypadku OpenCV wygodniej będzie umieszczać treść w notatnikach Jupytera niż pisać ją na blogu. Dlatego każdy wpis z OpenCV będzie posiadał odnośnik do niego.
 
+
+
 Wczytanie OpenCV, Numpy i Pillow:
 ```python
 # sudo apt install libgl1-mesa-glx
@@ -31,6 +33,20 @@ Stworzenie pustego obrazu i wyświetlenie z pomoca biblioteki Pillow:
 ```python
 img = np.zeros((100,120,3), dtype='uint8')
 Image.fromarray(img)
+```
+
+[Koordynaty w OpenCV](https://stackoverflow.com/questions/25642532/opencv-pointx-y-represent-column-row-or-row-column) są liczone wg ponizszego układu współrzędnych:
+
+```
+0/0---X--->
+ |
+ |
+ Y
+ |
+ |
+ v
+ 
+OpenCV Point(x,y)
 ```
 
 Wczytanie istniejącego obrazu:
@@ -192,7 +208,7 @@ Hierarchia obiektów:
 ### Rotate images
 [Rotate Images](https://www.pyimagesearch.com/2017/01/02/rotate-images-correctly-with-opencv-and-python/)
 
-Tematy które pozznałem przy okzaji tego ćwiczenia: 
+Tematy które poznałem przy okzaji tego ćwiczenia: 
 * findContours  - ([RetrievalModes](https://docs.opencv.org/master/d3/dc0/group__imgproc__shape.html#ga819779b9857cc2f8601e6526a3a5bc71))
 * drawCountours - -1 jako grubość linii powoduje wypełnienie obiektu
 * Konwersja `cv2.COLOR_BGR2RGB` i `cv2.COLOR_BGR2GRAY` to nie to samo co wyłącznie `cv2.COLOR_BGR2GRAY`
@@ -200,6 +216,15 @@ Tematy które pozznałem przy okzaji tego ćwiczenia:
 [Building a Pokedex in Python: Finding the Game Boy Screen](https://www.pyimagesearch.com/2014/04/21/building-pokedex-python-finding-game-boy-screen-step-4-6/)
 
 [Contours Hierarchy](https://docs.opencv.org/master/d9/d8b/tutorial_py_contours_hierarchy.html)
+
+### Text skew correction
+[Text skew correction](https://www.pyimagesearch.com/2017/02/20/text-skew-correction-opencv-python/)
+
+Lista tematów które poznałem przy okazji tego ćwiczenia:
+* Treshold
+* BoundingBox
+
+
 
 ### Watermarking Images
 [Watermarking images](https://www.pyimagesearch.com/2016/04/25/watermarking-images-with-opencv-and-python/)
@@ -213,8 +238,7 @@ Tematy które pozznałem przy okzaji tego ćwiczenia:
 ### Center of contour
 [Center of contour](https://www.pyimagesearch.com/2016/02/01/opencv-center-of-contour/)
 
-### Text skew correction
-[Text skew correction](https://www.pyimagesearch.com/2017/02/20/text-skew-correction-opencv-python/)
+
 
 ### Recognizing LCD digits
 [Recognizing LCD Digits](https://www.pyimagesearch.com/2017/02/13/recognizing-digits-with-opencv-and-python/)
