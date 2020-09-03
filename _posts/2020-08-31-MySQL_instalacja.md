@@ -6,7 +6,7 @@ author: "Michał"
 math: false
 ---
 
-Obecnie SQLite wystarcza w 100% do wszytkich zadań które wykonuje, ale na wypadek gdybym robił ajakiś wiekszy (lub powązniej wyglądający) projekt to napisałem opis instalcaji MySQL na zdalnym serwerze (z możliwoiścia zdalnego logowania).
+Obecnie SQLite wystarcza w 100% do wszytkich zadań które wykonuje, ale na wypadek gdybym robił jakiś wiekszy (lub poważniej wyglądający) projekt to napisałem opis instalcaji MySQL na zdalnym serwerze (z możliwościa zdalnego logowania).
 
 Opis za [How To Install MySQL on Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04)
 
@@ -29,18 +29,18 @@ sudo mysql
 
 Lokalny user:
 
-```mysql
+```sql
 CREATE USER 'username'@'host' IDENTIFIED WITH authentication_plugin BY 'password';
 
 CREATE USER 'lammy'@'localhost' IDENTIFIED BY 'password123';
 ```
 
 
-```mysql
+```sql
 GRANT CREATE, ALTER, DROP, INSERT, UPDATE, DELETE, SELECT, REFERENCES, RELOAD on *.* TO 'lammy'@'localhost' WITH GRANT OPTION;
 ```
 
-```mysql
+```sql
 mysql> FLUSH PRIVILEGES;
 mysql> exit
 ```
@@ -139,7 +139,7 @@ mysql> SELECT host FROM mysql.user WHERE User = 'lammy';
 
 Jeśli widzisz wyniki tylko z `localhost` i `127.0.0.1`, nie możesz połączyć się z zewnętrz. Jeśli widzisz inne adresy IP, ale nie ten, z którego się łączysz to połączenie równierz nie będzei możliwe.
 
-```mysql
+```sql
 CREATE USER 'rammy'@'%' IDENTIFIED BY 'password123';
 
 GRANT CREATE, ALTER, DROP, INSERT, UPDATE, DELETE, SELECT, REFERENCES, RELOAD on *.* TO 'rammy'@'%' WITH GRANT OPTION;

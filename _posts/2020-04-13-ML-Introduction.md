@@ -5,43 +5,82 @@ categories: ML
 author: "Michał"
 ---
 
+Machine learning podział i informacje ogólne.
+
+## Klasyczne uczenie maszynowe
+### Supervised
+#### Classification
+* K-NN
+* Naive Bayes
+* SVM
+* Decision Trees
+* Logistic Regression
+
+#### Regression
+* Linear Regression
+* Polynominal regression
+* Ridge/Lasso regression
+
+### Unsupervised
+
+#### Clustering
+* DBSCAN
+* K-Means (Flat)
+* Agglomerative (Divisive: Bottom-up)
+* Mean-Shift
+* Fuzzy C-Means
+
+📺 [How does k-nearest neighbors work?](https://www.youtube.com/watch?v=0p0o5cmgLdE)
+
+#### Pattern Search
+* Euclat
+* Apriori
+* FP-Growth
+
+#### Dimension Reduction
+* t-SNE
+* PCA
+* LSA
+* SVD
+* LDA
+
+## Ensemble Methods
+* Stacking
+* Bagging
+* Boosting
+  * AdaBoost
+  * XGBoost
+  * CatBoost
+  * LightGbm
+
+## Reinforcement Learning
+* Genetic Algoritm
+* Q-Learning
+* Deep Q-Network (DQN)
+* SARSA
+* A3C
+
+## Sieci neuronowe
+### Perceptron (MLP)
+### Konwolucujne Sieci Neuronowe (CNN)
+* DCNN
+### Recurrent Neutral Networks (RNN)
+* LSM
+* LSTM
+* GRU
+### Autoencoders
+* seq2seq
+
+### Generative Adversaliar Networks
+
+---
 
 
-Machine learning źródła wybrane.
-
-# Klasyczne uczenie maszynowe
 
 https://renanmf.com/machine-learning-and-deep-learning-software-engineers/
 
 https://youtu.be/JXhC8iNQvxE
 
-
-## Machine learning - podział
-
-Supervised Learning:
-
-- Classification
-- Regression
-
-Unsupervised Learning:
-
-- Clustering
-- Dimensionality reduction
-
-Reinforcement learning
-
-
-
-
-
-## Regresja liniowa
-
-y = ax+b
-
-- a - pochylenie
-- b - odsunięcie na osi y
-
-Rodzaje:
 
 - Korelacja
   - Represents the relationship between two variables
@@ -55,25 +94,6 @@ Rodzaje:
 
 
 
-Rozwiązanie nieliniowych problemów:
-
-- non linear regression
-- exponential transformation
-- Log transformation (semi-log [x lub y]: gdy X wzrasta o 1 to Y wzrasta o b %, log-log [x i y]:gdy X wzrasta o 1% to Y wzrasta o b % )
-
-
-
-Modele
-
-- liniowe
-- nieliniowe
-  - quadratic
-  - expotential
-  - logistic
-
-Supervised Learning
-
-zawiera input (feature) [x] i output (target) [y]
 
 ### Confusion matrix / ROC Curve
 
@@ -90,19 +110,6 @@ zawiera input (feature) [x] i output (target) [y]
 ### Loss function
 
 [Common Loss functions in machine learning](https://towardsdatascience.com/common-loss-functions-in-machine-learning-46af0ffc4d23)
-
-
-
-
-
-## Clustering
-
-- Flat (K-Means)
-- Hierarchical
-  - Agglomerative (Bottom-up)
-  - Divisive (Top-Down)
-
-📺 [How does k-nearest neighbors work?](https://www.youtube.com/watch?v=0p0o5cmgLdE)
 
 
 
@@ -192,9 +199,9 @@ Sequential([
 
 Konwolucja - nakładanie filtru ([Image Kernels Explained Visually](https://setosa.io/ev/image-kernels/))
 
-Pooling - sposób na  zmniejszanie zdjęć przy jednoczesnym zachowaniu najważniejszych informacji w nich zawartych.
+Pooling - sposób na zmniejszanie zdjęć przy jednoczesnym zachowaniu najważniejszych informacji w nich zawartych.
 
 **Capsule Networks** - rozpoznawanie twarzy [Blog post: capsule networks](https://cezannec.github.io/Capsule_Networks/)
 
-Image augmentation - technika przeciwdziałąnia dla Rotate/scale/translation invariance (PyTorch: torchvision.transforms)
+Image augmentation - technika przeciwdziałania dla Rotate/scale/translation invariance (PyTorch: torchvision.transforms)
 

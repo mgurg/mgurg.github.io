@@ -7,6 +7,13 @@ author: "Michał"
 
 Od czasu gdy pisałem pierwszą instrukję minęło prawie pół roku i w tym czasie wyszło bardzo wiele niedociągnieć które popełniłem za pierwszym razem. Z okazji wyjścia Ubuntu 20.04 postanowiłem przeinstalować wszysyko od zera starając się jednocześnie poprawić jak najwięcej błędów z poprzedniej próby.
 
+## Remote VS Code
+
+```bash
+sudo apt-get install openssh-server
+sudo apt-get install sshfs
+```
+
 # 1) Podstawowa konfiguracja serwera
 
 Opis na podstawie tekstu Łukasza Prokulskiego: [Stawiamy własny serwer](https://blog.prokulski.science/index.php/2018/06/14/serwer-vps-dla-r-python/) uzupełnianego o inne źródła. Za radą łukasza wybrałem serwer webh.pl i ogólnie nie żałuję, miał być tani i taki jest. Ma jednak jedną istotną wadę, która początkującym może spędzać sen z powiek. 

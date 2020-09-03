@@ -221,13 +221,15 @@ Tematy które poznałem przy okzaji tego ćwiczenia:
 [Text skew correction](https://www.pyimagesearch.com/2017/02/20/text-skew-correction-opencv-python/)
 
 Lista tematów które poznałem przy okazji tego ćwiczenia:
+* Ukł wspłrzędnych w OpenCV
 * Treshold
 * BoundingBox
 
 
-
 ### Watermarking Images
 [Watermarking images](https://www.pyimagesearch.com/2016/04/25/watermarking-images-with-opencv-and-python/)
+
+* Tryby wczytywania obrazów [ImreadModes](https://docs.opencv.org/3.4/d4/da8/group__imgcodecs.html#ga61d9b0126a3e57d9277ac48327799c80)
 
 ### Determining object color
 [Determining object color](https://www.pyimagesearch.com/2016/02/15/determining-object-color-with-opencv/)
@@ -245,12 +247,6 @@ Lista tematów które poznałem przy okazji tego ćwiczenia:
 
 ### Determining object color
 [Determining object color](https://www.pyimagesearch.com/2016/02/15/determining-object-color-with-opencv/)
-
-### Shape detection
-[Shape detection](https://www.pyimagesearch.com/2016/02/08/opencv-shape-detection/)
-
-### Center of contour
-[Center of contour](https://www.pyimagesearch.com/2016/02/01/opencv-center-of-contour/)
 
 ### Panorama stitching
 [panorama stitching](https://www.pyimagesearch.com/2016/01/11/opencv-panorama-stitching/)
