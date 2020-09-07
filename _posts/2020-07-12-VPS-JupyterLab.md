@@ -5,38 +5,45 @@ categories: python
 author: "Michał"
 ---
 
-Od czasu gdy pisałem pierwszą instrukję minęło prawie pół roku i w tym czasie wyszło bardzo wiele niedociągnieć które popełniłem za pierwszym razem. Z okazji wyjścia Ubuntu 20.04 postanowiłem przeinstalować wszysyko od zera starając się jednocześnie poprawić jak najwięcej błędów z poprzedniej próby.
+Od czasu, gdy pisałem pierwszą wersję instrukcji minęło ponad pół roku. W tym czasie wyszło bardzo wiele niedociągnięć, które popełniłem za pierwszym razem. Z okazji wyjścia Ubuntu 20.04 postanowiłem przeinstalować wszystko od zera, starając się wdrożyć to wszystko, o czym dowiedziałem się w tym czasie.
 
-## Remote VS Code
-
-```bash
-sudo apt-get install openssh-server
-sudo apt-get install sshfs
-```
 
 # 1) Podstawowa konfiguracja serwera
 
-Opis na podstawie tekstu Łukasza Prokulskiego: [Stawiamy własny serwer](https://blog.prokulski.science/index.php/2018/06/14/serwer-vps-dla-r-python/) uzupełnianego o inne źródła. Za radą łukasza wybrałem serwer webh.pl i ogólnie nie żałuję, miał być tani i taki jest. Ma jednak jedną istotną wadę, która początkującym może spędzać sen z powiek. 
+Opis na podstawie tekstu Łukasza Prokulskiego: [Stawiamy własny serwer](https://blog.prokulski.science/index.php/2018/06/14/serwer-vps-dla-r-python/) uzupełnianego o inne źródła. Za radą Łukasza wybrałem serwer webh.pl i ogólnie nie żałuję, miał być tani i taki jest. Ma jednak jedną istotną wadę, która początkującym może spędzać sen z powiek. 
 
 ## OpenBLAS
 
 Jest nią niepoprawna obsługa rozszerzenia instrukcji procesora AVX2 przez wirtualna maszynę. Szerszy [opis dla dociekliwych](https://github.com/xianyi/OpenBLAS/issues/2306).
 
-Rozwiązanie: dodanie do zmiennych systemowych wpisu
-```bash
-OPENBLAS_CORETYPE=Skylake
-```
-Można to zrobić instrukcją:
+Rozwiązaniem jest określenie typu procesora, co można zrobić ręcznie z poziomu konsoli instrukcją:
 ```bash
 export OPENBLAS_CORETYPE="Skylake"
 ```
 
-ewentualnie z poziomu kazdego skryptu pythona:
+Ewentualnie z poziomu kazdego skryptu pythona:
 ```python
 import os
 os.environ["OPENBLAS_CORETYPE"] ="Skylake"
 os.getenv("OPENBLAS_CORETYPE")
 ```
+
+Polecam dodać to w sposób permanenety, poprzez modyfikację `sudo nano /etc/environment` i dodanie w nim linii:
+
+```bash
+OPENBLAS_CORETYPE="Skylake"
+```
+Pozostaje przeładować zmienne systemowe i można sprawdzić czy wszystko jest ok:
+
+```bash
+source /etc/environment
+
+echo $OPENBLAS_CORETYPE      
+Skylake
+```
+
+Jeżeli pojawiałyby się dalsze problemy to nalezy zrestartwoać serwer.
+
 
 ## 2) Użytkownicy i logowanie
 
@@ -94,6 +101,14 @@ Aktualizacja systemu:
 sudo apt-get update
 sudo apt-get upgrade
 ```
+
+Jeżeli planujemy instalację biblioteki OpenCV z `conda-forge` to można od razu doinstalować:
+```
+sudo apt install libgl1-mesa-glx
+```
+
+W ten sposób nie musimy pózniej google-ować co powoduje błąd (*ImportError: libGL.so.1: cannot open shared object file: No such file or directory*). Zaoszczedziliśmy właśnie 30s życia :)
+
 
 ## 3) Python
 
@@ -186,32 +201,44 @@ a następnie uruchomić `conda init` MOżna to też zrobić w trakcie instalacji
 
 Po instalacji:
 
-```
+```bash
 source ~/.bashrc
 ```
 
 Sprawdzenie czy instalacja przebiegła poprawnie:
 
-```
+```bash
 conda --version
 ```
 
 Stworzenie środowiska
 
-```
+```bash
 conda create --name env python=3
 conda activate env
 ```
 
 Instalacja JupyterLab:
 
-```
+```bash
 conda install -c conda-forge jupyterlab
 ```
 
+Polecam też doinstalować od razu podstawowe biblioteki:
+```
+conda install -y -c conda-forge numpy 
+conda install -y -c conda-forge pandas
+conda install -y -c conda-forge matplotlib 
+conda install -y -c conda-forge opencv 
+```
+
+Jezeli zastanawiasz się czego jeszcze nie ma w utworzinym środowisku, to `conda list` powie co już mamy.
+PS.
+Korzystam zwykle z kanału *conda-forge* można na przyszłość [ustawić go jako domyślny](https://stackoverflow.com/a/39862730).
+
 Doinstalowanie nodejs (w celu późniejszego korzystania z rozszerzeń)
 
-```
+```bash
 cd /tmp
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt-get install -y nodejs
@@ -219,14 +246,14 @@ sudo apt-get install -y nodejs
 
 Stworzenie pliku konfiguracyjnego:
 
-```
+```bash
 jupyter-lab --generate-config
 
 Writing default config to: /home/lambda/.jupyter/jupyter_notebook_config.py
 ```
 
 Można od razu ustawić w nim domyślny folder roboczy:
-```
+```bash
 nano /home/lambda/.jupyter/jupyter_notebook_config.py
 ```
 
@@ -249,11 +276,11 @@ Verify password: **********
 
 Po połączniu przez SSH powinniśmy mieć dostęp do JupyterLab (pod adresem [localhost:8888](localhost:8888)):
 
-```
+```bash
 ssh -L 8888:localhost:8888 myuser@your_server_ip
 ```
 
-```
+```bash
 conda activate env
 jupyter lab
 ```
@@ -261,7 +288,7 @@ jupyter lab
 ### Dodatki
 
 Jeżeli wszystko działą to możemy na koniec doinstalować ciemny motyw:
-```
+```bash
 jupyter labextension install @telamonian/theme-darcula
 ```
 
@@ -272,8 +299,15 @@ jupyter labextension install @telamonian/theme-darcula
 Lokalnie pracuję korzystająć z [Dockera](https://mgurg.github.io/docker/2020/08/05/Docker.html)
 
 SpellCheck:
-```
+```bash
 jupyter labextension install @ijmbarr/jupyterlab_spellchecker
+```
+
+## Remote VS Code
+
+```bash
+sudo apt-get install openssh-server
+sudo apt-get install sshfs
 ```
 
 # NGINX
