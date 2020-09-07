@@ -170,14 +170,19 @@ Pobranie Anaconda, [najnowsza wersja Linux x64](https://www.anaconda.com/product
 ```bash
 cd /tmp
 sudo apt install curl
-curl -O https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
+curl -O https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_64.sh
 ```
 
 Instalacja:
 
 ```
-sh Anaconda3-2020.02-Linux-x86_64.sh
+sh Anaconda3-2020.07-Linux-x86_64.sh
 ```
+W celu inicjalizacji po zakończeniu procesu instalacji, najpierw należy uruchomić: 
+```
+<ścieżka do conda>/bin/activate
+```
+a następnie uruchomić `conda init` MOżna to też zrobić w trakcie instalacji wyarżając zgodę pod koniec instalacji.
 
 Po instalacji:
 
@@ -220,6 +225,16 @@ jupyter-lab --generate-config
 Writing default config to: /home/lambda/.jupyter/jupyter_notebook_config.py
 ```
 
+Można od razu ustawić w nim domyślny folder roboczy:
+```
+nano /home/lambda/.jupyter/jupyter_notebook_config.py
+```
+
+poprzez ustawienie linii
+```
+#c.NotebookApp.notebook_dir = "./ntbks"
+```
+
 Ustawienie hasła (nie będzie konieczne podawanie długiego tokena do autoryzacji):
 
 ```bash
@@ -241,6 +256,24 @@ ssh -L 8888:localhost:8888 myuser@your_server_ip
 ```
 conda activate env
 jupyter lab
+```
+
+### Dodatki
+
+Jeżeli wszystko działą to możemy na koniec doinstalować ciemny motyw:
+```
+jupyter labextension install @telamonian/theme-darcula
+```
+
+`CTRL + /` - komentowanie (jednej lub wielu) linii kodu
+
+`SHIFT + L` - pokazuje ukrywa numery linii
+
+Lokalnie pracuję korzystająć z [Dockera](https://mgurg.github.io/docker/2020/08/05/Docker.html)
+
+SpellCheck:
+```
+jupyter labextension install @ijmbarr/jupyterlab_spellchecker
 ```
 
 # NGINX
