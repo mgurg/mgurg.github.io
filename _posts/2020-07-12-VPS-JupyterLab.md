@@ -102,6 +102,11 @@ sudo apt-get update
 sudo apt-get upgrade
 ```
 
+Przydatne programy:
+```bash
+sudo apt install mc
+```
+
 Jeżeli planujemy instalację biblioteki OpenCV z `conda-forge` to można od razu doinstalować:
 ```
 sudo apt install libgl1-mesa-glx
@@ -303,57 +308,30 @@ SpellCheck:
 jupyter labextension install @ijmbarr/jupyterlab_spellchecker
 ```
 
+## Git
+Od razu zainstalujemy git tak żeby od razu synchronizować całą pracę.
+```
+sudo apt-get install git
+```
+
+Konfiguracja:
+
+```bash
+git config --global user.name "user_name"
+git config --global user.email "email_id"
+```
+
+Klonowanie repozytorium (po przejściu do własciwego folderu):
+
+```bash
+cd ~/github
+git clone https://github.com/xxx/py_otomoto.git
+```
+
 ## Remote VS Code
 
 ```bash
 sudo apt-get install openssh-server
 sudo apt-get install sshfs
 ```
-
-# NGINX
-
-W stosunku do poprzednij części doinstaluje też od razu serwer NGINX razem z certyfikatem 
-Let's encrypt
-
-Instalacja serwera:
-
-```bash
-sudo apt-get install nginx
-sudo ufw app list
-sudo ufw allow OpenSSH
-sudo ufw allow 'Nginx Full'
-sudo ufw enable
-sudo ufw status
-```
-
-```bash
-Status: active
-
-To                         Action      From
---                         ------      ----
-OpenSSH                    ALLOW       Anywhere                  
-Nginx Full                 ALLOW       Anywhere                  
-OpenSSH (v6)               ALLOW       Anywhere (v6)             
-Nginx Full (v6)            ALLOW       Anywhere (v6)  
-```
-
-Status usługi:
-
-```bash
-sudo systemctl status nginx
-```
-
-```bash
-* nginx.service - A high performance web server and a reverse proxy server
-     Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)
-     Active: active (running) since Sat 2020-07-11 15:08:47 CEST; 4min 24s ago
-       Docs: man:nginx(8)
-   Main PID: 15737 (nginx)
-      Tasks: 2 (limit: 4657)
-     Memory: 6.5M
-     CGroup: /system.slice/nginx.service
-             |-15737 nginx: master process /usr/sbin/nginx -g daemon on; master_process on;
-             `-15738 nginx: worker process
-```
-
 
