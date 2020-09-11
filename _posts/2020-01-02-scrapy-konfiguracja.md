@@ -1,9 +1,10 @@
 ---
 layout: post
-title: "Konfiguracja Scrapy (część I)"
+title: "Konfiguracja Scrapy"
 categories: scrapy
 author: "Michał"
 ---
+
 Opisałem drogę w wyniku której zacząłem używać scrapy, dzisiaj chciałym pokazać jak skonfigurowałem to narzędzie żeby móc pobierać dane z otomoto.
 
 ## Instalacja i pierwsze testy
@@ -102,7 +103,7 @@ Jeżeli chcemy zobaczyć kod strony to możemy go wyświetlić przy pomocy `prin
 
 ---
 ## część II
-W [poprzedniej części](https://mgurg.github.io/python/2020/01/02/scrapy-konfiguracja.html) pokazałem w jaki sposób przeprowadzić podstawowe testy z *scrapy* korzystając wyłącznie z okna shell bez tworzenia projektu. Ponieważ próby wyszły pomyślnie to zacząłem dostosowywać to narzędzie do swoich potrzeb.
+Ponieważ  pierwsze próby używania Scrapy wyszły pomyślnie, to zacząłem dostosowywać to narzędzie do swoich potrzeb.
 
 
 ### Tworzenie projektu
@@ -137,6 +138,7 @@ D:.
 ### Wygenerowanie pająka
 
 Kolejnym krokiem jest wygenerowanie "pająka":
+
 ```batch
 scrapy genspider otomoto otomoto.pl
 ```
@@ -206,6 +208,8 @@ To jest minimalna konfiguracja projektu w *scrapy* jednak żeby zadziałał on z
 
 ---
 
+## częsć III
+
 W części II  opisałem jak zbudować projekt na dysku, który nie działał. W tej części dokończę opis konfiguracji do etapu "produkcyjnego". Zacznę od prostego pająka:
 
 ```python
@@ -221,10 +225,6 @@ class OtomotoSpider(scrapy.Spider):
 ```
 
 Pierwszym krokiem będzie dodanie `user-agent` tak żeby pająk zaczął spełniać swoje zadanie.
-
-
-
-
 
 ```python
 # -*- coding: utf-8 -*-
@@ -298,13 +298,11 @@ class OtomotoSpider(scrapy.Spider):
 
 ---
 ## Część IV
-W ostatniej części [opisu scrapy](https://mgurg.github.io/python/2020/01/15/scrapy-konfiguracja-III.html) dotarłem do miejsca w którym mam działający skrypt do pobierania treści strony. Mam też [skonfigurowany serwer VPS](https://mgurg.github.io/python/2020/01/16/SSH-VPS-konfiguracja-serwera.html). Kolejnym krokiem jest sprawienie żeby zadanie pobierania ogłoszeń wykonywało się samo co jakiś czas. W moim przypadku będzie to raz na dobę, w środku nocy.
+Kolejnym krokiem jest sprawienie żeby zadanie pobierania ogłoszeń wykonywało się samo co jakiś czas. W moim przypadku będzie to raz na dobę, w środku nocy. Korzystam przy tym z dobrodziejstwa własnego serwera VPS.
 
-## Automatyczne pobieranie stron (cron + Scrapy)
+### Automatyczne pobieranie stron (cron + Scrapy)
 
-### Skrypt bash
-
-Sprawdzenie lokalizacji interpretera Bash
+Skrypt bash - Sprawdzenie lokalizacji interpretera Bash
 
 ```bash
 which bash
@@ -328,7 +326,7 @@ chmod +x hello_world.sh
 
 Dla pliku python skrypt bash będzie miał postać:
 
-```
+```bash
 #!/bin/bash
 source ~/environments/ml_env/bin/activate
 PATH=$PATH:~/environments/ml_env/bin/python

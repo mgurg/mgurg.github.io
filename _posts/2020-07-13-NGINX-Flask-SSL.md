@@ -39,7 +39,8 @@ Po wpisaniu IP servera (`192.166.219.228`) powinien pojawić się komunikat powi
 ```
 Welcome to ngnix!
 
-If you see this page, the ngnix web server is successfully installed and working. Further configuration is required.
+If you see this page, the ngnix web server is successfully installed and working. 
+Further configuration is required.
 ```
 
 W razie potrzeby można wymusić start/restart/stop serwera ręcznie poniższymi komendami:
@@ -75,12 +76,9 @@ sudo systemctl status nginx
              `-15738 nginx: worker process
 ```
 
-
-
-
 # Flask
 
-Wirtualne środowisko Python – kopia Pythona, ze specyficznymi  ustawieniami, zainstalowanymi modułami itp. Dzięki virtualenv możemy  mieć środowiska z różnymi wersjami tych samych modułów.
+Przed instalacją utwoorzymy wirtualne środowisko – kopię Pythona, ze specyficznymi  ustawieniami, zainstalowanymi modułami itp. Dzięki virtualenv możemy  mieć środowiska z różnymi wersjami tych samych modułów odseparowane od systemowego Pythona.
 
 Instalacja `venv`
 
@@ -391,7 +389,54 @@ Po przejściu pod adres `http://192.166.219.228/` będzie ponownie widoczny nieb
 
 Oznacza to że nasza strona w Flask działa poprawnie
 
-W przypadku błędu *502 Bad gateway* należy sprawdzić dokładnie składnie plików z dwóch ostatnich punktów
+W przypadku błędu *502 Bad gateway* należy sprawdzić dokładnie składnie plików z dwóch ostatnich punktów.
+
+
+## Domena
+
+Powyżzsy opis był już pisany z uwzględnienime podpiecia domeny. Kroki po stronie dostawcy domeny:
+
+| Domena             | TTL  |       |                 |
+| ------------------ | ---- | ----- | --------------- |
+| nazwadomeny.pl.     | 0    | A     | 192.166.219.228 |
+| lab.nazwadomeny.pl. | 0    | CNAME | nazwadomeny.pl.  |
+| lab.nazwadomeny.pl. | 0    | CNAME | nazwadomeny.pl.  |
+
+w skrócie:
+
+```bash
+IN A 192.166.219.228
+lab IN CNAME nazwadomeny.pl.
+jupyter IN CNAME nazwadomeny.pl.
+```
+
+Plik `helloworld` w `/etc/nginx/sites-enabled/`:
+
+```
+server {
+    listen 80;
+    listen [::]:80;
+
+    root /home/lambda/py_env/www_env/www/helloworld/;
+    index index.html index.htm index.ngnix-debian.html;
+
+    server_name 192.166.219.228 nazwadomeny.pl;
+
+    location / {
+            try_files $uri $uri/ =404;
+            include proxy_params;
+            proxy_pass http://unix:/home/lambda/py_env/www_env/www/helloworld/helloworld.sock;
+ }
+}
+```
+
+Restart NGINX żeby zmiany weszły w życie:
+
+```bash
+sudo systemctl reload nginx
+```
+
+### Wiecej informacji: 
 
 Opisane na podstawie: [How To Serve Flask Applications with Gunicorn and Nginx on Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-18-04)
 
