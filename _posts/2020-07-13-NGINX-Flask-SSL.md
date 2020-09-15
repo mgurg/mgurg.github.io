@@ -131,10 +131,10 @@ pip install wheel
 pip install flask
 ```
 
-Zmiana uprawnień do folderu z root/root na lambda/lambda:
+Zmiana uprawnień do folderu z root/root na lambda/www-data:
 
 ```bash
-sudo chown -R lambda:lambda ~/py_env/www_env/
+sudo chown -R lambda:www-data ~/py_env/www_env/www
 ```
 
 Utworzenie katalogu na stronę WWW:

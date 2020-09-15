@@ -167,7 +167,7 @@ sudo mkdir ./environments/ml_env/www/helloworld/
 
 zmiana uprawnień do folderu:
 ```bash
-sudo chown -R lambda:lambda ~/environments/ml_env/www/
+sudo chown -R lambda:www-data ~/py_env/www_env/www
 ```
 
 Utworzenie pliku `myproject.py` w `~/environments/ml_env/www/helloworld/` o zawartości:
