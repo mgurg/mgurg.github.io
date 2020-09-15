@@ -338,7 +338,7 @@ sudo systemctl start helloworld
 sudo systemctl enable helloworld
 ```
 
-### Konfiguracja nginx - Proxy Requests
+### Konfiguracja NGINX - Proxy Requests
 
 Należy zacząć od edycji wcześniej stworzonego pliku konfiguracyjnego:
 

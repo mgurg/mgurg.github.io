@@ -75,6 +75,8 @@ zamienić na:
 PermitRootLogin no
 ```
 
+O tym dlaczego warto to zrobić dla własnego bezpieczenstwa, można poczytać w artykule [Lessons Learned from SSH Credential Honeypots](https://systemoverlord.com/2020/09/04/lessons-learned-from-ssh-credential-honeypots.html)
+
 Aktywacja firewalla, dodanie reguły dla OpenSSH
 ```
 sudo ufw app list
