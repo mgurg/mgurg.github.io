@@ -1,34 +1,38 @@
 ---
 layout: post
-title: "Instalacja JupyterLab na serwerze VPS"
+title: "Konfiguracja serwera VPS (JupyterLab) dla Machine Learning"
 categories: python
 author: "Michał"
 ---
 
-Od czasu, gdy pisałem pierwszą wersję instrukcji minęło ponad pół roku. W tym czasie wyszło bardzo wiele niedociągnięć, które popełniłem za pierwszym razem. Z okazji wyjścia Ubuntu 20.04 postanowiłem przeinstalować wszystko od zera, starając się wdrożyć to wszystko, o czym dowiedziałem się w tym czasie.
 
 
-# 1) Podstawowa konfiguracja serwera
+Serwer VPS kosztuje tyle co droższe kraftowe piwo. Kupiłem I nie żałuje. Za kilka złotych ciężko oczekiwać wydajność rozwiązań chmurowych i faktycznie pojawiło się kilka zgrzytów :) Poniże krótka instrukcja  konfiguracji, która sprawdza się u mnie.  Dla sportu robię reinstalację servera raz na jakiś czas dopracowując szczegóły.  Pojawia się kilka drobnych różnic w stosunku do oryginalnego tekstu Łukasza Prokulskiego ( [stawiamy własny serwer](https://blog.prokulski.science/index.php/2018/06/14/serwer-vps-dla-r-python/) ), ale mają one charakter kosmetyczny.
 
-Opis na podstawie tekstu Łukasza Prokulskiego: [Stawiamy własny serwer](https://blog.prokulski.science/index.php/2018/06/14/serwer-vps-dla-r-python/) uzupełnianego o inne źródła. Za radą Łukasza wybrałem serwer webh.pl i ogólnie nie żałuję, miał być tani i taki jest. Ma jednak jedną istotną wadę, która początkującym może spędzać sen z powiek. 
+**v2**
 
-## OpenBLAS
+Od czasu, gdy pisałem pierwszą wersję instrukcji minęło ponad pół roku. W tym czasie wyszło bardzo wiele niedociągnięć, które popełniłem za pierwszym razem. Z okazjis wyjścia Ubuntu 20.04 postanowiłem przeinstalować wszystko od zera, starając się wdrożyć to wszystko, o czym dowiedziałem się w tym czasie.
 
-Jest nią niepoprawna obsługa rozszerzenia instrukcji procesora AVX2 przez wirtualna maszynę. Szerszy [opis dla dociekliwych](https://github.com/xianyi/OpenBLAS/issues/2306).
 
-Rozwiązaniem jest określenie typu procesora, co można zrobić ręcznie z poziomu konsoli instrukcją:
+# Podstawowa konfiguracja serwera
+
+Opis na podstawie tekstu Łukasza Prokulskiego: [Stawiamy własny serwer](https://blog.prokulski.science/index.php/2018/06/14/serwer-vps-dla-r-python/) uzupełnianego o inne źródła. Za radą Łukasza wybrałem serwer webh.pl i ogólnie nie żałuję, miał być tani i taki jest. Ma jednak jedną istotną wadę, która na początku może spędzać sen z powiek. 
+
+Jest nią niepoprawna obsługa rozszerzenia instrukcji procesora AVX2 przez wirtualna maszynę (problem z biblioteką **OpenBLAS**). Link do szerszego [opisu dla dociekliwych](https://github.com/xianyi/OpenBLAS/issues/2306).
+
+Rozwiązaniem jest ręczne określenie typu procesora w zmiennych systemowych, co można zrobić ręcznie z poziomu konsoli instrukcją:
 ```bash
 export OPENBLAS_CORETYPE="Skylake"
 ```
 
-Ewentualnie z poziomu kazdego skryptu pythona:
+Ewentualnie z poziomu skryptu pythona:
 ```python
 import os
 os.environ["OPENBLAS_CORETYPE"] ="Skylake"
 os.getenv("OPENBLAS_CORETYPE")
 ```
 
-Polecam dodać to w sposób permanenety, poprzez modyfikację `sudo nano /etc/environment` i dodanie w nim linii:
+Polecam rozwiązaćto w sposób permanentny, poprzez modyfikację `sudo nano /etc/environment` i dodanie w nim linii:
 
 ```bash
 OPENBLAS_CORETYPE="Skylake"
@@ -42,10 +46,10 @@ echo $OPENBLAS_CORETYPE
 Skylake
 ```
 
-Jeżeli pojawiałyby się dalsze problemy to nalezy zrestartwoać serwer.
+Jeżeli mimo tego nadal pojawiałyby się problemy, to należy zrestartować serwer.
 
 
-## 2) Użytkownicy i logowanie
+## Użytkownicy i logowanie
 
 Dodanie nowego użytkownika którego będziemy używać do pracy zamiast konta `root`
 
@@ -110,7 +114,7 @@ sudo apt install mc
 ```
 
 Jeżeli planujemy instalację biblioteki OpenCV z `conda-forge` to można od razu doinstalować:
-```
+```bash
 sudo apt install libgl1-mesa-glx
 ```
 
@@ -119,7 +123,7 @@ W ten sposób nie musimy pózniej google-ować co powoduje błąd (*ImportError:
 
 ## 3) Python
 
-## Instalacja podstawowych pakietów 
+### Instalacja podstawowych pakietów 
 
 ```bash
 python3 -V
@@ -204,7 +208,7 @@ W celu inicjalizacji po zakończeniu procesu instalacji, najpierw należy urucho
 ```
 <ścieżka do conda>/bin/activate
 ```
-a następnie uruchomić `conda init` MOżna to też zrobić w trakcie instalacji wyarżając zgodę pod koniec instalacji.
+a następnie uruchomić `conda init` Można to też zrobić w trakcie instalacji wyarżając zgodę pod koniec instalacji.
 
 Po instalacji:
 
@@ -218,7 +222,7 @@ Sprawdzenie czy instalacja przebiegła poprawnie:
 conda --version
 ```
 
-Stworzenie środowiska
+Stworzenie wirtualnego środowiska conda:
 
 ```bash
 conda create --name env python=3
@@ -239,7 +243,7 @@ conda install -y -c conda-forge matplotlib
 conda install -y -c conda-forge opencv 
 ```
 
-Jezeli zastanawiasz się czego jeszcze nie ma w utworzinym środowisku, to `conda list` powie co już mamy.
+Jezeli zastanawiasz się czego jeszcze nie ma w utworzonym środowisku, to `conda list` powie co już mamy.
 PS.
 Korzystam zwykle z kanału *conda-forge* można na przyszłość [ustawić go jako domyślny](https://stackoverflow.com/a/39862730).
 
@@ -286,10 +290,76 @@ Po połączniu przez SSH powinniśmy mieć dostęp do JupyterLab (pod adresem [l
 ```bash
 ssh -L 8888:localhost:8888 myuser@your_server_ip
 ```
+W PUTTy:
 
+Ustawienie tunelu w SSH
+
+SSH -> Tunnels
+
+```
+L8000 localhost:8888
+```
+
+Połączenie (na komputerze lokalnym):
+
+```bash
+http://localhost:8000
+```
+Po zalogowaniu każdorozaowo konieczene jest uruchomienie ręcznie środowiska:
 ```bash
 conda activate env
 jupyter lab
+```
+### Automatyczny start usługi
+
+Opis dla venv, a nie conda - czeka na aktualizację :)
+
+Należy utworzyć w plik `jupyter.config` w folderze `/etc/systemd/system/`:
+
+```
+[Unit]
+Description=Jupyter Notebook
+
+[Service]
+Type=simple
+PIDFile=/run/jupyter.pid
+ExecStart=/bin/bash -c ". ~/environments/ml_env/bin/activate;jupyter-notebook --notebook-dir=/home/lambda/notebooks"
+User=lambda
+Group=lambda
+WorkingDirectory=/home/lambda/notebooks
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+
+```
+
+Następnie należy wykonać polecenia:
+
+```bash
+sudo systemctl enable jupyter.service
+sudo systemctl daemon-reload
+sudo systemctl start jupyter.service
+
+```
+
+Sprawdzenie statusu:
+
+```bash
+systemctl status jupyter.service
+```
+
+```bash
+* jupyter.service - Jupyter Notebook
+   Loaded: loaded (/etc/systemd/system/jupyter.service; enabled; vendor preset: enabled)
+   Active: active (running) since Fri 2020-01-24 12:44:10 CET; 31min ago
+ Main PID: 13486 (bash)
+    Tasks: 15 (limit: 4681)
+   CGroup: /system.slice/jupyter.service
+           |-13486 /bin/bash -c . ~/environments/ml_env/bin/activate;jupyter-notebook --notebook-dir=/home/lambda/notebooks
+           |-13487 /home/lambda/environments/ml_env/bin/python3 /home/lambda/environments/ml_env/bin/jupyter-notebook --notebook-dir=/home/lambda/notebooks
+           `-13570 /home/lambda/environments/ml_env/bin/python3 -m ipykernel_launcher -f /home/lambda/.local/share/jupyter/runtime/kernel-60191e35-aef5-42cf-9859-2b68d5298c35.json
 ```
 
 ### Dodatki
@@ -305,7 +375,7 @@ jupyter labextension install @telamonian/theme-darcula
 
 Lokalnie pracuję korzystająć z [Dockera](https://mgurg.github.io/docker/2020/08/05/Docker.html)
 
-SpellCheck:
+Sprawdzanie pisownii:
 ```bash
 jupyter labextension install @ijmbarr/jupyterlab_spellchecker
 ```

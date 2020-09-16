@@ -7,7 +7,7 @@ author: "Michał"
 
 
 
-Z różnymi językami programowania miałem do czynienia wielokrotnie, ale żadnego nie nauczyłem się porządnie. Postanowiłem że Python będzie tym pierwszym który opanuje w zaawansowanym stopniu. Powody? Machine learning, Computer Vision i Robot Operating System. Oraz to że ciężko w nim zacząć od pisania okienkowych alpikacji, dzięki czemu nie grozi mi utknięcie na cyzelowaniu GUI zamiast nauki programowania. Poniżej dziennik tego, co faktycznie się nauczyłem do tej pory.
+Z różnymi językami programowania miałem do czynienia wielokrotnie, ale żadnego nie nauczyłem się porządnie. Postanowiłem że Python będzie tym pierwszym który opanuje w zaawansowanym stopniu. Powody? Machine learning, Computer Vision i Robot Operating System. Oraz to że ciężko w nim zacząć od pisania okienkowych aplikacji, dzięki czemu nie grozi mi utknięcie na cyzelowaniu GUI zamiast nauki programowania. Poniżej dziennik tego, co faktycznie się nauczyłem do tej pory.
 
 [OpenCV Roadmap](https://mgurg.github.io/opencv/2020/05/12/OPENCV.html)
 
@@ -17,7 +17,7 @@ Dawno nie było żadnej aktualizacji, a to wszystko z powodu serwisu [JetBrains 
 
 <img src="{{site.url}}/images/2020_08/hyperskill.png" style="display: block; margin: auto;" />
 
-Zdecydowanie polecam każdemu naukę poprzez ten serwis. Ogrom ćwiczeń, ciekawie i ze szczegółami opisana teoria, i to wszystko przez jeszcze jakiś czas za darmo. Pora zrobić plan nauki dla Computer Vision i Machine Learning :) Myślę że w niedalekiej przyszłości nauczyć się programowania nie wydając 15 000 zł na bootcamp.
+Zdecydowanie polecam każdemu naukę poprzez ten serwis. Ogrom ćwiczeń, ciekawie i ze szczegółami opisana teoria, i to wszystko przez jeszcze jakiś czas za darmo. Pora zrobić plan nauki dla Computer Vision i Machine Learning :) Myślę że w niedalekiej przyszłości napiszę jK nauczyć się programowania nie wydając 15 000 zł na bootcamp.
 
 **[26-04-2020]**
 
@@ -67,7 +67,7 @@ Robienie własnego projektu który nie jest kalkulatorem ani TODO listą związa
 
 **[22-01-2020]**
 
-`Markdown` - wybór bloga opartego o Jekyll prowadzonego na Github pages sprawił że musiałem nauczyć się formatować tekst w podstawowym stopniu z wykorzystaniem *markdown*. Do tej pory opanowałem podstawowe rzeczy: nagłówki, wypunktowania, linki blok kodu. Stworzenie podstawowego pliku *Readme.md* nie jest już wyzwaniem. Co do edytorów przeszedłem drogę od Notepad++ (brak podglądu formatowania) przez webowy [StackEdit](https://stackedit.io/) (wady: na każdym komputerze inne pliki zapisane w cache, psuje nagłówek postów) po aplikację [Typora](https://www.typora.io/) (wady: na razie brak)
+`Markdown` - wybór bloga opartego o Jekyll prowadzonego na *Github pages* sprawił że musiałem nauczyć się formatować tekst w podstawowym stopniu z wykorzystaniem *markdown*. Do tej pory opanowałem podstawowe rzeczy: nagłówki, wypunktowania, linki blok kodu. Stworzenie podstawowego pliku *Readme.md* nie jest już wyzwaniem. Co do edytorów przeszedłem drogę od Notepad++ (brak podglądu formatowania) przez webowy [StackEdit](https://stackedit.io/) (wady: na każdym komputerze inne pliki zapisane w cache, psuje nagłówek postów) po aplikację [Typora](https://www.typora.io/) (wady: na razie brak)
 
 **TODO**: ~~tabele~~, ~~osadzanie grafik~~
 

@@ -6,7 +6,7 @@ author: "Michał"
 ---
 
 
-Python: informacje wybrane. Kiedyś myślałem że będę opisywał dla siebie i potomnych elementy i składnię pythona. Ale potem pojawił się [Jetbrains Academy](https://hyperskill.org/join/551d2dc61) i przestało mnieć to sens. Pozbierałem i zarchiwizowałem tutaj wszystkie swoje stare notatki ,ale jeżeli potrzebuje dowiedzieć się czogoś w szczegółach to zaglądam do JetBrains Academy.
+Python: informacje wybrane. Kiedyś myślałem że będę opisywał dla siebie i potomnych elementy i składnię pythona. Ale potem pojawił się [Jetbrains Academy](https://hyperskill.org/join/551d2dc61) i przestało mieć to sens. Pozbierałem i zarchiwizowałem tutaj wszystkie swoje stare notatki ,ale jeżeli potrzebuje dowiedzieć się czegoś w szczegółach to zaglądam do JetBrains Academy.
 
 # Pętle
 

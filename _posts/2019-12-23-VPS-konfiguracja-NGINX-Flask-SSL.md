@@ -1,38 +1,30 @@
 ---
 layout: post
-title: "NGINX Flask SSL"
-categories: Python
+title: "Konfiguracja serwera VPS II: nginx + gunicorn + flask"
+categories: python
 author: "Michał"
-math: true
 ---
+
+
+
+Serwer VPS z skonfigurowanym JupyterLab to doskonałe środowisko do pracy i rozwiajania swoich projektów. Ciężko się jednak nimi pochawalić, dlatego postanowiałem rozszerzyć konfigurację o serwer NGINX i Flask, tak żeby mieć włąsną stronę internetową.
+
+Teoria: 📺 [WSGI for Web Developers](https://www.youtube.com/watch?v=WqrCnVAkLIo)
+
+**v2**
 
 Cześc druga poprawionej instrukcji stawiania środowiska do celów nauki Pythona/ML. W stosunku do porzedniej głowną zmianą jest chęć obsługi połączen poprzez HTTPS. 
 
-# NGINX
 
-W stosunku do poprzednij części doinstaluje też od razu serwer NGINX razem z certyfikatem 
-*Let's encrypt*
+## Serwer WWW - NGINX
+
+Do wyboru jest Apache i nginx. Rzut monetą wskazał na drugi webserver (ok, tak naprawdę to wybrany z premedytacją). 
+
 
 Instalacja serwera:
 
 ```bash
 sudo apt-get install nginx
-sudo ufw app list
-sudo ufw allow OpenSSH
-sudo ufw allow 'Nginx Full'
-sudo ufw enable
-sudo ufw status
-```
-
-```bash
-Status: active
-
-To                         Action      From
---                         ------      ----
-OpenSSH                    ALLOW       Anywhere                  
-Nginx Full                 ALLOW       Anywhere                  
-OpenSSH (v6)               ALLOW       Anywhere (v6)             
-Nginx Full (v6)            ALLOW       Anywhere (v6)  
 ```
 Po wpisaniu IP servera (`192.166.219.228`) powinien pojawić się komunikat powitalny nginx
 
@@ -76,26 +68,59 @@ sudo systemctl status nginx
              `-15738 nginx: worker process
 ```
 
+
+### Firewall
+
+Do konfiguracji firewalla można użyć (wyświetli dostępne domyślnie tryby):
+
+```bash
+sudo ufw app list
+```
+
+Wybranie któregoś z nich odbywa się poprzez:
+
+```bash
+sudo ufw allow 'Nginx Full'
+sudo ufw allow OpenSSH
+```
+
+Sprawdzenie statusu:
+
+```bash
+sudo ufw enable
+sudo ufw status
+```
+Wynik:
+```
+Status: active
+
+To                         Action      From
+--                         ------      ----
+OpenSSH                    ALLOW       Anywhere                  
+Nginx Full                 ALLOW       Anywhere                  
+OpenSSH (v6)               ALLOW       Anywhere (v6)             
+Nginx Full (v6)            ALLOW       Anywhere (v6)  
+```
 # Flask
 
 Przed instalacją utwoorzymy wirtualne środowisko – kopię Pythona, ze specyficznymi  ustawieniami, zainstalowanymi modułami itp. Dzięki virtualenv możemy  mieć środowiska z różnymi wersjami tych samych modułów odseparowane od systemowego Pythona.
 
 Instalacja `venv`
 
-```
+```bash
 sudo apt install python3-venv
 ```
 
 Utworzenie folderu `py_env` w którym znajda się kolejne środowiska wirtualne:
 
-```
+```bash
 mkdir py_env
 cd py_env
 ```
 
 Stworzenie pierwszego środowiska: `www_env`
 
-```
+```bash
 python -m venv www_env
 ```
 
@@ -120,7 +145,7 @@ source ./activate
 
 Poprawność wykonywania komendy powinna być widoczna w oknie konsoli:
 
-```
+```bash
 (www_env) (base) lambda@michal:~$ 
 ```
 Mając aktywne środowisko www  zainstalujemy od razu Flask-a
@@ -225,6 +250,24 @@ server {
 }
 ```
 
+Gdy używamy długich nazw domen, nginx potrafi zgłosić błąd `could not build the server_names_hash, you should increase server_names_hash_bucket_size: 32` można temu zapobiec poprzez zmianę ustawień w :
+
+```bash
+sudo nano /etc/nginx/nginx.conf
+```
+
+Trzeba zlokalizować `server_names_hash_bucket_size` usunąć `#` i zwiększyć wartość z 32 do 64:
+
+```
+...
+http {
+    ...
+    server_names_hash_bucket_size 64;
+    ...
+}
+...
+```
+
 Żeby zacząć korzystać z nowych ustawień dla serwera należy stworzyć link konfiguracji ( [dowiązanie symboliczne](https://pl.wikipedia.org/wiki/Dowiązanie_symboliczne) ) w katalogu sites-enabled nginx.
 
 ```bash
@@ -257,7 +300,7 @@ sudo systemctl restart nginx
 
 Jeżeli wszystko poszło ok, to po wejściu na stronę główną pojawi się komunikat.... `403 Forbidden`. Co oznacza że pora wrócić do konfiguracji Gunicorn.
 
-### Konfiguracja
+### Konfiguracja systemd 
 Stworzenie pliku *systemd unit* pozwoli systemowi init Ubuntu na automatyczne uruchomienie Gunicorna i obsługę aplikacji Flask przy każdym uruchomieniu serwera.
 
 Należy stworzyć plik o rozszerzeniu `.service` w katalogu `/etc/systemd/system`:
@@ -296,7 +339,6 @@ W wyniku działania ostatniej komendy powinniśmy otrzymać informację
 
 ```bash
 Created symlink /etc/systemd/system/multi-user.target.wants/helloworld.service -> /etc/systemd/system/helloworld.service.
-
 ```
 
 Sprawdzenie statusu:
@@ -364,7 +406,6 @@ server {
         server_name 192.166.219.228 nazwadomeny.pl;
 
         location / {
-                try_files $uri $uri/ =404;
                 include proxy_params;
                 proxy_pass http://unix:/home/lambda/py_env/www_env/www/helloworld/helloworld.sock;
         }
@@ -394,7 +435,7 @@ W przypadku błędu *502 Bad gateway* należy sprawdzić dokładnie składnie pl
 
 ## Domena
 
-Powyżzsy opis był już pisany z uwzględnienime podpiecia domeny. Kroki po stronie dostawcy domeny:
+Powyższy opis był już pisany z uwzględnienime podpiecia domeny. Kroki po stronie dostawcy domeny:
 
 | Domena             | TTL  |       |                 |
 | ------------------ | ---- | ----- | --------------- |
@@ -423,7 +464,6 @@ server {
     server_name 192.166.219.228 nazwadomeny.pl;
 
     location / {
-            try_files $uri $uri/ =404;
             include proxy_params;
             proxy_pass http://unix:/home/lambda/py_env/www_env/www/helloworld/helloworld.sock;
  }
