@@ -8,63 +8,6 @@ author: "Michał"
 
 Python: informacje wybrane. Kiedyś myślałem że będę opisywał dla siebie i potomnych elementy i składnię pythona. Ale potem pojawił się [Jetbrains Academy](https://hyperskill.org/join/551d2dc61) i przestało mieć to sens. Pozbierałem i zarchiwizowałem tutaj wszystkie swoje stare notatki ,ale jeżeli potrzebuje dowiedzieć się czegoś w szczegółach to zaglądam do JetBrains Academy.
 
-# Pętle
-
-## While
-
-Kod wewnątrz pętli *while*, będzie powtarzany dopóki wartość logiczna (wyrażenia lub zmiennej) nie zmieni
-się na False (chyba, że pętla zostanie wcześniej przerwana)
-
-```python
-while (wartość logiczna True):
-	kod
-	...
-	update wartości logicznej na False
-```
-
-## For
-
-
-For wykona kod tyle razy ile elementów znajduje się w zbiorze/zakresie (chyba, że wcześniej przerwiemy wykonywanie pętli). Poszczególne elementy zbioru/zakresu są do naszej dyspozycji w bloku pętli:
-```
-for element in zbiór/zakres :
-	kod
-	cos z element możemy zrobić
-	...
-	kod
-```
-Range:
-
-```python
-# range(stop)
-range(3) # <0, 1, 2> // len() == 3
-
-# range(start, stop)
-range(4, 8) # <4, 5, 6, 7>
-
-# range(start, stop, krok)
-range(0, 10, 3) # <0, 3, 6, 9>
-```
-
-### continue, break
-
-*continue* – program pomija pozostałe instrukcje w bloku i wraca do sprawdzenia warunku (while) lub do kolejnego elementu (for)
-
-*break* – działanie pętli jest przerywane, program przechodzi do kolejnej instrukcji po całym bloku pętli
-
-### Operatory logiczne
-
-- `<` strictly less than
-- `<=` less than or equal
-- `>` strictly greater than
-- `>=` greater than or equal
-- `==` equal
-- `!=` not equal
-- `is` object identity
-- `is not` negated object identity
-- `in` membership
-- `not in` negated membership.
-
 ## enumerate(), zip()
 
 *enumerate()* - funkcja przyjmuje na wejściu listę, zwraca też listę, składająca się z elementów `tuple`. Każdy `tuple` składa z dwóch elementów (pierwszy to indeks bieżącego elementu, drugi to oryginalna wartość)
@@ -94,9 +37,9 @@ for (element_a, element_b) in zip(kolekcja_a, kolekcja_b):
 
 ```
 
-# Tuple, list, dict
+## Tuple, list, dict
 
-## Nawiasy okrągłe `(...)` 
+### Nawiasy okrągłe `(...)` 
 
 Tuple `(1, 2, 3)` -  jest typem niezmiennym, raz zdefiniowanego nie można zmienić.
 
@@ -134,7 +77,7 @@ print(type(empty_tuple))  # <class 'tuple'>
 Tuples are **faster** and **more memory-efficient** than lists.
 
 
-## Nawiasy kwadratowe `[...]` 
+### Nawiasy kwadratowe `[...]` 
 
 Listy `[1, 2, 3]`, dostęp do poszczególnych elementów w `list` czy `tuple` odbywa się za pomocą indeksów: `my_list[0]` lub `my_tuple[0]`
 
@@ -180,13 +123,11 @@ nowa_lista = lista.copy()
 nowa_lista = list(stara_lista)
 nowa_lista = stara_lista[:]
 ```
-do głębokiego kopiowania (kopiowanie wszystkiego jako wartość) używamy modułu copy i metody deepcopy()
+Do głębokiego kopiowania (kopiowanie wszystkiego jako wartość) używamy modułu copy i metody deepcopy()
 ```python
 import copy
 nowy = copy.deepcopy(stary)
 ```
-
-Więcej: [Kopiowanie list i słowników](http://analityk.edu.pl/kopiowanie-list-i-slownikow/)
 
 ### Set
 
@@ -196,7 +137,7 @@ https://www.programiz.com/python-programming/set
 
 
 
-## Nawiasy klamrowe `{...}` 
+### Nawiasy klamrowe `{...}` 
 
 Słownik: `{'key': 'value'}` -  odwołujemy się poprzez klucz a nie indeks:
 
@@ -273,7 +214,7 @@ print('blue sofa' in catalog)    # True
 print('yellow chair' in catalog)    # False
 ```
 
-# List Comprehension
+## List Comprehension
 
 Służą do transformacji jednej listy na inną listę (tworzenie nowych list według określonych zasad):
 Klasyczna pętla:
@@ -570,3 +511,191 @@ for n, month in enumerate(months_list):
 # 6 Jun
 # etc.
 ```
+
+## String - podstawowe operacje
+
+`text.lower()` - wszystkie litery z małej
+
+`text.upper()` - wszystkie litery z małej
+
+`text.title()` - wszystkie wyrazy z dużej
+
+`text.strip()` - usunięcie białych znaków z końca i początku
+
+`text.split(' ')` - podział tekstu (spacja)
+
+`" ".join(words)` - łączenie wyrazów
+
+`'80,5'.replace(',', '.')`- zamiana znaków
+
+`ord()` - zwraca numer Unicode pojedynczego znaku
+
+`chr()` - zwraca znak na podstawie numeru Unicode
+
+
+
+## Numerowanie znaków
+
+`str = "Python"`
+
+|  P   |  y   |  t   |  h   |  o   |  n   |
+| :--: | :--: | :--: | :--: | :--: | :--: |
+|  0   |  1   |  2   |  3   |  4   |  5   |
+|  -6  |  -5  |  -4  |  -3  |  -2  |  -1  |
+
+```python
+str[3]     #h
+str[:3]    #Pyth
+str[-1]    #n
+str[4:]    #on
+str[-4:-2] # th
+str[::-1]  #nohtyP
+```
+
+
+
+## Multiline string
+
+Definiujemy jako potrójny apostrof`'''` lub cudzysłów `"""` 
+
+```python
+create_users = """
+    INSERT INTO
+    cars (offer_id,city,region,model,year,mileage,fuel_type,displacement,price,currency,pub_date,duration,end_price)
+    VALUES
+    (6069449316,'Prudnik','Opolskie','Toyota Yaris II',2009,153000,'Diesel',-1,12999,'PLN','2019-12-31',7,12999),
+    (6068202189,'Włocławek','Kujawsko-pomorskie','Toyota Yaris II',2008,110000,'Benzyna',1298,17600,'PLN','2019-12-31',21,16900),
+    (6067206317,'Łódź','Łódzkie','Toyota Yaris II',2010,167938,'Diesel',1364,13999,'PLN','2019-12-31',31,13900),
+    (6069421596,'Katowice','Śląskie','Toyota Yaris II',2008,214548,'Benzyna+LPG',1298,12000,'PLN','2019-12-31',31,12000),
+    (6068568066,'Katowice','Śląskie','Toyota Yaris II',2007,38000,'Benzyna',1298,19300,'PLN','2019-12-31',12,18500);
+    """
+```
+
+Wtedy można dowolnie łamać ciąg znaków
+
+Zapis bardzo długi stringów z wykorzystaniem nawiasu
+
+```python
+# long string
+str = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+
+# use brackets to breake lines
+str2 = ('ssssssssss'
+'ssssssssssssss'
+'ssssssssssss')
+```
+
+
+## f-string
+
+String formatujący `f'string'` (Python >= 3.6)
+
+```python
+name = "Eric"
+age = 74
+f"Hello, {name}. You are {age}."
+
+> 'Hello, Eric. You are 74.'
+```
+
+Opcje dostępne przed Python 3.6:
+
+```python
+name = 'Alan'
+age = 53
+string = 'Hello, {name}. You are {age}.'.format(name = name, age = age)
+print(string)
+
+name = 'Greg'
+age = 17
+string = 'Hello, {0}. You are {1}.'.format(name, age)
+print(string)
+
+name = 'George'
+age = 27
+string = 'Hello, {}. You are {}.'.format(name, age)
+print(string)
+```
+
+Więcej: [Python 3's f-Strings: An Improved String Formatting Syntax (Guide)](https://realpython.com/python-f-strings/)
+
+Formatowanie : [Using *%* and *.format()* for great good!](https://pyformat.info/)
+
+## Pliki tekstowe
+
+Otwarcie pliku:
+
+```python
+plik = open("scieżka_do_pliku", tryb, encoding="utf-8")
+```
+
+tryby:
+
+* r – tylko do odczytu
+* w – zapisywanie pliku (stary plik o tej samej nazwie będzie usunięty)
+* r+ - do odczytu i zapisu
+* a – dopisywanie do pliku (dane są dopisane do końca istniejącego pliku)
+
+
+
+**plik.read()** – odczytanie całego pliku, zwracany jest string zawierający cały tekst pliku (włącznie ze
+znakami \n) – opc. argument – int określająca ilość bajtów do wczytania
+**plik.readline()** – odczytanie jednej linii z pliku, zwracany jest string z linijką testu, włącznie ze znakiem \n
+**plik.readlines()** – odczytuje cały tekst – zwraca listę stringów - linijek
+
+```python
+for line in plik:
+	print(line, end='')
+```
+
+Pliki należy zamykać po użyciu:
+
+```python
+plik = open("plik.txt")
+	# kod
+plik.close()
+```
+
+Otwarcie pliku za pomocą *with* pozwala na automatyczne zamykanie pliku przez Pythona
+
+```python
+with open("plik.txt", encoding="utf-8") as plik:
+	print(plik.readline())
+```
+
+Context manager:
+
+```python
+# invoking a context manager
+with statement as variable_name:
+    ...
+```
+
+
+
+**plik.write(string)** – zapisuje string do pliku w obecnej pozycji kursora, zwraca liczbę zapisanych znaków – należy pamiętać o znaku `\n`
+**plik.writelines(iterable)** – zapisuje elementy z kolekcji jako poszczególne linie w pliku
+
+Plik musi być otworzony w trybie do zapisu aby móc go zmieniać!
+
+
+
+### TODO:
+
+str() vs repr() in Python
+
+output of the `__str__` should be *highly readable* and the output of the `__repr__` should be *unambiguous*. In other words, `__str__` creates a representation for users and `__repr__` creates a representation for developers.
+
+A good rule is to always define the `__repr__` method first since it is the method used by developers in debugging. It is also a fallback method for `__str__`which means that if the `__str__` method isn't defined, in the situations where it's needed, the `__repr__` will be called instead.
+
+
+
+stdin, stdout, stderr vs print()
+
+
+
+try:
+
+except
+
+sys.stderr.write('')

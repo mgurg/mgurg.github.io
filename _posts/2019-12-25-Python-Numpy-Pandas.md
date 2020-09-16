@@ -6,14 +6,9 @@ author: "Michał"
 math: true
 ---
 
-Tips & Tricks, najciekawsze rzeczy, które pomagają mi w pracy z bibliotekami Numpy i Pandas.
 
-Rozwiązanie problemu z wieszającym się Numpy na serwerze VPS webh.pl:
 
-```bash
-export OPENBLAS_CORETYPE=Sandybridge
-```
-Powyższa linijka wymusza detekcję procesora na starszą rodzinę niż w rzeczywistości.
+Najciekawsze rzeczy, które pomagają mi w pracy z bibliotekami Numpy i Pandas.
 
 
 
