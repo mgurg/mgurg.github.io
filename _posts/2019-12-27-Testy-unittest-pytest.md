@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Pytest"
+title: "Testy: unittest i pytest"
 categories: python
 author: "Michał"
 ---
@@ -52,6 +52,8 @@ class TestCalculator(unittest.TestCase):  # a test case for the calculator.py mo
             calculator.divide(6, 0)
 ```
 
+Możliwe metody testowania:
+
 | Metoda                                       | Co sprawdza?               |
 |----------------------------------------------|----------------------------|
 | assertEqual(a, b)                            | a == b                     |
@@ -67,6 +69,7 @@ class TestCalculator(unittest.TestCase):  # a test case for the calculator.py mo
 
 
 Wywołanie testów z poziomu konsoli:
+
 ```bash
 python -m unittest test_calculator
 ```
@@ -86,7 +89,7 @@ Ran 1 test in 0.000s
  ```
  
 ### Gdy projekt nie ma płaskiej struktury
-Powyższa instrukcja jest prawidłowa gdy struktura projektu jest płaska jak Ziemia:
+Powyższa instrukcja jest prawidłowa, gdy struktura projektu jest płaska jak Ziemia:
 ```bash
 .
 ├── calculator.py
@@ -105,9 +108,9 @@ new_project
 ```
 
 Konieczne będzie wprowadzenie kilku zmian:
-* test i testowany plik ladują w osonych folderach
-* w każdym z folderów tworzymy pusty plik __init__.py
-* modyfikujemy w pliku testów linię importu jak poniżej:
+* *calculator.py* i *test_calculator.py* plik zastały przeniesione do osobnych folderów
+* w każdym z folderów tworzymy pusty plik *__init__.py*
+* modyfikujemy w pliku test_calculator.py* linię importu jak poniżej:
 
 ```python
 # import calculator 
