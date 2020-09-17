@@ -32,7 +32,12 @@ os.environ["OPENBLAS_CORETYPE"] ="Skylake"
 os.getenv("OPENBLAS_CORETYPE")
 ```
 
-Polecam rozwiązaćto w sposób permanentny, poprzez modyfikację `sudo nano /etc/environment` i dodanie w nim linii:
+W jupyter możemy skorzystać z magiczej funkcji:
+```bash
+%env OPENBLAS_CORETYPE=Skylake
+```
+
+Polecam rozwiązać to w sposób permanentny, poprzez modyfikację `sudo nano /etc/environment` i dodanie w nim linii:
 
 ```bash
 OPENBLAS_CORETYPE="Skylake"
