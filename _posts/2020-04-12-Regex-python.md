@@ -5,9 +5,9 @@ categories: Python
 author: "Michał"
 ---
 
-
-
-> Jeżeli rozwiązujesz problem przy pomocy Regexp to masz dwa problemy.
+Wprawadzenie do wyrażen regularnych zacznę od złotej mysli :)
+> Some people, when confronted with a problem, think:
+> “I know, I'll use regular expressions.” Now they have two problems. 
 
 # Wyrażenia regularne
 
