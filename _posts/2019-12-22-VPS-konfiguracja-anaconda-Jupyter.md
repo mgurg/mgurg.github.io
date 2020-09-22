@@ -227,10 +227,10 @@ Sprawdzenie czy instalacja przebiegła poprawnie:
 conda --version
 ```
 
-Stworzenie wirtualnego środowiska conda:
+Stworzenie wirtualnego środowiska conda (z Python 3.7.0):
 
 ```bash
-conda create --name env python=3
+conda create --name env python=3.7.0
 conda activate env
 ```
 
@@ -241,11 +241,30 @@ conda install -c conda-forge jupyterlab
 ```
 
 Polecam też doinstalować od razu podstawowe biblioteki:
-```
+```bash
 conda install -y -c conda-forge numpy 
 conda install -y -c conda-forge pandas
 conda install -y -c conda-forge matplotlib 
-conda install -y -c conda-forge opencv 
+# conda install -y -c conda-forge opencv 
+# warto rozważyć instalację OpenCV z pomoca pip.
+# Zyskamy dostęp do dodatkowych modułów:
+pip install opencv-contrib-python
+```
+Dodatkowe informacje temat [niuansów instalacji OpenCV](https://www.pyimagesearch.com/opencv-tutorials-resources-guides/). Warto pomyśleć też nad instalacją biblioteki [Dlib](http://dlib.net/):
+
+* Utworzenie środowiska z python 3.7: `conda create -n cenv python=3.7.0`
+* Instalacja cmake: `conda install cmake`
+* Instalacja Dlib : `pip install dlib`
+* Sprawdzenie poprawności w IPython:
+
+```bash
+python
+Python 3.7.0 (default, Oct  9 2018, 10:31:47) 
+[GCC 7.3.0] :: Anaconda, Inc. on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import dlib
+>>> dlib.__version__
+'19.21.0'
 ```
 
 Jezeli zastanawiasz się czego jeszcze nie ma w utworzonym środowisku, to `conda list` powie co już mamy.
