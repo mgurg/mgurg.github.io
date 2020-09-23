@@ -43,8 +43,8 @@ Obecnie chyba każdy autobus ma monitoring, pomyślałem że można by liczyć p
 ### Plan działania
 
 Wstępny plan: 
-- Zdobycie odpowiedniego wideo
-- OpenCV - przetwarzanie wideo (instalacja Dlib, nadrobienie teorii otwierania, zapisywania plików)
+- ~~Zdobycie odpowiedniego wideo~~ (18.09.2020)
+- OpenCV - przetwarzanie wideo - instalacja Dlib, research teoretyczny (22.09.2020)
 - Rozpoznawanie obiektów na obrazach przy pomocy MobileNet SSD
 - Przegląd innych architur sieci (YOLO?), rozpoznawanie obiektów przy pomocy ich pomocy. Pomiary wydajności/dokładności 
 - Tracking obiektów na filmie
@@ -62,7 +62,7 @@ Zdobycie odpowiedniego wideo było jednym z bardziej pracochłonnych etapów na 
 - [YT: CCTV Manchester HD Vehicle camera](https://www.youtube.com/watch?v=eWZtH96EKZk)
 
 ### Przygotowanie środowiska
-Konieczne było doinstalowanie Dlib. Przy okazji 
+Konieczne było doinstalowanie Dlib. Przy okazji dowiedziałem się o istnieniu [opencv_contrib](https://github.com/opencv/opencv_contrib/tree/master/modules).
 
 ### Object Tracking - teoria
 [OpenCV Object Tracking](https://www.pyimagesearch.com/2018/07/30/opencv-object-tracking/)
