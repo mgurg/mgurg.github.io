@@ -24,9 +24,9 @@ Powodem było to zamówienie: [Dostawa i montaż systemu zliczania pasażerów](
 >i) Otwartość systemu – możliwość rozszerzania systemu na kolejne pojazdy zgodnie z przyjętym jednolitym standardem w zakresie wyposażenia pojazdów w bramki liczące i używanego oprogramowania do gromadzenia i analizy danych - opracowanie i opisanie interfejsów wymiany danych, jak i sposobu podłączania;
 
 
-Przykład rozwiązania: http://www.infotron.com.pl/pliki/Infotron%20-%20SZP%20-%20Opis%20v5.pdf
+[Przykład rozwiązania](http://www.infotron.com.pl/pliki/Infotron%20-%20SZP%20-%20Opis%20v5.pdf)
 
-Podobny przetarg: https://www.gait.pl/wp-content/uploads/2018/01/zal_9_siwz.pdf
+[Podobny przetarg](https://www.gait.pl/wp-content/uploads/2018/01/zal_9_siwz.pdf)
 
 Artykuł na temat skuteczności rozwiązan zliczajacych: [Przydatność automatycznych systemów zliczania pasażerów w celach predykcji popytu na usługi transportowe](http://yadda.icm.edu.pl/yadda/element/bwmeta1.element.baztech-23687bf1-a7cb-49c6-98ab-8689e6aba932/c/TMiR_4_2018_aleksandrowicz.pdf)
 
@@ -65,8 +65,31 @@ Zdobycie odpowiedniego wideo było jednym z bardziej pracochłonnych etapów na 
 Konieczne było doinstalowanie Dlib. Przy okazji dowiedziałem się o istnieniu [opencv_contrib](https://github.com/opencv/opencv_contrib/tree/master/modules).
 
 ### Object Tracking - teoria
+
+Pierwsze próby wykonałem posiłkująć się [Object detection with deep learning and OpenCV](https://www.pyimagesearch.com/2017/09/11/object-detection-with-deep-learning-and-opencv/)  wyniki jednak trochę mnie rozczarowały. kolejnym krokime było zaprzegnięcie do pracy [TensorFlow Object Detection API](https://github.com/tensorflow/models/tree/master/research/object_detection)
+
+https://deepdrive.pl/warsztat-wykrywanie-obiektow-w-tensorflow/
+
+https://www.mygreatlearning.com/blog/object-detection-using-tensorflow/
+
+https://deepdrive.pl/10-simple-steps-to-tensorflow-object-detection-api/
+
+https://colab.research.google.com/github/tensorflow/hub/blob/master/examples/colab/tf2_object_detection.ipynb#scrollTo=oi28cqGGFWnY
+
+[Jaki model?](https://github.com/hoya012/deep_learning_object_detection)
+
+---
+
+
 [OpenCV Object Tracking](https://www.pyimagesearch.com/2018/07/30/opencv-object-tracking/)
 
 [Blob from Image](https://www.pyimagesearch.com/2017/11/06/deep-learning-opencvs-blobfromimage-works/)
+
+
+
+[Train an AI to swipe tinder for you](https://medium.com/@joel.barmettler/train-an-ai-to-swipe-tinder-for-you-bc226df8709d)
+
+
+[Jak uruchomić DETR do wykrywania obiektów?](https://deepdrive.pl/jak-uruchomic-detr-do-wykrywania-obiektow/)
 
 ## TBD
