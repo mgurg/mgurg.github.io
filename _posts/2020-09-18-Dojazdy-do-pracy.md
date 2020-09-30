@@ -25,17 +25,42 @@ Okazało się że w ramach tego systemu istnieje też strona [System Dynamicznej
  * Wnioski
 
 ## Monitorowane przystanki i linie autobusowe
-Najbardziej interesuje mnie odcinek od Katowic do Mysłowic, ze szczególnym uwzględnieniem węzła Bagienna (rejon Wilhelminy) 
-
-Autobusy do monitorowania: 66,76,77,149
-
-Żeby zmniejszyć liczbę generowanych zapytań będę pobierał dane o wszystkich liniach zatrzymujących się na przystanku Mysłowice Katowicka ([URL](http://sdip.metropoliaztm.pl/web/map/vehicles/gj/A?interval=00%3A05%3A00&post_id=103750))
+Najbardziej interesuje mnie odcinek od Katowic do Mysłowic, ze szczególnym uwzględnieniem węzła Bagienna (rejon Wilhelminy) Żeby zmniejszyć liczbę generowanych zapytań będę pobierał dane o wszystkich autobusach zatrzymujących się na przystanku Mysłowice Katowicka 
 
 Z tego przystanku odjezdzają autobusy linii: 35, 44, 66, 77, 77N, 106, 149, 219, 292, 536, 788, 931, 995. Wstępnie do monitorowania wybrałem trzy linie, jadące od strony Katowic:
 - 66 (line_id:[68](http://sdip.metropoliaztm.pl/web/ml/line/68)),
-- 77 (line_id:[79](http://sdip.metropoliaztm.pl/web/ml/line/73)),
+- 77 (line_id:[73](http://sdip.metropoliaztm.pl/web/ml/line/73)),
 - 149 (line_id:[79](http://sdip.metropoliaztm.pl/web/ml/line/79))
-- 931 (line_id:[97](http://sdip.metropoliaztm.pl/web/ml/line/79))
+- 931 (line_id:[97](http://sdip.metropoliaztm.pl/web/ml/line/97))
+
+Analiza ([danych pobranych jako JSON](http://sdip.metropoliaztm.pl/web/map/vehicles/gj/A?interval=00%3A05%3A00&post_id=103750)) pozwoliła wyciągnąć kilka interesujących informacji:
+* można ustalić koordynaty każdego autobusu ZTM:
+```json
+"geometry":{
+  "type":"Point",
+  "coordinates":[
+    2130007.73094,
+    6479933.6062
+  ]
+},
+```
+
+Sa one zapisane w układzie EPSG:3857 (csr - coordinate projection systems). Konwersja do innych foramtów będzie odbywać się z pomocą *pyproj*
+```
+# conda install -c conda-forge pyproj
+```
+
+Różnica w stosunku do planowanego rozkładu jest opisana jako `difference`, oznaczenie linii jest zapisane w polu `get_line_id`
+
+`stop_id`
+`post_id`
+
+
+Ponieważ przystanki w pliku JSON są zapisane jako ID dla własnej wygody potrzebowałem znać ich nazwy.Zrobiłe to [parsując podstrony z listą przystanków](http://sdip.metropoliaztm.pl/web/ml/stop/page/1)
+
+
+
+``
 
 ### Pobranie rozkladu jazdy na dany dzień
 

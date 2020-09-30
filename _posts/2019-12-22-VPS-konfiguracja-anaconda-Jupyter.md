@@ -86,6 +86,11 @@ PermitRootLogin no
 
 O tym dlaczego warto to zrobić dla własnego bezpieczenstwa, można poczytać w artykule [Lessons Learned from SSH Credential Honeypots](https://systemoverlord.com/2020/09/04/lessons-learned-from-ssh-credential-honeypots.html)
 
+Jeżeli mimo wszystko potrzebujesz naocznie przekonać się na jakie zagrożenia narażone sa komputery podłączone do internetu to polecam wykonanie komendy 
+```bash
+grep "Failed password" /var/log/auth.log
+```
+
 Aktywacja firewalla, dodanie reguły dla OpenSSH
 ```
 sudo ufw app list
@@ -196,12 +201,16 @@ OpenSSH                    ALLOW       Anywhere
 8888                       ALLOW       Anywhere
 ```
 
-Pobranie Anaconda, [najnowsza wersja Linux x64](https://www.anaconda.com/products/individual#Downloads):
+Pobranie ~Anaconda, [najnowsza wersja Linux x64](https://www.anaconda.com/products/individual#Downloads)~ Miniconda [w najnowszej wersji](https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh) (i po co był ten curl? `wget` zrobi to samo i jest dostępny od razu):
 
 ```bash
 cd /tmp
 sudo apt install curl
-curl -O https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_64.sh
+
+# notka do przyszłego mnie: uzyj miniconda, zaoszczędzisz miejsca i czasu
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+
+# curl -O https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_64.sh
 ```
 
 Instalacja:
