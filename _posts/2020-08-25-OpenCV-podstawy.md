@@ -99,6 +99,10 @@ cv2.putText(img, "TXT", (10,190), # lewy dolny pkt
 * HSV (hue, saturation, value) : `cv2.COLOR_BGR2HSV`
 * HLS (hue, saturation, lightness): `COLOR_BGR2HLS`
 
+[Why do we use the HSV colour space so often in vision and image processing?](https://dsp.stackexchange.com/questions/2687/why-do-we-use-the-hsv-colour-space-so-often-in-vision-and-image-processing)
+
+[RGB v/s HSV for Computer Vision](https://labs.imaginea.com/rbg-vs-hsv-for-computer-vision/)
+
 [Finding Lane Lines — Simple Pipeline For Lane Detection](https://towardsdatascience.com/finding-lane-lines-simple-pipeline-for-lane-detection-d02b62e7572b)
 
 

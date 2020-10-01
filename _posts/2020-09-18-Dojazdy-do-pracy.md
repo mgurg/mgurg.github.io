@@ -17,7 +17,7 @@ Okazało się że w ramach tego systemu istnieje też strona [System Dynamicznej
 
 ### Plan działania
 * ~~Znalezienie wszystkich linii autobusowych do monitorowania~~
-* Wyznaczenie przystanków do monitorowania
+* ~~Wyznaczenie przystanków do monitorowania~~
 * Pobranie rozkładów jazdy i zapisanie w BD
 * Pobrannie danych o opóżnieniu
   * Parsowanie danych, zapis do BD
@@ -56,11 +56,44 @@ Różnica w stosunku do planowanego rozkładu jest opisana jako `difference`, oz
 `post_id`
 
 
-Ponieważ przystanki w pliku JSON są zapisane jako ID dla własnej wygody potrzebowałem znać ich nazwy.Zrobiłe to [parsując podstrony z listą przystanków](http://sdip.metropoliaztm.pl/web/ml/stop/page/1)
+Ponieważ przystanki w pliku JSON są zapisane jako ID dla własnej wygody potrzebowałem znać ich nazwy.Zrobiłem to [parsując podstrony z listą przystanków](http://sdip.metropoliaztm.pl/web/ml/stop/page/1)
+
+
+```python
+def get_stops():
+    bus_stops = {}
+    page = 1
+    headers = {
+        'accept': 'text/html,application/xhtml+xml,application/xml',
+        'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36'
+    }
+
+    while True:
+        URL = f"http://sdip.metropoliaztm.pl/web/ml/stop/page/{page}"
+        r = requests.get(URL, headers=headers, verify=False)
+    
+        if r.status_code == 200:
+            soup = BeautifulSoup(r.content, 'html.parser')
+            page += 1
+            time.sleep(.400)
+        else:
+            break
+
+        li = soup.find_all('li')
+        for i in li:
+            # <li><a data-ajax="false" data-mini="true" href="/web/ml/route/100939">Grodziec Boleradz n/ż</a></li>
+            #  3 groups: [0] href=" ; [1] /web/ml/route/100939 ; [2] "> ; [3] Grodziec Boleradz n/ż
+            results = re.search(r'(href=")(.*)(">)([\w\s.\/]*)', str(i)).groups() 
+
+            if results[1].lstrip('/').split('/')[2] == 'route':
+                key = results[1].lstrip('/').split('/')[3]
+                bus_stops[key] = results[3]
+
+    return bus_stops
+```
 
 
 
-``
 
 ### Pobranie rozkladu jazdy na dany dzień
 

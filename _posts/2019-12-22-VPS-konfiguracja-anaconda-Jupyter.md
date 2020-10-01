@@ -201,7 +201,7 @@ OpenSSH                    ALLOW       Anywhere
 8888                       ALLOW       Anywhere
 ```
 
-Pobranie ~Anaconda, [najnowsza wersja Linux x64](https://www.anaconda.com/products/individual#Downloads)~ Miniconda [w najnowszej wersji](https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh) (i po co był ten curl? `wget` zrobi to samo i jest dostępny od razu):
+Pobranie ~~Anaconda, [najnowsza wersja Linux x64](https://www.anaconda.com/products/individual#Downloads)~~ Miniconda [w najnowszej wersji](https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh) (i po co był ten curl? `wget` zrobi to samo i jest dostępny od razu):
 
 ```bash
 cd /tmp
@@ -215,11 +215,12 @@ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 
 Instalacja:
 
-```
-sh Anaconda3-2020.07-Linux-x86_64.sh
+```bash
+#sh Anaconda3-2020.07-Linux-x86_64.sh
+sh Miniconda3-latest-Linux-x86_64.sh
 ```
 W celu inicjalizacji po zakończeniu procesu instalacji, najpierw należy uruchomić: 
-```
+```bash
 <ścieżka do conda>/bin/activate
 ```
 a następnie uruchomić `conda init` Można to też zrobić w trakcie instalacji wyarżając zgodę pod koniec instalacji.
@@ -329,7 +330,7 @@ Ustawienie tunelu w SSH
 
 SSH -> Tunnels
 
-```
+```bash
 L8000 localhost:8888
 ```
 
