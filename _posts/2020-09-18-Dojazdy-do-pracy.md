@@ -18,8 +18,8 @@ Okazało się że w ramach tego systemu istnieje też strona [System Dynamicznej
 ### Plan działania
 * ~~Znalezienie wszystkich linii autobusowych do monitorowania~~
 * ~~Wyznaczenie przystanków do monitorowania~~
-* Pobranie rozkładów jazdy i zapisanie w BD
-* Pobrannie danych o opóżnieniu
+* ~~Pobranie rozkładów jazdy~~ i zapisanie w BD
+* Pobranie danych o opóżnieniu
   * Parsowanie danych, zapis do BD
   * Analiza i Wizualizacja
  * Wnioski
@@ -33,7 +33,22 @@ Z tego przystanku odjezdzają autobusy linii: 35, 44, 66, 77, 77N, 106, 149, 219
 - 149 (line_id:[79](http://sdip.metropoliaztm.pl/web/ml/line/79))
 - 931 (line_id:[97](http://sdip.metropoliaztm.pl/web/ml/line/97))
 
-Analiza ([danych pobranych jako JSON](http://sdip.metropoliaztm.pl/web/map/vehicles/gj/A?interval=00%3A05%3A00&post_id=103750)) pozwoliła wyciągnąć kilka interesujących informacji:
+Pobranie informacji o wszystkich autobusach zatrzymujacych się na przystanku Mysłowice Katowicka (`post_id: 103750` )
+
+```python
+import requests
+
+URL = 'http://sdip.metropoliaztm.pl/web/map/vehicles/gj/A?interval=00%3A05%3A00&post_id=103750'
+headers = {
+    'accept': 'text/html,application/xhtml+xml,application/xml',
+    'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36'
+}
+
+r = requests.get(URL, headers=headers, verify=False)
+print(r.json())
+```
+
+Analiza ([pobranego pliku JSON](http://sdip.metropoliaztm.pl/web/map/vehicles/gj/A?interval=00%3A05%3A00&post_id=103750)) pozwoliła wyciągnąć kilka interesujących informacji:
 * można ustalić koordynaty każdego autobusu ZTM:
 ```json
 "geometry":{
@@ -82,7 +97,7 @@ def get_stops():
         li = soup.find_all('li')
         for i in li:
             # <li><a data-ajax="false" data-mini="true" href="/web/ml/route/100939">Grodziec Boleradz n/ż</a></li>
-            #  3 groups: [0] href=" ; [1] /web/ml/route/100939 ; [2] "> ; [3] Grodziec Boleradz n/ż
+            #  4 groups: [0] href=" ; [1] /web/ml/route/100939 ; [2] "> ; [3] Grodziec Boleradz n/ż
             results = re.search(r'(href=")(.*)(">)([\w\s.\/]*)', str(i)).groups() 
 
             if results[1].lstrip('/').split('/')[2] == 'route':
@@ -92,15 +107,55 @@ def get_stops():
     return bus_stops
 ```
 
-
+Przejrzałem na spokojnie informacje w pliku JSON z autobusami przejeżdzającymi przez dany przystanek i okazało się że nie ma tam informacji o przystanku na którym ma sie zatrzymać autobus :/ Potrzebne będzie parsowanie HTML,[przykładowa podstrona](http://sdip.metropoliaztm.pl/web/ml/map/vehicles/1174). Na szczęscie ten adres jest w pliku JSON.
 
 
 ### Pobranie rozkladu jazdy na dany dzień
 
-Sprawdzenie rozkładu jazdy dla lini A66 pokazało że jego trasa moze przebiegać w różnych wariantach. Naa szczęście na srtronie ZTM pokazywany jesst rozkład wszystkich kursów na dany dzień dla danej linii. Poostanowiłem ze bede pobierał codziennie o północy [rozkład na dany dzień ze strony ZTM](https://rj.metropoliaztm.pl/rozklady/przystanek/160056/)
+Sprawdzenie rozkładu jazdy dla lini A66 pokazało że jego trasa moze przebiegać w różnych wariantach. Naa szczęście na stronie ZTM pokazywany jesst rozkład wszystkich kursów na dany dzień dla danej linii. Poostanowiłem ze bede pobierał codziennie o północy [rozkład na dany dzień ze strony ZTM](https://rj.metropoliaztm.pl/rozklady/przystanek/160056/)
+
+```python
+daily_timetable = {}
+
+soup = BeautifulSoup(html, 'html.parser')
+section = soup.find('section') 
+containers = section.find_all('div', {'class': 'container'})
+
+for entry in containers:
+    bus_line = entry.find('a', {'class':'btn btn-danger btn-lg'}) # <a style="min-width:60px;" href="/rozklady/1-106/" class="btn btn-danger btn-lg" title="Zobacz szczegółowy rozkład jazdy dla linii 106">
+    bus_no = str(bus_line).split()[-2]
+    print(bus_no)
+
+    arrivals =  entry.find_all('div', {'class':'panel-body'}) #  <div class="panel-body rundaycalendar" >
+    today_arrivals = arrivals[2].find_all('div', {'class':'arrival-time'})
+
+    bus_arrivals = {}
+    for item in today_arrivals:
+
+        txt = re.sub(r'[\ \n]{2,}', '', str(item)) # remowe double spaces and newlines
+        no_tags = re.sub("<.*?>", "", txt) # remove HTML tags
+        arrival_list = no_tags.split() 
+        hour = int(arrival_list[0])
+        minutes = arrival_list[1:]
+        bus_arrivals[hour] = minutes
+
+
+    daily_timetable[bus_no] = bus_arrivals
+```
+
+Dane o rozkładzie jazdy przetwarzam do słownika o strukturze:
+
+```python
+daily_timetable =  {
+ '149' : { 8: [15, 30],
+           9: [20, 40] }
+ '931' : { 18: [25, 45],
+           19: [10, 50] }
+ }
+```
 
 - Sprawdzenie odstępów czasowych w ciagu dnia
-- Sprawdzenie opóżnien z zadanym interwałem czasowym (30s)
+- Sprawdzenie opóżnień z zadanym interwałem czasowym (30s)
 
 
 Porównanie z rzeczywistym rozkładem jazdy
@@ -110,17 +165,3 @@ Zapytanie o wszystkie autobusy dla przystanku o
 * interwale: 00%3A05%3A00 - %3A 00:05:00
 
 
-Informacje o wszystkich autobusach 
-
-```python
-import requests
-
-URL = 'http://sdip.metropoliaztm.pl/web/map/vehicles/gj/A?interval=00%3A05%3A00&post_id=103750'
-headers = {
-    'accept': 'text/html,application/xhtml+xml,application/xml',
-    'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36'
-}
-
-r = requests.get(URL, headers=headers, verify=False)
-print(r.json())
-```
