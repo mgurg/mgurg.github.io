@@ -7,13 +7,13 @@ math: false
 ---
 
 Dalekie dojazdy do pracy (która odbywa się w godzinach 9-17) spowodowały że zacząłem zastanawiać się jak zoptymalizwać powroty do domu. 
-Problem: wrócić z Gliwc do Mysłowic w jak najkrótszym czasie.
-Rozwiązanie: Monitorowanie opóżnien miejskich autobusów żeby wyznaczyć optymalne okno czasowe na powrót do domu. 
+Problem: wrócić z Gliwic do Mysłowic w jak najkrótszym czasie.
+Rozwiązanie: Monitorowanie opóźnień miejskich autobusów żeby wyznaczyć optymalne okno czasowe na powrót do domu. 
 
 ## Początkowe pomysły
-Monitorowanie ruchu na drodze - pierwszym pomysłem była próba wyciągniecia danych z map TomTom lub Google, na szczeście zanim zdążyłem otworzyć okno przegladarki przypomniałem sobie o górnośląskim ZTM (dawniej KZK GOP) które około rok temu zaczeło stawiać tablicę z dynamiczną informacją o kursowaniu autobusów. 
+Monitorowanie ruchu na drodze - pierwszym pomysłem była próba wyciągnięcia danych z map TomTom lub Google, na szczęście zanim zdążyłem otworzyć okno przeglądarki przypomniałem sobie o górnośląskim ZTM (dawniej KZK GOP) które około rok temu zaczęło stawiać tablicę z dynamiczną informacją o kursowaniu autobusów. 
 
-Okazało się że w ramach tego systemu istnieje też strona [System Dynamicznej Informacji Pasażerskiej - Portal Pasażera](http://sdip.metropoliaztm.pl/web/ml/map/) z której można wyciagnąć informacje o opóznieniu autobusów.
+Okazało się że w ramach tego systemu istnieje też strona [System Dynamicznej Informacji Pasażerskiej - Portal Pasażera](http://sdip.metropoliaztm.pl/web/ml/map/) z której można wyciągnąć informacje o opóźnieniu autobusów.
 
 ### Plan działania
 * ~~Znalezienie wszystkich linii autobusowych do monitorowania~~
@@ -33,7 +33,7 @@ Z tego przystanku odjezdzają autobusy linii: 35, 44, 66, 77, 77N, 106, 149, 219
 - 149 (line_id:[79](http://sdip.metropoliaztm.pl/web/ml/line/79))
 - 931 (line_id:[97](http://sdip.metropoliaztm.pl/web/ml/line/97))
 
-Pobranie informacji o wszystkich autobusach zatrzymujacych się na przystanku Mysłowice Katowicka (`post_id: 103750` )
+Pobranie informacji o wszystkich autobusach zatrzymujących się na przystanku Mysłowice Katowicka (`post_id: 103750` )
 
 ```python
 import requests
@@ -60,7 +60,7 @@ Analiza ([pobranego pliku JSON](http://sdip.metropoliaztm.pl/web/map/vehicles/gj
 },
 ```
 
-Sa one zapisane w układzie EPSG:3857 (csr - coordinate projection systems). Konwersja do innych foramtów będzie odbywać się z pomocą *pyproj*
+Sa one zapisane w układzie EPSG:3857 (csr - coordinate projection systems). Konwersja do innych formatów będzie odbywać się z pomocą *pyproj*
 ```
 # conda install -c conda-forge pyproj
 ```
@@ -107,12 +107,12 @@ def get_stops():
     return bus_stops
 ```
 
-Przejrzałem na spokojnie informacje w pliku JSON z autobusami przejeżdzającymi przez dany przystanek i okazało się że nie ma tam informacji o przystanku na którym ma sie zatrzymać autobus :/ Potrzebne będzie parsowanie HTML,[przykładowa podstrona](http://sdip.metropoliaztm.pl/web/ml/map/vehicles/1174). Na szczęscie ten adres jest w pliku JSON.
+Przejrzałem na spokojnie informacje w pliku JSON z autobusami przejeżdżającymi przez dany przystanek i okazało się że nie ma tam informacji o przystanku na którym ma sie zatrzymać autobus :/ Potrzebne będzie parsowanie HTML,[przykładowa podstrona](http://sdip.metropoliaztm.pl/web/ml/map/vehicles/1174). Na szczęście ten adres jest w pliku JSON.
 
 
-### Pobranie rozkladu jazdy na dany dzień
+### Pobranie rozkładu jazdy na dany dzień
 
-Sprawdzenie rozkładu jazdy dla lini A66 pokazało że jego trasa moze przebiegać w różnych wariantach. Naa szczęście na stronie ZTM pokazywany jesst rozkład wszystkich kursów na dany dzień dla danej linii. Poostanowiłem ze bede pobierał codziennie o północy [rozkład na dany dzień ze strony ZTM](https://rj.metropoliaztm.pl/rozklady/przystanek/160056/)
+Sprawdzenie rozkładu jazdy dla linii A66 pokazało że jego trasa może przebiegać w różnych wariantach. Na szczęście na stronie ZTM pokazywany jest rozkład wszystkich kursów na dany dzień dla danej linii. Postanowiłem ze będę pobierał codziennie o północy [rozkład na dany dzień ze strony ZTM](https://rj.metropoliaztm.pl/rozklady/przystanek/160056/)
 
 ```python
 daily_timetable = {}
@@ -154,8 +154,8 @@ daily_timetable =  {
  }
 ```
 
-- Sprawdzenie odstępów czasowych w ciagu dnia
-- Sprawdzenie opóżnień z zadanym interwałem czasowym (30s)
+- Sprawdzenie odstępów czasowych w ciągu dnia
+- Sprawdzenie opóźnień z zadanym interwałem czasowym (30s)
 
 
 Porównanie z rzeczywistym rozkładem jazdy

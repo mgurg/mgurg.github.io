@@ -6,7 +6,7 @@ author: "Michał"
 math: false
 ---
 
-Obecnie SQLite wystarcza w 100% do wszytkich zadań które wykonuje, ale na wypadek gdybym robił jakiś wiekszy (lub poważniej wyglądający) projekt to napisałem opis instalcaji MySQL na zdalnym serwerze (z możliwościa zdalnego logowania).
+Obecnie SQLite wystarcza w 100% do wszystkich zadań które wykonuje, ale na wypadek gdybym robił jakiś większy (lub poważniej wyglądający) projekt to napisałem opis instalacji MySQL na zdalnym serwerze (z możliwością zdalnego logowania).
 
 Opis za [How To Install MySQL on Ubuntu 20.04](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04)
 

@@ -57,10 +57,10 @@ Image.fromarray(img)
 
 Numpy przechowuje kanały kolorów jako RGB, OpenCV zaś jako BGR
 
-* Matplotlib pyplot.imshow(): M x N x 3 image, where last dimension is RGB.
-* OpenCV cv2.imshow(): M x N x 3 image, where last dimension is BGR
+* Matplotlib `pyplot.imshow()`: M x N x 3 image, where last dimension is RGB.
+* OpenCV `cv2.imshow()`: M x N x 3 image, where last dimension is BGR
 
-OpenCV zawiera funkcję która pozwala przekonwertować kanały. Można też skorzystać z pomocy Numpy, choć [nie jest to optymalne](https://answers.opencv.org/question/219040/fastest-way-to-convert-bgr-rgb-aka-do-not-use-numpy-magic-tricks/):
+OpenCV zawiera funkcję która pozwala zamienić kolejność kanałów. Można też skorzystać z pomocy Numpy, choć [nie jest to optymalne](https://answers.opencv.org/question/219040/fastest-way-to-convert-bgr-rgb-aka-do-not-use-numpy-magic-tricks/):
 
 ```python
 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)  # or numpy:
@@ -107,7 +107,7 @@ cv2.putText(img, "TXT", (10,190), # lewy dolny pkt
 
 
 ### Operacje morfologiczne
-Bardzo dobry opis operacji morfologicznych znajduje się na polskiej wersji Wikipedi, np:
+Bardzo dobry opis operacji morfologicznych znajduje się na polskiej wersji Wikipedii, np:
 [Dylatacja](https://pl.wikipedia.org/wiki/Cyfrowe_przetwarzanie_obrazów_binarnych#Dylatacja) i 
 [Erozja](https://pl.wikipedia.org/wiki/Cyfrowe_przetwarzanie_obrazów_binarnych#Erozja)
 
@@ -116,7 +116,7 @@ opening(A) = dilate(erode(A))
 closing(A) = erode(dilate(A))
 ```
 
-Operatory tophat (ekstrakcja obszarów jasnych) i blackhat (ekstrakcja obszarów ciemnych) służą odpowiednio ekstrakcji jasnych i ciemnych obszarów w obrazie (poziom jasności określany w odniesieniu do najbliższego otoczenia). 
+Operatory *tophat* (ekstrakcja obszarów jasnych) i *blackhat* (ekstrakcja obszarów ciemnych) służą odpowiednio ekstrakcji jasnych i ciemnych obszarów w obrazie (poziom jasności określany w odniesieniu do najbliższego otoczenia). 
 
 * tophat(A) = A − open(A)
 * blackhat(A) = close(A) − A
@@ -214,7 +214,7 @@ Hierarchia obiektów:
 
 Tematy które poznałem przy okzaji tego ćwiczenia: 
 * findContours  - ([RetrievalModes](https://docs.opencv.org/master/d3/dc0/group__imgproc__shape.html#ga819779b9857cc2f8601e6526a3a5bc71))
-* drawCountours - -1 jako grubość linii powoduje wypełnienie obiektu
+* drawCountours - podanie *1* jako grubość linii powoduje wypełnienie obiektu
 * Konwersja `cv2.COLOR_BGR2RGB` i `cv2.COLOR_BGR2GRAY` to nie to samo co wyłącznie `cv2.COLOR_BGR2GRAY`
 
 [Building a Pokedex in Python: Finding the Game Boy Screen](https://www.pyimagesearch.com/2014/04/21/building-pokedex-python-finding-game-boy-screen-step-4-6/)
@@ -225,7 +225,7 @@ Tematy które poznałem przy okzaji tego ćwiczenia:
 [Text skew correction](https://www.pyimagesearch.com/2017/02/20/text-skew-correction-opencv-python/)
 
 Lista tematów które poznałem przy okazji tego ćwiczenia:
-* Ukł wspłrzędnych w OpenCV
+* Układy współrzędnych w OpenCV
 * Treshold
 * BoundingBox
 
@@ -243,8 +243,6 @@ Lista tematów które poznałem przy okazji tego ćwiczenia:
 
 ### Center of contour
 [Center of contour](https://www.pyimagesearch.com/2016/02/01/opencv-center-of-contour/)
-
-
 
 ### Recognizing LCD digits
 [Recognizing LCD Digits](https://www.pyimagesearch.com/2017/02/13/recognizing-digits-with-opencv-and-python/)

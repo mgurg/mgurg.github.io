@@ -74,7 +74,7 @@ pattern.search('sample text') # szuka w całym ciągu znaków
 ```
 
 Przydatne metody dostępne w module re:
-- compile(pattern) – kompiluje, co przyspiesza wyszukiwanie
+- compile(pattern) – kompiluje zapytanie, co przyspiesza wyszukiwanie
 
 - findall(pattern, string) – zwraca obiekt z wszystkimi dopasowaniami
 
