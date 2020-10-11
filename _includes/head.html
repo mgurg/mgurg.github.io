@@ -5,4 +5,8 @@
 <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
 <meta name="google-site-verification" content="JieIMm38x30K6oVdqEsUAwiOMwucdudUfas6fJ87L_Q" />
 <title>{{ page.title | default: site.title }}</title>
+{% if page.math %}
+{% include math.html %}
+{% endif %}
+
 {% seo %}
