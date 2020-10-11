@@ -156,3 +156,5 @@ cleanup_nums = {"num_doors":     {"four": 4, "two": 2},
                                   
 obj_df.replace(cleanup_nums, inplace=True)
 ```
+
+[Stylowanie komórek](https://pandas.pydata.org/pandas-docs/stable/user_guide/style.html)

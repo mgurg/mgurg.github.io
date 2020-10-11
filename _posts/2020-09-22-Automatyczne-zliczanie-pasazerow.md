@@ -6,7 +6,7 @@ author: "Michał"
 math: false
 ---
 
-Przed weekendem wymyśliłem że bedę monitorował korki na trasie autobusów miejskich. Zabrałem się za research i po godzinie przepadłem na nowym pomyśle. 
+Przed weekendem wymyśliłem że będę monitorował korki na trasie autobusów miejskich. Zabrałem się za research i po godzinie przepadłem na nowym pomyśle. 
 
 ## System zliczania pasażerów
 Powodem było to zamówienie: [Dostawa i montaż systemu zliczania pasażerów](http://bip.metropoliagzm.pl/przetarg/125941/za-270-5-1-2020)
@@ -28,45 +28,44 @@ Powodem było to zamówienie: [Dostawa i montaż systemu zliczania pasażerów](
 
 [Podobny przetarg](https://www.gait.pl/wp-content/uploads/2018/01/zal_9_siwz.pdf)
 
-Artykuł na temat skuteczności rozwiązan zliczajacych: [Przydatność automatycznych systemów zliczania pasażerów w celach predykcji popytu na usługi transportowe](http://yadda.icm.edu.pl/yadda/element/bwmeta1.element.baztech-23687bf1-a7cb-49c6-98ab-8689e6aba932/c/TMiR_4_2018_aleksandrowicz.pdf)
+Artykuł na temat skuteczności rozwiązań zliczających: [Przydatność automatycznych systemów zliczania pasażerów w celach predykcji popytu na usługi transportowe](http://yadda.icm.edu.pl/yadda/element/bwmeta1.element.baztech-23687bf1-a7cb-49c6-98ab-8689e6aba932/c/TMiR_4_2018_aleksandrowicz.pdf)
 
 Przykłady komercyjnie dostępnych rozwiązań:
 - [Dilax ACP](https://www.dilax.com/en/products/automatic-passenger-counting)
 - [IRMA](https://www.iris-sensing.com/products/automatic-passenger-counting/)
 
-Rynkowa wartość rozwiązania:
-- [Przetarg UM w poznaniu](https://bip.umww.pl/292---648---k_74---k_231---k_216---przetarg-nieograniczony-pn-doposazenie-autobusow-szynowych)
-- [Rozstrzygnięcie](https://www.przetargi.egospodarka.pl/kto-wygral/13907877,emtal-sp-z-o-o.html) na kwotę 597 800,00 PLN dla 5 pojazdów.
+Interesowała mnie rynkowa wartość rozwiązania, udało mi się znaleźć [przetarg UM w Poznaniu](https://bip.umww.pl/292---648---k_74---k_231---k_216---przetarg-nieograniczony-pn-doposazenie-autobusow-szynowych) który odpowiadał mniej więcej temu co chcę zrobić. Jego [rozstrzygnięcie](https://www.przetargi.egospodarka.pl/kto-wygral/13907877,emtal-sp-z-o-o.html) opiewało na kwotę 597 800,00 PLN dla 5 pojazdów.
 
-Obecnie chyba każdy autobus ma monitoring, pomyślałem że można by liczyć pasażerów z pomoca Computer Vision.
+Obecnie chyba każdy autobus ma monitoring, pomyślałem że można by liczyć pasażerów z pomocą Computer Vision. Byłem ciekaw o ile gorsze będzie rozwiązanie oparte o analizę monitoringu.
 
 ### Plan działania
 
 Wstępny plan: 
-- ~~Zdobycie odpowiedniego wideo~~ (18.09.2020)
-- OpenCV - przetwarzanie wideo - instalacja Dlib, research teoretyczny (22.09.2020)
-- Rozpoznawanie obiektów na obrazach przy pomocy MobileNet SSD
-- Przegląd innych architur sieci (YOLO?), rozpoznawanie obiektów przy pomocy ich pomocy. Pomiary wydajności/dokładności 
+- ~~Zdobycie odpowiedniego wideo~~: ✅ (18.09.2020)
+- ~~OpenCV - przetwarzanie wideo - instalacja Dlib~~, research teoretyczny: ✅ (22.09.2020)
+- ~~Rozpoznawanie obiektów na obrazach przy pomocy MobileNet SSD~~: ✅
+- Przegląd innych architektur sieci (YOLO?), rozpoznawanie obiektów przy pomocy ich pomocy. Pomiary wydajności/dokładności 
 - Tracking obiektów na filmie
-- Próba zdobycia wiekszej ilości nagrań
+- Próba zdobycia większej ilości nagrań
 - Porównanie uzyskanego rozwiązania do komercyjnych rozwiązań opisanych w literaturze
 
 ### Postęp prac
 
 Pamiętnik projektu :)
 
-### Nagranie z wnetrza autobusu
+### Nagranie z wnętrza autobusu
 
-Zdobycie odpowiedniego wideo było jednym z bardziej pracochłonnych etapów na początku: 
-- [YT: CCTV camera in bus super techonogy](https://www.youtube.com/watch?v=MOuPL-dhszQ)
-- [YT: CCTV Manchester HD Vehicle camera](https://www.youtube.com/watch?v=eWZtH96EKZk)
-
+Zdobycie odpowiedniego wideo było jednym z bardziej pracochłonnych etapów na początku. Po przebrnięciu przez morze filmów z wypadków udało mi się zdobyć dwa nagrania: [YT: CCTV camera in bus super techonogy](https://www.youtube.com/watch?v=MOuPL-dhszQ) oraz [YT: CCTV Manchester HD Vehicle camera](https://www.youtube.com/watch?v=eWZtH96EKZk) Oba są w umiarkowanej jakości, ale przedstawiają dokładnie takie ujęcia o jakie mi chodziło. Do tego są stosunkowo długie i pokazują etap jazdy autobusu.
 ### Przygotowanie środowiska
-Konieczne było doinstalowanie Dlib. Przy okazji dowiedziałem się o istnieniu [opencv_contrib](https://github.com/opencv/opencv_contrib/tree/master/modules).
+Konieczne było doinstalowanie Dlib. Przy okazji dowiedziałem się o istnieniu [opencv_contrib](https://github.com/opencv/opencv_contrib/tree/master/modules). 
 
 ### Object Tracking - teoria
 
-Pierwsze próby wykonałem posiłkująć się [Object detection with deep learning and OpenCV](https://www.pyimagesearch.com/2017/09/11/object-detection-with-deep-learning-and-opencv/)  wyniki jednak trochę mnie rozczarowały. kolejnym krokime było zaprzegnięcie do pracy [TensorFlow Object Detection API](https://github.com/tensorflow/models/tree/master/research/object_detection)
+Pierwsze próby wykonałem posiłkując się [Object detection with deep learning and OpenCV](https://www.pyimagesearch.com/2017/09/11/object-detection-with-deep-learning-and-opencv/)  wyniki jednak trochę mnie rozczarowały (analiza statycznych klatek z filmu). 
+
+
+
+Kolejnym krokiem będzie  zaprzęgniecie do pracy [TensorFlow Object Detection API](https://github.com/tensorflow/models/tree/master/research/object_detection)
 
 https://deepdrive.pl/warsztat-wykrywanie-obiektow-w-tensorflow/
 
