@@ -6,10 +6,12 @@ author: "Michał"
 math: false
 ---
 
-Przed weekendem wymyśliłem że będę monitorował korki na trasie autobusów miejskich. Zabrałem się za research i po godzinie przepadłem na nowym pomyśle. 
+Przed weekendem wymyśliłem że będę monitorował korki na trasie autobusów miejskich. Zabrałem się za poszukiwania informacji i po godzinie przepadłem na nowym pomyśle: System zliczania pasażerów. 
+
+Aktualizacja 15.10.2020: Dzisiaj weszły nowe wytyczne związane z COVID które mówią że w autobusie nie może być więcej osób niż 50% miejsc siedzących lub 30% miejsc stojących i siedzących. Dodatkowa mobilizacja do wdrożenia pomysłu w życie :)
 
 ## System zliczania pasażerów
-Powodem było to zamówienie: [Dostawa i montaż systemu zliczania pasażerów](http://bip.metropoliagzm.pl/przetarg/125941/za-270-5-1-2020)
+Źródłem nowego pomysłu było to zamówienie: [Dostawa i montaż systemu zliczania pasażerów](http://bip.metropoliagzm.pl/przetarg/125941/za-270-5-1-2020)
 
 > Podstawowe cechy przedmiotowego zadania to:
 >
@@ -23,26 +25,25 @@ Powodem było to zamówienie: [Dostawa i montaż systemu zliczania pasażerów](
 >
 >i) Otwartość systemu – możliwość rozszerzania systemu na kolejne pojazdy zgodnie z przyjętym jednolitym standardem w zakresie wyposażenia pojazdów w bramki liczące i używanego oprogramowania do gromadzenia i analizy danych - opracowanie i opisanie interfejsów wymiany danych, jak i sposobu podłączania;
 
+Obecnie chyba każdy autobus ma monitoring, pomyślałem że można by liczyć pasażerów z pomocą *Computer Vision*, a już od jakiegoś czasu chciałem zrealizować projekt w tym obszarze. Byłem ciekaw o ile gorsze będzie rozwiązanie oparte o analizę monitoringu.
 
-[Przykład rozwiązania](http://www.infotron.com.pl/pliki/Infotron%20-%20SZP%20-%20Opis%20v5.pdf)
+ Dla porównania, [przykład klasycznego rozwiązania](http://www.infotron.com.pl/pliki/Infotron%20-%20SZP%20-%20Opis%20v5.pdf). Doszukałem się też artykułu  na temat skuteczności rozwiązań zliczających: [Przydatność automatycznych systemów zliczania pasażerów w celach predykcji popytu na usługi transportowe](http://yadda.icm.edu.pl/yadda/element/bwmeta1.element.baztech-23687bf1-a7cb-49c6-98ab-8689e6aba932/c/TMiR_4_2018_aleksandrowicz.pdf). Co pozwoli mi lepiej oszacować jakość mojego pomysłu.
 
-[Podobny przetarg](https://www.gait.pl/wp-content/uploads/2018/01/zal_9_siwz.pdf)
+Jeszcze kilka biznesowych informacji: [Podobny przetarg](https://www.gait.pl/wp-content/uploads/2018/01/zal_9_siwz.pdf) i przykłady komercyjnie dostępnych rozwiązań:
 
-Artykuł na temat skuteczności rozwiązań zliczających: [Przydatność automatycznych systemów zliczania pasażerów w celach predykcji popytu na usługi transportowe](http://yadda.icm.edu.pl/yadda/element/bwmeta1.element.baztech-23687bf1-a7cb-49c6-98ab-8689e6aba932/c/TMiR_4_2018_aleksandrowicz.pdf)
-
-Przykłady komercyjnie dostępnych rozwiązań:
 - [Dilax ACP](https://www.dilax.com/en/products/automatic-passenger-counting)
 - [IRMA](https://www.iris-sensing.com/products/automatic-passenger-counting/)
 
-Interesowała mnie rynkowa wartość rozwiązania, udało mi się znaleźć [przetarg UM w Poznaniu](https://bip.umww.pl/292---648---k_74---k_231---k_216---przetarg-nieograniczony-pn-doposazenie-autobusow-szynowych) który odpowiadał mniej więcej temu co chcę zrobić. Jego [rozstrzygnięcie](https://www.przetargi.egospodarka.pl/kto-wygral/13907877,emtal-sp-z-o-o.html) opiewało na kwotę 597 800,00 PLN dla 5 pojazdów.
+Interesowała mnie rynkowa wartość rozwiązania, udało mi się znaleźć [przetarg UM w Poznaniu](https://bip.umww.pl/292---648---k_74---k_231---k_216---przetarg-nieograniczony-pn-doposazenie-autobusow-szynowych), który odpowiadał mniej więcej temu co chcę zrobić. Jego [rozstrzygnięcie](https://www.przetargi.egospodarka.pl/kto-wygral/13907877,emtal-sp-z-o-o.html) opiewało na kwotę 597 800,00 PLN dla 5 pojazdów.
 
-Obecnie chyba każdy autobus ma monitoring, pomyślałem że można by liczyć pasażerów z pomocą Computer Vision. Byłem ciekaw o ile gorsze będzie rozwiązanie oparte o analizę monitoringu.
+
 
 ### Plan działania
 
 Wstępny plan: 
 - ~~Zdobycie odpowiedniego wideo~~: ✅ (18.09.2020)
 - ~~OpenCV - przetwarzanie wideo - instalacja Dlib~~, research teoretyczny: ✅ (22.09.2020)
+- Motion Tracking (określenie czy autobus jest w ruchu)
 - ~~Rozpoznawanie obiektów na obrazach przy pomocy MobileNet SSD~~: ✅
 - Przegląd innych architektur sieci (YOLO?), rozpoznawanie obiektów przy pomocy ich pomocy. Pomiary wydajności/dokładności 
 - Tracking obiektów na filmie
@@ -55,9 +56,16 @@ Pamiętnik projektu :)
 
 ### Nagranie z wnętrza autobusu
 
-Zdobycie odpowiedniego wideo było jednym z bardziej pracochłonnych etapów na początku. Po przebrnięciu przez morze filmów z wypadków udało mi się zdobyć dwa nagrania: [YT: CCTV camera in bus super techonogy](https://www.youtube.com/watch?v=MOuPL-dhszQ) oraz [YT: CCTV Manchester HD Vehicle camera](https://www.youtube.com/watch?v=eWZtH96EKZk) Oba są w umiarkowanej jakości, ale przedstawiają dokładnie takie ujęcia o jakie mi chodziło. Do tego są stosunkowo długie i pokazują etap jazdy autobusu.
+Zdobycie odpowiedniego wideo było jednym z bardziej pracochłonnych etapów na początku. Po przebrnięciu przez morze filmów z wypadków udało mi się zdobyć dwa nagrania: [YT: CCTV camera in bus super techonogy](https://www.youtube.com/watch?v=MOuPL-dhszQ) oraz [YT: CCTV Manchester HD Vehicle camera](https://www.youtube.com/watch?v=eWZtH96EKZk) Oba są w umiarkowanej jakości, ale przedstawiają dokładnie takie ujęcia o jakie mi chodziło. Do tego są stosunkowo długie i pokazują etap jazdy autobusu. Wstępna selekcja pokazała że łatwiejszym przypadkiem do analizy jest  drugi film.
+
+<img src="{{site.url}}/images/2020_10/cap_CCTV_2.jpg" style="display: block; margin: auto;" />
+
 ### Przygotowanie środowiska
 Konieczne było doinstalowanie Dlib. Przy okazji dowiedziałem się o istnieniu [opencv_contrib](https://github.com/opencv/opencv_contrib/tree/master/modules). 
+
+### Motion Tracking
+
+Pierwszą rzeczą jaką zrobiłem był prosty object tracking, od razu jednak stało się jasne że będę potrzebował informacji o tym czy autobus porusza się, czy stoi. W przeciwnym wypadku będę zliczał omyłkowo ludzi którzy czekają na przystanku gdy  autobus podjeżdża.
 
 ### Object Tracking - teoria
 
