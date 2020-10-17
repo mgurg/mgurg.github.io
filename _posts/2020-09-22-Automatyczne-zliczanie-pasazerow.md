@@ -65,7 +65,32 @@ Konieczne było doinstalowanie Dlib. Przy okazji dowiedziałem się o istnieniu 
 
 ### Motion Tracking
 
-Pierwszą rzeczą jaką zrobiłem był prosty object tracking, od razu jednak stało się jasne że będę potrzebował informacji o tym czy autobus porusza się, czy stoi. W przeciwnym wypadku będę zliczał omyłkowo ludzi którzy czekają na przystanku gdy  autobus podjeżdża.
+Pierwszą rzeczą jaką zrobiłem był prosty *object tracking*, od razu jednak stało się jasne, że będę potrzebował informacji o tym czy autobus się porusza. Bez tego będę zliczał omyłkowo ludzi którzy czekają na przystanku gdy  autobus podjeżdża. Dodatkowo niepotrzebnie tracę czas na próbach wyszukiwania ludzi w kadrze.
+
+Zacząłem od najprostszego rozwiązania które przyszło mi do głowy: monitorowanie czy drzwi są otwarte. Drzwi składają się z dwóch skrzydeł każde z nich ma grubą ramkę, co sprawia że gdy są zamknięte  to wystarczy sprawdzić kolor w określanym miejscu obrazu. 
+
+<img src="{{site.url}}/images/2020_10/door_detection.png" style="display: block; margin: auto;" />
+
+Jeżeli jest czarny, drzwi są zamknięte, każdy inny - otwarte, co oznacza że autobus właśnie zatrzymał się na przystanku. Metoda ta ze względu na swoją prostotę nie jest pozbawiona wad: w monitorowanym miejscu może w tle stać np. czarna latarnia. Można próbować monitorować większa ilość punktów, ale na tym etapie nie miałem takiej potrzeby
+
+Ważniejszym problemem okazały się artefakty kompresji wideo, które powodowały że monitorowanie jednego piksela na obrazie było pozbawione sensu - nie dało określić się jednoznacznego progu przy którym miałbym pewność że drzwi są otwarte. Rozwiązaniem było uśrednienie koloru z większego obszaru:
+
+```python
+ img_mask = np.zeros((height, width), np.uint8) # mask
+ x_center = 180
+ y_center = 15
+ radius = 5
+ cv2.circle(img_mask,(x_center,y_center),radius,(255,255,255),-1) # measuring area
+ a,b,g,r = cv2.mean(frame, mask=img_mask)[::-1]
+
+ if np.mean([b,g,r]) > 10 :
+    print([b, g, r])
+ cv2.circle(frame, (180,15), 5, (255,0,0), -1)
+```
+
+
+
+
 
 ### Object Tracking - teoria
 

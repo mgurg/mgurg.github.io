@@ -92,6 +92,22 @@ cv2.putText(img, "TXT", (10,190), # lewy dolny pkt
 		cv2.FONT_HERSHEY_SIMPLEX, 1.2, (0,255,200))
 ```
 
+Listę dostępnych fontów można znaleźć w [pliku imgproc.hpp](https://github.com/opencv/opencv/blob/8bf451a3e0c6af796691ee336abd157b762fd6af/modules/imgproc/include/opencv2/imgproc.hpp#L817):
+
+```
+    FONT_HERSHEY_SIMPLEX        = 0, //!< normal size sans-serif font
+    FONT_HERSHEY_PLAIN          = 1, //!< small size sans-serif font
+    FONT_HERSHEY_DUPLEX         = 2, //!< normal size sans-serif font (more complex than FONT_HERSHEY_SIMPLEX)
+    FONT_HERSHEY_COMPLEX        = 3, //!< normal size serif font
+    FONT_HERSHEY_TRIPLEX        = 4, //!< normal size serif font (more complex than FONT_HERSHEY_COMPLEX)
+    FONT_HERSHEY_COMPLEX_SMALL  = 5, //!< smaller version of FONT_HERSHEY_COMPLEX
+    FONT_HERSHEY_SCRIPT_SIMPLEX = 6, //!< hand-writing style font
+    FONT_HERSHEY_SCRIPT_COMPLEX = 7, //!< more complex variant of FONT_HERSHEY_SCRIPT_SIMPLEX
+    FONT_ITALIC                 = 16 //!< flag for italic font
+```
+
+
+
 ### Kolory
 
 * grayscale
