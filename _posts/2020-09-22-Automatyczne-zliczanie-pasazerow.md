@@ -67,13 +67,13 @@ Konieczne było doinstalowanie Dlib. Przy okazji dowiedziałem się o istnieniu 
 
 Pierwszą rzeczą jaką zrobiłem był prosty *object tracking*, od razu jednak stało się jasne, że będę potrzebował informacji o tym czy autobus się porusza. Bez tego będę zliczał omyłkowo ludzi którzy czekają na przystanku gdy  autobus podjeżdża. Dodatkowo niepotrzebnie tracę czas na próbach wyszukiwania ludzi w kadrze.
 
-Zacząłem od najprostszego rozwiązania które przyszło mi do głowy: monitorowanie czy drzwi są otwarte. Drzwi składają się z dwóch skrzydeł każde z nich ma grubą ramkę, co sprawia że gdy są zamknięte  to wystarczy sprawdzić kolor w określanym miejscu obrazu. 
+Zacząłem od najprostszego rozwiązania które przyszło mi do głowy: monitorowanie czy drzwi są otwarte. Drzwi składają się z dwóch skrzydeł, każde z nich ma grubą ramkę. Ich stan można określić monitorując kolor w miejscu w którym schodzą cię skrzydła. 
 
 <img src="{{site.url}}/images/2020_10/door_detection.png" style="display: block; margin: auto;" />
 
-Jeżeli jest czarny, drzwi są zamknięte, każdy inny - otwarte, co oznacza że autobus właśnie zatrzymał się na przystanku. Metoda ta ze względu na swoją prostotę nie jest pozbawiona wad: w monitorowanym miejscu może w tle stać np. czarna latarnia. Można próbować monitorować większa ilość punktów, ale na tym etapie nie miałem takiej potrzeby
+Jeżeli jest czarny, drzwi są zamknięte, każdy inny - otwarte, co oznacza że autobus właśnie zatrzymał się na przystanku. Metoda ta ze względu na swoją prostotę nie jest pozbawiona wad: w monitorowanym miejscu może w tle stać np. czarna latarnia. Można próbować monitorować większa ilość punktów, ale na tym etapie nie miałem takiej potrzeby.
 
-Ważniejszym problemem okazały się artefakty kompresji wideo, które powodowały że monitorowanie jednego piksela na obrazie było pozbawione sensu - nie dało określić się jednoznacznego progu przy którym miałbym pewność że drzwi są otwarte. Rozwiązaniem było uśrednienie koloru z większego obszaru:
+Ważniejszym problemem okazały się artefakty kompresji wideo, które powodowały że monitorowanie jednego piksela na obrazie było pozbawione sensu - nie dało określić się jednoznacznego progu przy którym miałbym pewność że drzwi są otwarte. Rozwiązaniem było [uśrednienie koloru z większego obszaru](https://stackoverflow.com/questions/43086715/rgb-average-of-circles):
 
 ```python
  img_mask = np.zeros((height, width), np.uint8) # mask
