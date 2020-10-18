@@ -17,6 +17,30 @@ Szybkie wprowadzenie: [Learn X in Y minutes: OpenCV](https://learnxinyminutes.co
 
 
 
+### Instalacja
+Prosto:
+```bash
+pip install opencv-contrib-python
+```
+
+#### Dlib
+Do niektórych zagadnień oprócz OpenCV potrzebna jest biblioteka [Dlib](http://dlib.net/). Instrukcja instalacji dla Ubuntu:
+
+* Utworzenie środowiska z python 3.7: `conda create -n cenv python=3.7.0`
+* Instalacja cmake: `conda install cmake`
+* Instalacja Dlib : `pip install dlib`
+* Sprawdzenie poprawności w IPython:
+
+```python
+python
+Python 3.7.0 (default, Oct  9 2018, 10:31:47) 
+[GCC 7.3.0] :: Anaconda, Inc. on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import dlib
+>>> dlib.__version__
+'19.21.0'
+```
+
 Wczytanie OpenCV, Numpy i Pillow:
 ```python
 # sudo apt install libgl1-mesa-glx
