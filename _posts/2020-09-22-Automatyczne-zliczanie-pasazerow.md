@@ -43,7 +43,7 @@ Interesowała mnie rynkowa wartość rozwiązania, udało mi się znaleźć [prz
 Wstępny plan: 
 - ~~Zdobycie odpowiedniego wideo~~: ✅ (18.09.2020)
 - ~~OpenCV - przetwarzanie wideo - instalacja Dlib~~, research teoretyczny: ✅ (22.09.2020)
-- Motion Tracking (określenie czy autobus jest w ruchu)
+- ~~Motion Detection (określenie czy autobus jest w ruchu)~~ ✅ (17.10.2020)
 - ~~Rozpoznawanie obiektów na obrazach przy pomocy MobileNet SSD~~: ✅
 - Przegląd innych architektur sieci (YOLO?), rozpoznawanie obiektów przy pomocy ich pomocy. Pomiary wydajności/dokładności 
 - Tracking obiektów na filmie
@@ -96,17 +96,9 @@ Ważniejszym problemem okazały się artefakty kompresji wideo, które powodowa�
 
 Pierwsze próby wykonałem posiłkując się [Object detection with deep learning and OpenCV](https://www.pyimagesearch.com/2017/09/11/object-detection-with-deep-learning-and-opencv/)  wyniki jednak trochę mnie rozczarowały (analiza statycznych klatek z filmu). 
 
+<img src="{{site.url}}/images/2020_10/passengers_detection.png" style="display: block; margin: auto;" />
 
 
-Kolejnym krokiem będzie  zaprzęgniecie do pracy [TensorFlow Object Detection API](https://github.com/tensorflow/models/tree/master/research/object_detection)
-
-https://deepdrive.pl/warsztat-wykrywanie-obiektow-w-tensorflow/
-
-https://www.mygreatlearning.com/blog/object-detection-using-tensorflow/
-
-https://deepdrive.pl/10-simple-steps-to-tensorflow-object-detection-api/
-
-https://colab.research.google.com/github/tensorflow/hub/blob/master/examples/colab/tf2_object_detection.ipynb#scrollTo=oi28cqGGFWnY
 
 [Jaki model?](https://github.com/hoya012/deep_learning_object_detection)
 
