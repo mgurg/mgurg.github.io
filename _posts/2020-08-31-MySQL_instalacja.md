@@ -27,20 +27,24 @@ sudo mysql_secure_installation
 sudo mysql
 ```
 
-Lokalny user:
+Tworzenie lokalnego użytkownika, ogólny zapis:
 
 ```sql
 CREATE USER 'username'@'host' IDENTIFIED WITH authentication_plugin BY 'password';
+```
 
+Tworzenia lokalnego użytkownika `lammy` będzie wyglądało następująco: 
+```sql
 CREATE USER 'lammy'@'localhost' IDENTIFIED BY 'password123';
 ```
 
+Nadanie uprwanień:
 
 ```sql
 GRANT CREATE, ALTER, DROP, INSERT, UPDATE, DELETE, SELECT, REFERENCES, RELOAD on *.* TO 'lammy'@'localhost' WITH GRANT OPTION;
 ```
 
-```sql
+```bash
 mysql> FLUSH PRIVILEGES;
 mysql> exit
 ```
@@ -100,11 +104,11 @@ Threads: 2  Questions: 2  Slow queries: 0  Opens: 115  Flush tables: 3  Open tab
 
 ### Zdalne logowanie
 
-```
+W pliku
+```bash
 sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
 ```
-
-Zamiana wpisu `bind-address = 127.0.0.1` na 
+należy dokonać zmiany wpisu z `bind-address = 127.0.0.1` na 
 ```
 bind-address = 0.0.0.0
 ```
@@ -137,8 +141,9 @@ mysql> SELECT host FROM mysql.user WHERE User = 'lammy';
 1 row in set (0.02 sec)
 ```
 
-Jeśli widzisz wyniki tylko z `localhost` i `127.0.0.1`, nie możesz połączyć się z zewnętrz. Jeśli widzisz inne adresy IP, ale nie ten, z którego się łączysz to połączenie równierz nie będzei możliwe.
+Jeśli widzisz wyniki tylko z `localhost` i `127.0.0.1`, nie możesz połączyć się z zewnętrz. Jeśli widzisz inne adresy IP, ale nie ten, z którego się łączysz to połączenie również nie będzie możliwe.
 
+Znak `%` zamiast `localhost` pozwoli na łączenie się z dowolnego adresu IP. Utworzymy nowego użytkownika: 
 ```sql
 CREATE USER 'rammy'@'%' IDENTIFIED BY 'password123';
 
@@ -146,6 +151,12 @@ GRANT CREATE, ALTER, DROP, INSERT, UPDATE, DELETE, SELECT, REFERENCES, RELOAD on
 
 FLUSH PRIVILEGES;
 
+```
+
+W przypadku problemów z logowaniem , naeży zmienić sposób uwierzytelniania na starszy:
+
+```sql
+ALTER USER 'rammy'@'%' IDENTIFIED WITH mysql_native_password BY 'password123';
 ```
 
 
