@@ -159,4 +159,50 @@ W przypadku problemów z logowaniem , naeży zmienić sposób uwierzytelniania n
 ALTER USER 'rammy'@'%' IDENTIFIED WITH mysql_native_password BY 'password123';
 ```
 
+## Docker
+Do lokalnych testów postanowiłem nie instalować MySQL tylko skorzystać z gotowego obrazu [docker](https://mgurg.github.io/docker/2020/08/05/Docker.html)
+
+Opis na podstawie: [Simple Persistent MySQL in Linux Server with Docker and Docker Compose](https://blog.usejournal.com/simple-persistent-mysql-in-linux-server-with-docker-and-docker-compose-66547e89a19e) 
+
+Zawartość pliku `docker-compose.yml`:
+```yaml
+version: '3'
+services:
+ mysql:
+  image: mysql:8
+  environment:
+   MYSQL_DATABASE: 'fastapi_db'
+   MYSQL_USER: 'fuser'
+   MYSQL_PASSWORD: 'fpass'
+   MYSQL_ROOT_PASSWORD: 'root'
+  ports:
+   - "3306:3306"
+  volumes:
+   - mysql_volume:/var/lib/mysql
+volumes:
+ mysql_volume:
+```
+
+Uruchomienie: 
+```bash
+sudo docker-compose up -d
+```
+
+Zatrzymanie:
+```bash
+sudo docker-compose stop
+```
+
+Ustanowienie połączenia (dBeaver):
+```
+Connection Method : Standard (TCP/IP)
+Hostname : 127.0.0.1 (or your remote server address)
+Port : 3306
+Username: root (or using other user)
+Password: root (your root password)
+```
+
+Dodatkowe ustawienia dBeaver (Błąd: *Public Key Retrieval is not allowed*)
+- "useSSL" - FALSE
+- "allowPublicKeyRetrieval" - TRUE
 
