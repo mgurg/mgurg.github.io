@@ -5,10 +5,10 @@ categories: Python
 author: "Michał"
 ---
 
-https://www.fatalerrors.org/a/uvicorn-a-lightweight-and-fast-python-asgi-framework.html
 
 
-Utworzenie wirtualnego środowiska:
+
+Utworzenie wirtualnego środowiska na serwerze VPS:
 
 ```bash
 python3 -m venv --copies fast_ve
@@ -94,3 +94,5 @@ ExecStart=/home/lambda/py_env/fast_ve/bin/gunicorn main:app -w 4 -k uvicorn.work
 [Install]
 WanterBy=multi-user.target
 ```
+
+[Dodatkowe informacje](https://www.fatalerrors.org/a/uvicorn-a-lightweight-and-fast-python-asgi-framework.html)
