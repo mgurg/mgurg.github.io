@@ -46,7 +46,7 @@ sudo systemctl stop ngnix
 Status serwer nginx:
 
 ```bash
-systemctl status ngnix
+systemctl status nginx
 ```
 
 Status usługi:
@@ -228,7 +228,7 @@ Pod adresem `http://192.166.219.228:5000/`  powinien ponownie być widoczny nieb
 Konfiguracja NGINX (utworzona w osobnym pliku, bez modyfikacji domyślnej konfiguracji)
 
 ```bash
-cd /etc/ngnix/sites-available/
+cd /etc/nginx/sites-available/
 sudo nano helloworld
 ```
 
