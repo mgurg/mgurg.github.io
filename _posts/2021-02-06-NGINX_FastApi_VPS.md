@@ -166,3 +166,6 @@ git pull
 sudo systemctl start fastapi
 ```
 
+#### Więcej
+
+➡️ [Deploy Python APIs to the Web With Linux](https://towardsdatascience.com/deploy-python-apis-to-the-web-with-linux-2f4c7be8a76d)
