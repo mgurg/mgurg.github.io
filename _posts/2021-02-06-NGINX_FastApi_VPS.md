@@ -299,7 +299,7 @@ Konfiguracja dla przypadku gdzie w pliku `index.html` mamy frontend w Vue.js, a 
 ```nginx
 server {
         listen 80;
-        listen 5000;
+        # listen 5000;
         listen [::]:80;
 
         root /var/www/html;
@@ -307,19 +307,21 @@ server {
 
         server_name 192.166.219.228 remontmaszyn.pl;
 
-        location /api {
-                #try_files $uri /index.html
-                include proxy_params;
-                proxy_pass http://unix:/var/www/fastapi_www/app/fastapi.sock;
- }
         location / {
                 try_files $uri /index.html;
                 # include proxy_params;
                 # proxy_pass http://unix:/var/www/fastapi_www/app/fastapi.sock;
                 }
-
 }
 
+server {
+        listen 5000;
+        server_name 192.166.219.228 remontmaszyn.pl;
+
+        location / {
+                proxy_pass http://unix:/var/www/fastapi_www/app/fastapi.sock;
+        }
+}
 ```
 
 
