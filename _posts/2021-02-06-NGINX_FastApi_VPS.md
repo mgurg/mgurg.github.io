@@ -292,7 +292,9 @@ sudo systemctl status fastapi
 
 [Dodatkowe informacje](https://www.fatalerrors.org/a/uvicorn-a-lightweight-and-fast-python-asgi-framework.html)
 
+### Bonus Vue.js
 
+Konfiguracja dla przypadku gdzie w pliku `index.html` mamy frontend w Vue.js, a API chcemy przenieść na port 5000
 
 ```nginx
 server {

@@ -273,7 +273,7 @@ http {
 ```bash
 sudo ln -s /etc/ngnix/sites-available/helloworld /etc/ngnix/sites-enabled/
 ```
-Z niewiadomego powdu powyższa komenda nie chiała tym razem działać obszedłem to poprzez:
+Z niewiadomego powodu powyższa komenda nie chciała tym razem działać obszedłem to poprzez:
 ```bash
 cd /etc/nginx/sites-enabled/
 sudo ln -s ../sites-available/helloworld
