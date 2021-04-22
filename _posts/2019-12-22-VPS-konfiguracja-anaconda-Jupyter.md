@@ -223,7 +223,7 @@ W celu inicjalizacji po zakończeniu procesu instalacji, najpierw należy urucho
 ```bash
 <ścieżka do conda>/bin/activate
 ```
-a następnie uruchomić `conda init` Można to też zrobić w trakcie instalacji wyarżając zgodę pod koniec instalacji.
+a następnie uruchomić `conda init` Można to też zrobić w trakcie instalacji wyrażając zgodę pod koniec instalacji.
 
 Po instalacji:
 
@@ -255,11 +255,78 @@ Polecam też doinstalować od razu podstawowe biblioteki:
 conda install -y -c conda-forge numpy 
 conda install -y -c conda-forge pandas
 conda install -y -c conda-forge matplotlib 
+conda install -y -c conda-forge missingno
+
 # conda install -y -c conda-forge opencv 
 # warto rozważyć instalację OpenCV z pomoca pip.
 # Zyskamy dostęp do dodatkowych modułów:
 pip install opencv-contrib-python
 ```
+Stworzenie pliku konfiguracyjnego:
+
+```bash
+jupyter-lab --generate-config
+
+Writing default config to: /home/lambda/.jupyter/jupyter_lab_config.py
+```
+
+Można od razu ustawić w nim domyślny folder roboczy:
+
+```bash
+nano /home/lambda/.jupyter/jupyter_lab_config.py
+```
+
+poprzez ustawienie linii
+
+```
+c.ServerApp.root_dir = '/home/lambda/ntbks'
+```
+
+Ustawienie hasła (nie będzie konieczne podawanie długiego tokena do autoryzacji):
+
+```bash
+jupyter notebook password
+```
+
+```bash
+Enter password: **********
+Verify password: **********
+[NotebookPasswordApp] Wrote hashed password to: /home/lambda/.jupyter/jupyter_notebook_config.py
+```
+
+Po połączaniu przez SSH powinniśmy mieć dostęp do JupyterLab (pod adresem [localhost:8888](localhost:8888)):
+
+```bash
+ssh -L 8888:localhost:8888 myuser@your_server_ip
+```
+
+W PUTTy:
+
+Ustawienie tunelu w SSH
+
+SSH -> Tunnels
+
+```bash
+L8000 localhost:8888
+```
+
+Połączenie (na komputerze lokalnym):
+
+```bash
+http://localhost:8000
+```
+
+Po zalogowaniu każdorazowo konieczne jest uruchomienie ręcznie środowiska:
+
+```bash
+conda activate env
+jupyter lab
+```
+
+### 
+
+## Dlib
+
 Dodatkowe informacje temat [niuansów instalacji OpenCV](https://www.pyimagesearch.com/opencv-tutorials-resources-guides/). Warto pomyśleć też nad instalacją biblioteki [Dlib](http://dlib.net/):
 
 * Utworzenie środowiska z python 3.7: `conda create -n cenv python=3.7.0`
@@ -277,128 +344,24 @@ Type "help", "copyright", "credits" or "license" for more information.
 '19.21.0'
 ```
 
-Jezeli zastanawiasz się czego jeszcze nie ma w utworzonym środowisku, to `conda list` powie co już mamy.
+Jeżeli zastanawiasz się czego jeszcze nie ma w utworzonym środowisku, to `conda list` powie co już mamy.
 PS.
 Korzystam zwykle z kanału *conda-forge* można na przyszłość [ustawić go jako domyślny](https://stackoverflow.com/a/39862730).
 
-Doinstalowanie nodejs (w celu późniejszego korzystania z rozszerzeń)
+## NodeJs
+
+Doinstalowanie nodeJS (w celu późniejszego korzystania z rozszerzeń)
 
 ```bash
 cd /tmp
-curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
+sudo bash nodesource_setup.sh
 sudo apt-get install -y nodejs
-```
-
-Stworzenie pliku konfiguracyjnego:
-
-```bash
-jupyter-lab --generate-config
-
-Writing default config to: /home/lambda/.jupyter/jupyter_notebook_config.py
-```
-
-Można od razu ustawić w nim domyślny folder roboczy:
-```bash
-nano /home/lambda/.jupyter/jupyter_notebook_config.py
-```
-
-poprzez ustawienie linii
-```
-#c.NotebookApp.notebook_dir = "./ntbks"
-```
-
-Ustawienie hasła (nie będzie konieczne podawanie długiego tokena do autoryzacji):
-
-```bash
-jupyter notebook password
-```
-
-```bash
-Enter password: **********
-Verify password: **********
-[NotebookPasswordApp] Wrote hashed password to: /home/lambda/.jupyter/jupyter_notebook_config.py
-```
-
-Po połączniu przez SSH powinniśmy mieć dostęp do JupyterLab (pod adresem [localhost:8888](localhost:8888)):
-
-```bash
-ssh -L 8888:localhost:8888 myuser@your_server_ip
-```
-W PUTTy:
-
-Ustawienie tunelu w SSH
-
-SSH -> Tunnels
-
-```bash
-L8000 localhost:8888
-```
-
-Połączenie (na komputerze lokalnym):
-
-```bash
-http://localhost:8000
-```
-Po zalogowaniu każdorozaowo konieczene jest uruchomienie ręcznie środowiska:
-```bash
-conda activate env
-jupyter lab
-```
-### Automatyczny start usługi
-
-Opis dla venv, a nie conda - czeka na aktualizację :)
-
-Należy utworzyć w plik `jupyter.config` w folderze `/etc/systemd/system/`:
-
-```
-[Unit]
-Description=Jupyter Notebook
-
-[Service]
-Type=simple
-PIDFile=/run/jupyter.pid
-ExecStart=/bin/bash -c ". ~/environments/ml_env/bin/activate;jupyter-notebook --notebook-dir=/home/lambda/notebooks"
-User=lambda
-Group=lambda
-WorkingDirectory=/home/lambda/notebooks
-Restart=always
-RestartSec=10
-
-[Install]
-WantedBy=multi-user.target
-
-```
-
-Następnie należy wykonać polecenia:
-
-```bash
-sudo systemctl enable jupyter.service
-sudo systemctl daemon-reload
-sudo systemctl start jupyter.service
-
-```
-
-Sprawdzenie statusu:
-
-```bash
-systemctl status jupyter.service
-```
-
-```bash
-* jupyter.service - Jupyter Notebook
-   Loaded: loaded (/etc/systemd/system/jupyter.service; enabled; vendor preset: enabled)
-   Active: active (running) since Fri 2020-01-24 12:44:10 CET; 31min ago
- Main PID: 13486 (bash)
-    Tasks: 15 (limit: 4681)
-   CGroup: /system.slice/jupyter.service
-           |-13486 /bin/bash -c . ~/environments/ml_env/bin/activate;jupyter-notebook --notebook-dir=/home/lambda/notebooks
-           |-13487 /home/lambda/environments/ml_env/bin/python3 /home/lambda/environments/ml_env/bin/jupyter-notebook --notebook-dir=/home/lambda/notebooks
-           `-13570 /home/lambda/environments/ml_env/bin/python3 -m ipykernel_launcher -f /home/lambda/.local/share/jupyter/runtime/kernel-60191e35-aef5-42cf-9859-2b68d5298c35.json
 ```
 
 ### Dodatki
 
-Jeżeli wszystko działą to możemy na koniec doinstalować ciemny motyw:
+Jeżeli wszystko działa to możemy na koniec doinstalować ciemny motyw:
 ```bash
 jupyter labextension install @telamonian/theme-darcula
 ```
@@ -407,9 +370,9 @@ jupyter labextension install @telamonian/theme-darcula
 
 `SHIFT + L` - pokazuje ukrywa numery linii
 
-Lokalnie pracuję korzystająć z [Dockera](https://mgurg.github.io/docker/2020/08/05/Docker.html)
+Lokalnie pracuję korzystając z [Dockera](https://mgurg.github.io/docker/2020/08/05/Docker.html)
 
-Sprawdzanie pisownii:
+Sprawdzanie pisowni:
 ```bash
 jupyter labextension install @ijmbarr/jupyterlab_spellchecker
 ```
@@ -427,7 +390,7 @@ git config --global user.name "user_name"
 git config --global user.email "email_id"
 ```
 
-Klonowanie repozytorium (po przejściu do własciwego folderu):
+Klonowanie repozytorium (po przejściu do właściwego folderu):
 
 ```bash
 cd ~/github

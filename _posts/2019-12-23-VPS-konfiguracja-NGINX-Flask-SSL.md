@@ -103,7 +103,7 @@ Nginx Full (v6)            ALLOW       Anywhere (v6)
 ```
 # Flask
 
-Przed instalacją utwoorzymy wirtualne środowisko – kopię Pythona, ze specyficznymi  ustawieniami, zainstalowanymi modułami itp. Dzięki virtualenv możemy  mieć środowiska z różnymi wersjami tych samych modułów odseparowane od systemowego Pythona.
+Przed instalacją utworzymy wirtualne środowisko – kopię Pythona, ze specyficznymi  ustawieniami, zainstalowanymi modułami itp. Dzięki virtualenv możemy  mieć środowiska z różnymi wersjami tych samych modułów odseparowane od systemowego Pythona.
 
 Instalacja `venv`
 
