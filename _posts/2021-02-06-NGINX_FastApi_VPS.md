@@ -324,6 +324,89 @@ server {
 }
 ```
 
+alternatywnie
+
+```nginx
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        set $path_front /opt/fake-front;
+        set $path_api /opt/fake-api;
+
+        root $path_front;
+
+        index index.html;
+
+        server_name _;
+
+        error_log  /var/log/nginx/error.log;
+        access_log /var/log/nginx/access.log;
+
+        location ~ ^/api/(.+\.php)$ {
+                index index.php;
+                root $path_api;
+                try_files /$1 =404;
+                fastcgi_split_path_info ^(.+?\.php)(/.*)$;
+                fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
+                include fastcgi_params;
+                fastcgi_param  SCRIPT_NAME $1;
+                fastcgi_param SCRIPT_FILENAME $path_api/$1;
+                fastcgi_param PATH_INFO $fastcgi_path_info;
+                error_log  /var/log/nginx/api.error.log;
+                access_log /var/log/nginx/api.access.log;
+        }
+
+        location ~ ^/api/(.*) {
+                index index.php;
+                root $path_api;
+                try_files $1 =404 /api/index.php?$args;
+                error_log  /var/log/nginx/api.error.log;
+                access_log /var/log/nginx/api.access.log;
+        }
+
+        location /favicon.ico {
+                log_not_found off;
+                access_log off;
+        }
+
+        location /robots.txt {
+                allow all;
+                log_not_found off;
+                access_log off;
+        }
+        location / {
+                index index.html
+                root $path_front;
+                try_files $uri $uri/ /index.php?$args;
+                error_log  /var/log/nginx/front.error.log;
+                access_log /var/log/nginx/front.access.log;
+        }
+
+        location ~ \.php$ {
+                index index.php
+                root $path_front;
+                try_files $uri =404;
+                fastcgi_split_path_info ^(.+?\.php)(/.*)$;
+                fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
+                include fastcgi_params;
+                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                fastcgi_param PATH_INFO $fastcgi_path_info;
+                error_log  /var/log/nginx/front.error.log;
+                access_log /var/log/nginx/front.access.log;
+        }
+        location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
+                index index.html
+                root $path_front;
+                expires max;
+                log_not_found off;
+                error_log  /var/log/nginx/front.error.log;
+                access_log /var/log/nginx/front.access.log;
+        }
+}
+
+```
+
 
 
 ## Wdrażanie zmian na serwerze
