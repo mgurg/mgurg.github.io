@@ -286,6 +286,7 @@ Ustawienie hasła (nie będzie konieczne podawanie długiego tokena do autoryzac
 
 ```bash
 jupyter notebook password
+jupyter server password
 ```
 
 ```bash
