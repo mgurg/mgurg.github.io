@@ -102,6 +102,18 @@ Uptime:                 11 min 0 sec
 Threads: 2  Questions: 2  Slow queries: 0  Opens: 115  Flush tables: 3  Open tables: 36  Queries per second avg: 0.003
 ```
 
+### Aktualny czas
+
+Wstawianie bieżącej daty w kolumnach *created_at* i *updated_at*
+
+```sql
+ALTER TABLE maria_db.roles MODIFY COLUMN created_at datetime DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE maria_db.roles MODIFY COLUMN updated_at datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+
+```
+
+
+
 ### Zdalne logowanie
 
 W pliku
