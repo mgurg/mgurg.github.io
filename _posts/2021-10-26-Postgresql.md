@@ -6,9 +6,11 @@ author: "Michał"
 math: false
 ---
 
+
 Premiera 14 wersji *PostgreSQL* to dobry pretekst żeby zacząć pracować z tą bazą danych.
 
-## Docker
+
+# Docker
 
 Zawartość pliku `docker-compose.yml`:
 ```yaml
