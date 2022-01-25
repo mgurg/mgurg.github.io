@@ -6,7 +6,10 @@ author: "Michał"
 math: false
 ---
 
+Premiera 14 wersji *PostgreSQL* to dobry pretekst żeby zacząć pracować z tą bazą danych.
+
 ## Docker
+
 Zawartość pliku `docker-compose.yml`:
 ```yaml
 # docker-compose --env-file pg.env up -d
