@@ -159,14 +159,19 @@ o zawartości:
 ```bash
 [Unit]
 Description=Gunicorn instance daemon to serve FastAPI
-After=network.target
+#After=network.target
+After=multi-user.target
+StartLimitBurst=60
+StartLimitIntervalSec=60
 
 [Service]
 User=lambda
 Group=www-data
 WorkingDirectory=/var/www/fastapi_www/app
 Environment="PATH=/var/www/fastapi_www/fast_ve/bin"
-ExecStart=/var/www/fastapi_www/fast_ve/bin/gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker -b "0.0.0.0:5000"
+ExecStart=/var/www/fastapi_www/fast_ve/bin/gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker -b unix:fastapi.sock -m 007
+Restart=on-failure
+RestartSec=60
 
 [Install]
 WanterBy=multi-user.target
@@ -405,6 +410,141 @@ server {
         }
 }
 
+```
+
+
+
+
+
+Ubuntu 20.04 (remontmaszyn + imion)
+
+```nginx
+server {
+        root /var/www/html;
+        index index.html index.htm index.ngnix-debian.html;
+
+        server_name imion.eu www.imion.eu;
+
+
+        location / {
+                root /var/www/html;
+		try_files $uri $uri/ /index.html;
+		add_header 'Access-Control-Allow-Origin' 'origin-list';
+                proxy_set_header   Host             $host;
+        	proxy_set_header   X-Real-IP        $remote_addr;
+        	proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+	        proxy_headers_hash_max_size 512;
+     		proxy_headers_hash_bucket_size 128; 
+		}
+
+#        location /idd {
+#                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+#                proxy_set_header Host $http_host;
+#                proxy_http_version 1.1;
+#		proxy_pass http://unix:/var/www/fastapi_www/app/fastapi.sock;
+#        }
+
+#        location /api {
+#                include proxy_params;
+#		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+#                proxy_set_header Host $http_host;
+#                proxy_http_version 1.1;
+#                proxy_pass http://192.166.219.228:5000/api;
+#        }
+
+
+    listen [::]:443 ssl ipv6only=on; # managed by Certbot
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/imion.eu/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/imion.eu/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+}
+
+server {
+        root /var/www/api;
+        index api_index.html;
+        server_name api.imion.eu www.api.imion.eu;
+
+        location / {
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header Host $http_host;
+                proxy_http_version 1.1;
+                proxy_pass http://unix:/var/www/fastapi_www/app/fastapi.sock;
+        	proxy_set_header   Host             $host;
+        	proxy_set_header   X-Real-IP        $remote_addr;
+	        proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+     		proxy_headers_hash_max_size 512;
+     		proxy_headers_hash_bucket_size 128; 
+        }
+
+
+    listen [::]:443 ssl; # managed by Certbot
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/api.imion.eu/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/api.imion.eu/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+
+server {
+        root /var/www/manuto;
+        index index.html index.htm index.ngnix-debian.html;
+
+        server_name remontmaszyn.pl www.remontmaszyn.pl;
+
+
+        location / {
+                root /var/www/manuto;
+                try_files $uri $uri/ /index.html;
+                add_header 'Access-Control-Allow-Origin' 'origin-list';
+                }
+
+
+
+
+    listen 80; # managed by Certbot
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/remontmaszyn.pl/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/remontmaszyn.pl/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+server {
+    if ($host = www.imion.eu) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    if ($host = imion.eu) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+        listen 80;
+        listen [::]:80;
+
+        server_name imion.eu www.imion.eu;
+    return 404; # managed by Certbot
+}
+
+
+server {
+    if ($host = api.imion.eu) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+        listen 80;
+        listen [::]:80;
+        server_name api.imion.eu www.api.imion.eu;
+    return 404; # managed by Certbot
+
+
+}
 ```
 
 
