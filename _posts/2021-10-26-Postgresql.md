@@ -12,7 +12,32 @@ Premiera 14 wersji *PostgreSQL* to dobry pretekst żeby zacząć pracować z tą
 
 # Docker
 
-Zawartość pliku `docker-compose.yml`:
+Podstawowy setup:
+
+```yaml
+version: '3.7'
+services:
+    postgres:
+        image: postgres:14
+        restart: always
+        environment:
+          - POSTGRES_USER=postgres
+          - POSTGRES_PASSWORD=postgresp
+        logging:
+          options:
+            max-size: 10m
+            max-file: "3"
+        ports:
+          - '5432:5432'
+        volumes:
+          - ./postgres-data:/var/lib/postgresql/data
+
+```
+
+
+
+Zawartość pliku `docker-compose.yml` przy korzystaniu z plików `.env`:
+
 ```yaml
 # docker-compose --env-file pg.env up -d
 version: '3.5'
@@ -45,6 +70,20 @@ Uruchomienie:
 ```bash
 docker-compose --env-file pg.env up -d
 ```
+
+Dodanie nowego użytkownika
+
+```bash
+docker exec 0f993d217929 psql -h localhost -U postgres -c "CREATE USER postgres2 WITH PASSWORD 'postgres2';"
+```
+
+Edycja hasła:
+
+```bash
+docker exec 0f993d217929 psql -h localhost -U postgres -c "ALTER USER postgres WITH PASSWORD 'postgres';"
+```
+
+
 
 #### PGAdmin
 

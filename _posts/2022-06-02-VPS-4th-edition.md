@@ -84,6 +84,7 @@ Aktualizacja systemu:
 ```bash
 sudo apt-get update
 sudo apt-get upgrade
+sudo apt-get --with-new-pkgs upgrade
 ```
 
 Przydatne programy:
