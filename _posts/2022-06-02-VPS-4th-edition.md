@@ -73,6 +73,25 @@ To                         Action      From
 OpenSSH                    ALLOW       Anywhere 
 ```
 
+Dodanie **niestandardowego** portu do połączeń przez SSH:
+
+```bash
+grep 'ssh' /etc/services
+
+sudo ufw allow <port number>/tcp
+
+nano /etc/ssh/sshd_config
+```
+
+```
+Port <port number>
+#AddressFamily any
+#ListenAddress 0.0.0.0
+#ListenAddress ::
+```
+
+
+
 restart
 
 ```bash
