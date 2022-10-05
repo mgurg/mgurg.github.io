@@ -644,6 +644,14 @@ server {
 
 ```
 
+Zatrzymanie Apache
+
+```
+sudo apachectl stop
+```
+
+
+
 ### SSL
 
 Certbot:
