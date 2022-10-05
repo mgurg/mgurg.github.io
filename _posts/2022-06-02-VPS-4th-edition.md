@@ -30,7 +30,15 @@ Dodanie użytkownika `lambda` do grupy administratorów:
 gpasswd -a lambda sudo
 ```
 
-Wyłączenie możliwości logowania użytkownika `root` poprzez SSH
+Dodanie **niestandardowego** portu do połączeń przez SSH:
+
+```bash
+grep 'ssh' /etc/services
+
+sudo ufw allow <port number>/tcp
+```
+
+Wyłączenie możliwości logowania użytkownika `root` poprzez SSH (+ zmiana domyslengo portu)
 
 ```bash
 sudo nano /etc/ssh/sshd_config
@@ -43,15 +51,14 @@ PermitRootLogin yes
 zamienić na: 
 
 ```bash
+Protocol 2
+
 PermitRootLogin no
-```
 
-O tym dlaczego warto to zrobić dla własnego bezpieczenstwa, można poczytać w artykule [Lessons Learned from SSH Credential Honeypots](https://systemoverlord.com/2020/09/04/lessons-learned-from-ssh-credential-honeypots.html)
-
-Jeżeli mimo wszystko potrzebujesz naocznie przekonać się na jakie zagrożenia narażone sa komputery podłączone do internetu to polecam wykonanie komendy 
-
-```bash
-grep "Failed password" /var/log/auth.log
+Port <port number>
+#AddressFamily any
+#ListenAddress 0.0.0.0
+#ListenAddress ::
 ```
 
 Aktywacja firewalla, dodanie reguły dla OpenSSH
@@ -70,27 +77,11 @@ Status: active
 
 To                         Action      From
 --                         ------      ----
-OpenSSH                    ALLOW       Anywhere 
+12345/tcp                  ALLOW       Anywhere                  
+OpenSSH                    ALLOW       Anywhere                  
+12345/tcp (v6)             ALLOW       Anywhere (v6)             
+OpenSSH (v6)               ALLOW       Anywhere (v6)  
 ```
-
-Dodanie **niestandardowego** portu do połączeń przez SSH:
-
-```bash
-grep 'ssh' /etc/services
-
-sudo ufw allow <port number>/tcp
-
-nano /etc/ssh/sshd_config
-```
-
-```
-Port <port number>
-#AddressFamily any
-#ListenAddress 0.0.0.0
-#ListenAddress ::
-```
-
-
 
 restart
 
@@ -98,7 +89,42 @@ restart
 sudo service ssh restart
 ```
 
-Aktualizacja systemu:
+### Fail2Ban
+```
+sudo apt-get install fail2ban
+sudo nano /etc/fail2ban/jail.local
+```
+
+```
+[sshd]
+enabled = true
+port = 22
+filter = sshd
+logpath = /var/log/auth.log
+maxretry = 5
+banaction = ufw
+banaction_allports = ufw
+```
+
+```
+sudo systemctl restart fail2ban
+```
+
+```
+sudo iptables -L f2b-sshd --line-numbers
+```
+
+
+
+O tym dlaczego warto to zrobić dla własnego bezpieczenstwa, można poczytać w artykule [Lessons Learned from SSH Credential Honeypots](https://systemoverlord.com/2020/09/04/lessons-learned-from-ssh-credential-honeypots.html)
+
+Jeżeli mimo wszystko potrzebujesz naocznie przekonać się na jakie zagrożenia narażone sa komputery podłączone do internetu to polecam wykonanie komendy 
+
+```bash
+sudo grep "Failed password" /var/log/auth.log
+```
+
+## Aktualizacja systemu:
 
 ```bash
 sudo apt-get update
@@ -106,18 +132,95 @@ sudo apt-get upgrade
 sudo apt-get --with-new-pkgs upgrade
 ```
 
+```bash
+sudo apt install unattended-upgrades
+sudo dpkg-reconfigure -plow unattended-upgrades
+
+# manual run
+sudo unattended-upgrade -v
+```
+
+
+
 Przydatne programy:
 
 ```bash
 sudo apt install mc
 sudo apt-get install curl
 sudo apt-get install htop
+sudo apt install net-tools
 ```
 
-W przypadku problemów z DNS:
+W przypadku problemów z DNS (`Temporary failure resolving 'security.ubuntu.com'`):
+
+```bash
+echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
+```
 
 ```bash
 sudo nano /etc/systemd/resolved.conf
+
+DNS=1.1.1.1 8.8.8.8
+FallbackDNS=8.8.4.4
+```
+
+### Bezpieczeństwo
+
+Wyświetlanie wszystkich bieżących połączeń, usług nasłuchowych i obsługujących je procesów.
+
+```
+netstat -tulpn
+```
+
+```
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 127.0.0.60:60           0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:12345           0.0.0.0:*               LISTEN      -                   
+tcp6       0      0 :::12345                :::*                    LISTEN      -                   
+udp        0      0 127.0.0.60:60           0.0.0.0:*                           -    
+```
+
+Wyświetlanie usług i ich stanu
+
+```
+service --status-all
+```
+
+```
+ [ + ]  apparmor
+ [ - ]  console-setup.sh
+ [ + ]  cron
+ [ + ]  dbus
+ [ - ]  grub-common
+ [ - ]  hwclock.sh
+ [ - ]  irqbalance
+ [ - ]  keyboard-setup.sh
+ [ + ]  kmod
+ [ + ]  networking
+ [ + ]  plymouth
+ [ + ]  plymouth-log
+ [ + ]  procps
+ [ - ]  rsync
+ [ + ]  ssh
+ [ + ]  udev
+ [ + ]  ufw
+ [ - ]  uuidd
+
+```
+
+Logi:
+
+```bash
+/var/log/message — Where whole system logs or current activity logs are available.
+/var/log/auth.log — Authentication logs.
+/var/log/kern.log — Kernel logs.
+/var/log/cron.log — Crond logs (cron job).
+/var/log/maillog — Mail server logs.
+/var/log/boot.log — System boot log.
+/var/log/mysqld.log — MySQL database server log file.
+/var/log/secure — Authentication log.
+/var/log/utmp or /var/log/wtmp — Login records file.
+/var/log/apt — Apt package manager logs
 ```
 
 
@@ -128,7 +231,7 @@ sudo nano /etc/systemd/resolved.conf
 
 ```bash
 python3 -V
-> Python 3.10.4
+> Python 3.10.6
 ```
 
 Instalacja i aktualizacja pip
@@ -141,7 +244,7 @@ sudo -H pip3 install --upgrade pip
 
 ```bash
 pip3 -V
->pip 9.0.1 from /usr/lib/python3/dist-packages (python 3.6)
+> pip 22.2.2 from /usr/local/lib/python3.10/dist-packages/pip (python 3.10)
 ```
 
 Biblioteki systemowe:
@@ -153,7 +256,7 @@ sudo apt install build-essential libssl-dev libffi-dev
 #### Poetry
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3 -
+curl -sSL https://install.python-poetry.org | python3 -
 poetry --version
 ```
 
@@ -171,6 +274,10 @@ virtualenvs.path = "{cache-dir}/virtualenvs"  # /home/lambda/.cache/pypoetry/vir
 ```bash
 poetry config virtualenvs.in-project true
 ```
+
+## Docker
+
+https://docs.docker.com/engine/install/ubuntu/
 
 ## Nginx
 
@@ -194,13 +301,11 @@ Wybranie któregoś z nich odbywa się poprzez:
 
 ```bash
 sudo ufw allow 'Nginx Full'
-sudo ufw allow OpenSSH
 ```
 
 Sprawdzenie statusu:
 
 ```bash
-sudo ufw enable
 sudo ufw status
 ```
 
@@ -226,9 +331,19 @@ Nginx Full (v6)            ALLOW       Anywhere (v6)
 ### PHP
 
 ```bash
-sudo apt-get install php8.1 php8.1-fpm php8.1-mysql php-common php8.1-cli php8.1-common php8.1-opcache php8.1-readline php8.1-mbstring php8.1-xml php8.1-gd php8.1-curl
-
-
+sudo apt-get install php \
+                 php-common \
+                 php-fpm \
+                 php-mysql \
+                 php-bcmath \
+                 php-curl \
+                 php-imagick \
+                 php-intl \
+                 php-json \
+                 php-mbstring \
+                 php-mysql \
+                 php-xml \
+                 php-zip
 ```
 
 ```bash
