@@ -650,7 +650,19 @@ Zatrzymanie Apache
 sudo apachectl stop
 ```
 
+### NGINX Amplify
+[How NGINX Amplify Agent Works](https://amplify.nginx.com/docs/guide-how-nginx-amplify-agent-works.html#configuring-nginx-for-metric-collection?utm_source=email&utm_medium=amplify&utm_campaign=welcome)
 
+Monitoring serwera (zasoby + NGINX):
+
+```
+    location /nginx_status {
+        stub_status on;
+        access_log off;
+        allow 127.0.0.1;
+        deny all;
+    }
+```
 
 ### SSL
 
