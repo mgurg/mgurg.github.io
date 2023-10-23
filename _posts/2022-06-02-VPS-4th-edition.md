@@ -275,6 +275,12 @@ virtualenvs.path = "{cache-dir}/virtualenvs"  # /home/lambda/.cache/pypoetry/vir
 poetry config virtualenvs.in-project true
 ```
 
+Usunięcie środowisk wirtualnych:
+```
+poetry env list
+poetry env remove escaperoomvss-Rr4vsJhH-py3.10
+```
+
 ## Docker
 
 https://docs.docker.com/engine/install/ubuntu/
