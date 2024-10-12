@@ -25,7 +25,6 @@ Opisane na podstawie książki: "Head first, Statystyka".
   - Interval (degrees Celsius and Fahrenheit)
   - Ratio (have a a true zero - degrees Kelvin, length)
 
-
 Podstawowe pojęcia:
 
 ## Średnia arytmetyczna
@@ -37,7 +36,6 @@ np.mean([10,10,10,10,90])
 ```
 
 Wynik: `26`
-
 
 ## Mediana
 
@@ -53,7 +51,7 @@ W sytuacji, w której ilość liczb w ciągu jest parzysta, medianę oblicza  si
 
 ## Dominanta
 
-Wartość występującą w danym zbiorze najczęściej. Dominantą może być więcej niż jedna wartość (np. w zestawie 2, 3, 3, 4, 5, 5, 7 dominantami są 3 i 5), może też być 0 (np: 1,2,3,4). 
+Wartość występującą w danym zbiorze najczęściej. Dominantą może być więcej niż jedna wartość (np. w zestawie 2, 3, 3, 4, 5, 5, 7 dominantami są 3 i 5), może też być 0 (np: 1,2,3,4).
 
 ## Percentyl
 
@@ -81,7 +79,7 @@ Jeżeli zmienna losowa ma rozkład normalny N(μ,σ) to:
 - 95,5 % populacji mieści się w przedziale (-2σ; + 2σ)
 - 99,7 % populacji mieści się w przedziale (- 3σ; + 3σ)
 
-mean, median and mode są sobie równe. 
+mean, median and mode są sobie równe.
 
 ![https://commons.wikimedia.org/wiki/File:Normal_Distribution_PDF.svg](https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Normal_Distribution_PDF.svg/1000px-Normal_Distribution_PDF.svg.png)
 
@@ -91,15 +89,11 @@ Skewness is a measure of asymmetry that indicates whether the observations in a 
 
 ![Skewness - Diva Jain / CC BY-SA (https://creativecommons.org/licenses/by-sa/4.0)](https://upload.wikimedia.org/wikipedia/commons/c/cc/Relationship_between_mean_and_median_under_different_skewness.png)
 
-
-
 ## Wariancja
 
 Mierzy rozproszenie danych wokół średniej (σ^2 / s^2)
 
-
-
-## Odchylenie standardowe 
+## Odchylenie standardowe
 
 Inaczej rozrzut - im niższa wartość sigma (σ) tym bardziej stromy (świecowy) jest rozkład normalny. Intuicyjnie rzecz ujmując, odchylenie standardowe mówi, jak szeroko wartości jakiejś wielkości (na przykład wieku, inflacji, kursu walutowego) są rozrzucone wokół jej średniej. Im mniejsza wartość odchylenia tym obserwacje są bardziej skupione wokół średniej. ([wikipedia](https://pl.wikipedia.org/wiki/Odchylenie_standardowe)). Duże odchylenie standardowe to wada modelu.
 
@@ -107,17 +101,9 @@ Odchylenie standardowe to miara zmienności dla pojedynczego zbioru danych
 
 Współczynnik zmienności - porównuje dwa lub więcej zbiorów danych.
 
-
-
-
-
-
-
 Variance and standard deviation measure the dispersion of a set of data points around its mean value.
 
 **TODO**: Wariancja, Kowariancja, Korelacja
-
-
 
 Przekształcenie rozkładu skośnego do normalnego (normalizacja)
 
@@ -126,10 +112,6 @@ Korelacja
 Korelacja Pearsona
 
 Korelacja dla rozkładu normalnego?
-
-
-
-
 
 ---
 

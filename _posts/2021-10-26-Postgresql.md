@@ -9,7 +9,6 @@ math: false
 
 Premiera 14 wersji *PostgreSQL* to dobry pretekst żeby zacząć pracować z tą bazą danych.
 
-
 # Docker
 
 Podstawowy setup:
@@ -33,8 +32,6 @@ services:
           - ./postgres-data:/var/lib/postgresql/data
 
 ```
-
-
 
 Zawartość pliku `docker-compose.yml` przy korzystaniu z plików `.env`:
 
@@ -66,7 +63,8 @@ volumes:
   pgadmin:
 ```
 
-Uruchomienie: 
+Uruchomienie:
+
 ```bash
 docker-compose --env-file pg.env up -d
 ```
@@ -83,15 +81,11 @@ Edycja hasła:
 docker exec 0f993d217929 psql -h localhost -U postgres -c "ALTER USER postgres WITH PASSWORD 'postgres';"
 ```
 
-
-
 #### PGAdmin
 
 ```bash
 docker run -p 5050:80 -e "PGADMIN_DEFAULT_EMAIL=m@m.com" -e "PGADMIN_DEFAULT_PASSWORD=1234" -d  dpage/pgadmin4
 ```
-
-
 
 ### Tworzenie nowej tabeli
 
@@ -115,6 +109,3 @@ CREATE TABLE users (
     uuid uuid
 );
 ```
-
-
-

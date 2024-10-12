@@ -9,7 +9,6 @@ author: "Michał"
 
 Matplotlib, Seaborn, Bokeh, Plotly - w Pythonie jest w czym wybierać jeżeli chodzi o biblioteki do wizualizacji.
 
-
 # Matplotlib
 
 Zapis do pliku:
@@ -33,5 +32,4 @@ for label in axes.get_xticklabels():
   label.set_ha('right')
 ```
 
-[[Rotate axis text in python matplotlib](https://stackoverflow.com/questions/10998621/rotate-axis-text-in-python-matplotlib)](https://stackoverflow.com/a/56139690/10691771)
-
+[[Rotate axis text in python matplotlib](https://stackoverflow.com/questions/10998621/rotate-axis-text-in-python-matplotlib)](<https://stackoverflow.com/a/56139690/10691771>)

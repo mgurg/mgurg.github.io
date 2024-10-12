@@ -10,8 +10,6 @@ math: true
 
 Najciekawsze rzeczy, które pomagają mi w pracy z bibliotekami Numpy i Pandas.
 
-
-
 # Powtórka
 
 Macierz:
@@ -24,12 +22,11 @@ x_{21} & x_{22} & x_{23} \\
 $$
 Dodawanie skalaru do macierzy:
 
-
 $$
 2 + \left( \begin{array}{ccc}
 1 & 2 \\
 3 & 4\\
-\end{array} \right) = 
+\end{array} \right) =
 \left( \begin{array}{ccc}
 2+1 & 2+2 \\
 2+3 & 2+4\\
@@ -42,12 +39,11 @@ $$
 
 Dodawanie dwóch macierzy:
 
-
 $$
 \left( \begin{array}{ccc}
 1 & 3 \\
 5 & 7\\
-\end{array} \right) + 
+\end{array} \right) +
 \left( \begin{array}{ccc}
 2 & 4 \\
 6 & 8\\
@@ -64,7 +60,6 @@ Iloczyn skalarny:
 np.matmul(a,a)
 np.dot(a,a)
 ```
-
 
 $$
 \left[ \begin{array}{ccc}
@@ -109,8 +104,6 @@ $$
 M_{4 \times 3} \cdot M_{3 \times 2} = M_{4 \times 2}
 $$
 
-
-
 - Matryca wyników ma zawsze taką samą liczbę wierszy jak lewa i taką samą liczbę kolumn jak prawa.
 - Kolejność ma znaczenie. Mnożenie A-B nie jest tym samym co mnożenie B-A.
 
@@ -130,8 +123,6 @@ m = np.array([[1,2,3], [4,5,6], [7,8,9]]) #matrix 3x3
 t = np.array([[[[1],[2]],[[3],[4]],[[5],[6]]],[[[7],[8]],\
     [[9],[10]],[[11],[12]]],[[[13],[14]],[[15],[16]],[[17],[17]]]]) # tensor 3x3x2x1
 ```
-
-
 
 **Reshape:**
 

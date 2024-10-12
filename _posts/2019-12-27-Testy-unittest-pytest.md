@@ -11,6 +11,7 @@ Testy w Python
 ## unittest
 
 Przykład testowanego pliku *calculator.py*:
+
 ```python
 # calculator.py file
 
@@ -30,6 +31,7 @@ def divide(x, y):
 ```
 
 Plik z testami *test_calculator.py*:
+
 ```python
 # test_calculator.py file
 
@@ -67,14 +69,14 @@ Możliwe metody testowania:
 | assertIsInstance(a, b)                       | isinstance(a, b)           |
 | assertRaises(exception, function, arguments) | Czy funkcja zwraca wyjątek |
 
-
 Wywołanie testów z poziomu konsoli:
 
 ```bash
 python -m unittest test_calculator
 ```
+
  Komunikat w przypadku błędu:
- 
+
  ```bash
  FAIL: test_add (test_calculator.TestCalculator)
 ----------------------------------------------------------------------
@@ -87,9 +89,11 @@ AssertionError: 2 != 3
 Ran 1 test in 0.000s
 
  ```
- 
+
 ### Gdy projekt nie ma płaskiej struktury
+
 Powyższa instrukcja jest prawidłowa, gdy struktura projektu jest płaska jak Ziemia:
+
 ```bash
 .
 ├── calculator.py
@@ -97,6 +101,7 @@ Powyższa instrukcja jest prawidłowa, gdy struktura projektu jest płaska jak Z
 ```
 
 Zwykle jednak chemy wydzielić testy do osobnego folderu:
+
 ```bash
 new_project
 ├── calculator
@@ -108,6 +113,7 @@ new_project
 ```
 
 Konieczne będzie wprowadzenie kilku zmian:
+
 * *calculator.py* i *test_calculator.py* plik zastały przeniesione do osobnych folderów
 * w każdym z folderów tworzymy pusty plik *__init__.py*
 * modyfikujemy w pliku test_calculator.py* linię importu jak poniżej:
@@ -118,11 +124,14 @@ from calculator import calculator
 ```
 
 Wywołanie testów:
+
 ```bash
 cd new_project
 python -m unittest test.test_calculator
 ```
+
 Można też wywołać konkretną klasę testową:
+
 ```
 python -m unittest test.test_calculator.TestCalculator
 
@@ -140,8 +149,3 @@ python -m unittest discover
 ```bash
 python -m pytest ptest.py -v
 ```
-
-
-
-
-

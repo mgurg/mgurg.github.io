@@ -6,11 +6,12 @@ author: "Michał"
 math: false
 ---
 
-Przed weekendem wymyśliłem że będę monitorował korki na trasie autobusów miejskich. Zabrałem się za poszukiwania informacji i po godzinie przepadłem na nowym pomyśle: System zliczania pasażerów. 
+Przed weekendem wymyśliłem że będę monitorował korki na trasie autobusów miejskich. Zabrałem się za poszukiwania informacji i po godzinie przepadłem na nowym pomyśle: System zliczania pasażerów.
 
 Aktualizacja 15.10.2020: Dzisiaj weszły nowe wytyczne związane z COVID które mówią że w autobusie nie może być więcej osób niż 50% miejsc siedzących lub 30% miejsc stojących i siedzących. Dodatkowa mobilizacja do wdrożenia pomysłu w życie :)
 
 ## System zliczania pasażerów
+
 Źródłem nowego pomysłu było to zamówienie: [Dostawa i montaż systemu zliczania pasażerów](http://bip.metropoliagzm.pl/przetarg/125941/za-270-5-1-2020)
 
 > Podstawowe cechy przedmiotowego zadania to:
@@ -36,16 +37,15 @@ Jeszcze kilka biznesowych informacji: [Podobny przetarg](https://www.gait.pl/wp-
 
 Interesowała mnie rynkowa wartość rozwiązania, udało mi się znaleźć [przetarg UM w Poznaniu](https://bip.umww.pl/292---648---k_74---k_231---k_216---przetarg-nieograniczony-pn-doposazenie-autobusow-szynowych), który odpowiadał mniej więcej temu co chcę zrobić. Jego [rozstrzygnięcie](https://www.przetargi.egospodarka.pl/kto-wygral/13907877,emtal-sp-z-o-o.html) opiewało na kwotę 597 800,00 PLN dla 5 pojazdów.
 
-
-
 ### Plan działania
 
-Wstępny plan: 
+Wstępny plan:
+
 - ~~Zdobycie odpowiedniego wideo~~: ✅ (18.09.2020)
 - ~~OpenCV - przetwarzanie wideo - instalacja Dlib~~, research teoretyczny: ✅ (22.09.2020)
 - ~~Motion Detection (określenie czy autobus jest w ruchu)~~ ✅ (17.10.2020)
 - ~~Rozpoznawanie obiektów na obrazach przy pomocy MobileNet SSD~~: ✅
-- Przegląd innych architektur sieci (YOLO?), rozpoznawanie obiektów przy pomocy ich pomocy. Pomiary wydajności/dokładności 
+- Przegląd innych architektur sieci (YOLO?), rozpoznawanie obiektów przy pomocy ich pomocy. Pomiary wydajności/dokładności
 - Tracking obiektów na filmie
 - Próba zdobycia większej ilości nagrań
 - Porównanie uzyskanego rozwiązania do komercyjnych rozwiązań opisanych w literaturze
@@ -61,13 +61,14 @@ Zdobycie odpowiedniego wideo było jednym z bardziej pracochłonnych etapów na 
 <img src="{{site.url}}/images/2020_10/cap_CCTV_2.jpg" style="display: block; margin: auto;" />
 
 ### Przygotowanie środowiska
-Konieczne było doinstalowanie Dlib. Przy okazji dowiedziałem się o istnieniu [opencv_contrib](https://github.com/opencv/opencv_contrib/tree/master/modules). 
+
+Konieczne było doinstalowanie Dlib. Przy okazji dowiedziałem się o istnieniu [opencv_contrib](https://github.com/opencv/opencv_contrib/tree/master/modules).
 
 ### Motion Tracking
 
 Pierwszą rzeczą jaką zrobiłem był prosty *object tracking*, od razu jednak stało się jasne, że będę potrzebował informacji o tym czy autobus się porusza. Bez tego będę zliczał omyłkowo ludzi którzy czekają na przystanku gdy  autobus podjeżdża. Dodatkowo niepotrzebnie tracę czas na próbach wyszukiwania ludzi w kadrze.
 
-Zacząłem od najprostszego rozwiązania które przyszło mi do głowy: monitorowanie czy drzwi są otwarte. Drzwi składają się z dwóch skrzydeł, każde z nich ma grubą ramkę. Ich stan można określić monitorując kolor w miejscu w którym schodzą cię skrzydła. 
+Zacząłem od najprostszego rozwiązania które przyszło mi do głowy: monitorowanie czy drzwi są otwarte. Drzwi składają się z dwóch skrzydeł, każde z nich ma grubą ramkę. Ich stan można określić monitorując kolor w miejscu w którym schodzą cię skrzydła.
 
 <img src="{{site.url}}/images/2020_10/door_detection.png" style="display: block; margin: auto;" />
 
@@ -88,31 +89,21 @@ Ważniejszym problemem okazały się artefakty kompresji wideo, które powodowa�
  cv2.circle(frame, (180,15), 5, (255,0,0), -1)
 ```
 
-
-
-
-
 ### Object Tracking - teoria
 
-Pierwsze próby wykonałem posiłkując się [Object detection with deep learning and OpenCV](https://www.pyimagesearch.com/2017/09/11/object-detection-with-deep-learning-and-opencv/)  wyniki jednak trochę mnie rozczarowały (analiza statycznych klatek z filmu). 
+Pierwsze próby wykonałem posiłkując się [Object detection with deep learning and OpenCV](https://www.pyimagesearch.com/2017/09/11/object-detection-with-deep-learning-and-opencv/)  wyniki jednak trochę mnie rozczarowały (analiza statycznych klatek z filmu).
 
 <img src="{{site.url}}/images/2020_10/passengers_detection.png" style="display: block; margin: auto;" />
-
-
 
 [Jaki model?](https://github.com/hoya012/deep_learning_object_detection)
 
 ---
 
-
 [OpenCV Object Tracking](https://www.pyimagesearch.com/2018/07/30/opencv-object-tracking/)
 
 [Blob from Image](https://www.pyimagesearch.com/2017/11/06/deep-learning-opencvs-blobfromimage-works/)
 
-
-
 [Train an AI to swipe tinder for you](https://medium.com/@joel.barmettler/train-an-ai-to-swipe-tinder-for-you-bc226df8709d)
-
 
 [Jak uruchomić DETR do wykrywania obiektów?](https://deepdrive.pl/jak-uruchomic-detr-do-wykrywania-obiektow/)
 

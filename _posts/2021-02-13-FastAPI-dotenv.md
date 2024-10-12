@@ -51,7 +51,7 @@ async def root():
 @app.get("/users")
 async def read_users(skip: int = 0, limit: int = 100):
     return {"skip" : skip,
-	    "limit" : limit}
+     "limit" : limit}
 
 @app.get("/items/")
 async def read_items(token: str = Depends(oauth2_scheme)):
@@ -90,7 +90,7 @@ LOG_LEVEL=debug
 WORKING_ENVIRONMENT=<production|development>
 ```
 
-### Odczyt ustawień:
+### Odczyt ustawień
 
 ```python
 import logging
@@ -121,4 +121,3 @@ class Settings(BaseSettings):
 def get_settings() -> BaseSettings:
     return Settings()
 ```
-

@@ -18,32 +18,36 @@ list(enumerate(seasons))
 
 # [(0, 'Spring'), (1, 'Summer'), (2, 'Fall'), (3, 'Winter')]
 ```
+
 Szybkie generowanie słownika:
+
 ```python
 dict( enumerate(['red', 'blue', 'green']) )
 
 # {0: 'red', 1: 'blue', 2: 'green'}
 ```
+
 ```python
 for (indeks, element) in enumerate(kolekcja):
-	# kod pętli for
+ # kod pętli for
 ```
 
 *zip()* - funkcja używana w pętli for; daje nam elementy z tej samej pozycji w kilku kolekcjach; gdy kolekcje są różnej długości, wielkość najkrótszej kolekcji będzie brana przy ilości powtórzeń pętli
 
 ```python
 for (element_a, element_b) in zip(kolekcja_a, kolekcja_b):
-	# kod pętli
+ # kod pętli
 
 ```
 
 ## Tuple, list, dict
 
-### Nawiasy okrągłe `(...)` 
+### Nawiasy okrągłe `(...)`
 
 Tuple `(1, 2, 3)` -  jest typem niezmiennym, raz zdefiniowanego nie można zmienić.
 
-Definiowanie tuple: 
+Definiowanie tuple:
+
 ```python
 my_tuple = (0, 1, 2)
 ```
@@ -52,7 +56,9 @@ my_tuple = (0, 1, 2)
 tuple1 = ("raz", "dwa", "trzy")
 # tuple1[0] = "jeden" – spowoduje błąd
 ```
+
 Rozpakowanie tuple:
+
 ```python
 tuple1 = ("raz", "dwa", "trzy")
 x, y, z = tuple1
@@ -61,6 +67,7 @@ print(x) # >>> "raz"
 print(y) # >>> "dwa"
 print(z) # >>> "trzy"
 ```
+
 To co z tuple robi tuple to przecinek:
 
 ```python
@@ -76,15 +83,16 @@ print(type(empty_tuple))  # <class 'tuple'>
 
 Tuples are **faster** and **more memory-efficient** than lists.
 
-
-### Nawiasy kwadratowe `[...]` 
+### Nawiasy kwadratowe `[...]`
 
 Listy `[1, 2, 3]`, dostęp do poszczególnych elementów w `list` czy `tuple` odbywa się za pomocą indeksów: `my_list[0]` lub `my_tuple[0]`
 
 Definiowanie list:
+
 ```python
 my_list= [4, 5, 5, 3, 4]
 ```
+
 ```python
 list = [1, 2, 3]
 list2 = ["kwiatek", "doniczka", "ziemia", "woda"]
@@ -92,6 +100,7 @@ list3 = []
 list4 = [1, "dwa", 3, 4]
 list5 = list(range(2,5))
 ```
+
 Możemy indeksować, slice'ować. Do elementu odwołujemy się przez indeks.
 
 Sposoby na manipulacje listami:
@@ -123,7 +132,9 @@ nowa_lista = lista.copy()
 nowa_lista = list(stara_lista)
 nowa_lista = stara_lista[:]
 ```
+
 Do głębokiego kopiowania (kopiowanie wszystkiego jako wartość) używamy modułu copy i metody deepcopy()
+
 ```python
 import copy
 nowy = copy.deepcopy(stary)
@@ -131,13 +142,11 @@ nowy = copy.deepcopy(stary)
 
 ### Set
 
-Unordered collection of distinct [hashable](https://docs.python.org/3/glossary.html#term-hashable) objects. 
+Unordered collection of distinct [hashable](https://docs.python.org/3/glossary.html#term-hashable) objects.
 
-https://www.programiz.com/python-programming/set
+<https://www.programiz.com/python-programming/set>
 
-
-
-### Nawiasy klamrowe `{...}` 
+### Nawiasy klamrowe `{...}`
 
 Słownik: `{'key': 'value'}` -  odwołujemy się poprzez klucz a nie indeks:
 
@@ -146,12 +155,9 @@ x = {"nazwisko":"kowalski", "pesel":88120134567}
 x['pesel']
 ```
 
-
-
 **klucz** – musi być typem niezmiennym (string, tuple, liczba), musi być unikalny (tylko jeden w słowniku)
 
 **wartość** – mogą być powtórzone
-
 
 Przykład słownika:
 
@@ -178,10 +184,11 @@ print(osoby.keys)
 print(osoby.values)
 
 for key, item in osoby.items():
-	print(key, item)
+ print(key, item)
 ```
 
 Definiowanie pustego słownika
+
 ```python
 testable = {}
 testable['key'] = 'value'
@@ -229,25 +236,27 @@ liczby3
 ```
 
 List comprehension:
+
 ```python
 liczby3 = [i**3 for i in liczby if i >0 ]
 liczby3
 ```
 
 Jeszcze jedne przykład:
+
 ```python
 # prosty sposób:
 kwadraty = []
 for x in range(20, 39):
-	kwadraty.append(x)
-	
+ kwadraty.append(x)
+ 
 # List comprehension
 kwadraty = [x for x in range(20, 39)]
 ```
 
-### Składnia 
+### Składnia
 
-[**output expression** _for item in iterable_]
+[**output expression** *for item in iterable*]
 
 ```python
 # Exponentiation - all items from list 
@@ -255,6 +264,7 @@ numbers = [1, 2, 3, 4, 5]
 squares = [number**2 for number in numbers]
 print(squares)
 ```
+
 można dodać również warunek if:
 
 [**output expression** *for item in iterable* **if condition**]
@@ -265,6 +275,7 @@ numbers = [1, 2, 3, 4, 5]
 squares = [number**2 for number in numbers if number > 2]
 print(squares)
 ```
+
 [**output expression** if-else clause  *for item in iterable* **condition/s on iterable**]
 
 ```python
@@ -278,8 +289,6 @@ print(squares)
 ```
 
 *List comprehension* są wydajniejsze od pętli for, zapis jest bardziej zwarty
-
-
 
 ---
 
@@ -298,6 +307,7 @@ Można to rozpisać jako:
 args = [1, 2]
 my_func(args[0], args[1])
 ```
+
 Pozwala przekazywać większą ilość argumentów do funkcji:
 
 ```python
@@ -328,8 +338,6 @@ print(*"fun")        # f u n
 print(*[5, 10, 15])  # 5 10 15
 ```
 
-
-
 ## kwarg
 
 Dla słowników używamy zapisu z dwoma gwiazdkami **  (ang. *keyword argument*)
@@ -350,6 +358,7 @@ Notice the difference: `*args` provides access to a **tuple** of remaining value
 ---
 
 ## Funkcja Lambda
+
 Funkcja nie posiadająca nazwy, o zwartym zapisie stosowana do prostych zadań. Przykład:
 
 ```python
@@ -366,7 +375,9 @@ Przekazuje do funkcji element listy jako argument. Wynik działania funkcji jest
 # map(function, element_iterowalny)
 map(function, iterable, ...)
 ```
+
 Krok po kroku:
+
 - pobranie elementu z listy
 
 - przekazanie go do funkcji jako argument
@@ -375,10 +386,7 @@ Krok po kroku:
 
 - wynik, który zwraca przekazuje do nowej listy
 
-  
-
 Przykład:
-
 
 ```python
 numbers = [7, 4, 9, 6, 8, 1]
@@ -392,7 +400,9 @@ def double(items):
 result = double(numbers)
 print(result)
 ```
+
 Odpowiednik powyższego kodu z wykorzystaniem `map()`:
+
 ```python
 def double(value):
     return value * 2
@@ -439,8 +449,6 @@ print(next(G)) # 5
 print(next(G)) # 6
 ```
 
-
-
 ## Iterators
 
 ```python
@@ -469,6 +477,7 @@ for item in my_list:
 # 2
 # 3
 ```
+
 ```python
 for element in characters:
     print(element)
@@ -532,8 +541,6 @@ for n, month in enumerate(months_list):
 
 `chr()` - zwraca znak na podstawie numeru Unicode
 
-
-
 ## Numerowanie znaków
 
 `str = "Python"`
@@ -552,11 +559,9 @@ str[-4:-2] # th
 str[::-1]  #nohtyP
 ```
 
-
-
 ## Multiline string
 
-Definiujemy jako potrójny apostrof`'''` lub cudzysłów `"""` 
+Definiujemy jako potrójny apostrof`'''` lub cudzysłów `"""`
 
 ```python
 create_users = """
@@ -584,7 +589,6 @@ str2 = ('ssssssssss'
 'ssssssssssssss'
 'ssssssssssss')
 ```
-
 
 ## f-string
 
@@ -631,12 +635,10 @@ plik = open("scieżka_do_pliku", tryb, encoding="utf-8")
 
 tryby:
 
-* r – tylko do odczytu
-* w – zapisywanie pliku (stary plik o tej samej nazwie będzie usunięty)
-* r+ - do odczytu i zapisu
-* a – dopisywanie do pliku (dane są dopisane do końca istniejącego pliku)
-
-
+- r – tylko do odczytu
+- w – zapisywanie pliku (stary plik o tej samej nazwie będzie usunięty)
+- r+ - do odczytu i zapisu
+- a – dopisywanie do pliku (dane są dopisane do końca istniejącego pliku)
 
 **plik.read()** – odczytanie całego pliku, zwracany jest string zawierający cały tekst pliku (włącznie ze
 znakami \n) – opc. argument – int określająca ilość bajtów do wczytania
@@ -645,14 +647,14 @@ znakami \n) – opc. argument – int określająca ilość bajtów do wczytania
 
 ```python
 for line in plik:
-	print(line, end='')
+ print(line, end='')
 ```
 
 Pliki należy zamykać po użyciu:
 
 ```python
 plik = open("plik.txt")
-	# kod
+ # kod
 plik.close()
 ```
 
@@ -660,7 +662,7 @@ Otwarcie pliku za pomocą *with* pozwala na automatyczne zamykanie pliku przez P
 
 ```python
 with open("plik.txt", encoding="utf-8") as plik:
-	print(plik.readline())
+ print(plik.readline())
 ```
 
 Context manager:
@@ -671,16 +673,12 @@ with statement as variable_name:
     ...
 ```
 
-
-
 **plik.write(string)** – zapisuje string do pliku w obecnej pozycji kursora, zwraca liczbę zapisanych znaków – należy pamiętać o znaku `\n`
 **plik.writelines(iterable)** – zapisuje elementy z kolekcji jako poszczególne linie w pliku
 
 Plik musi być otworzony w trybie do zapisu aby móc go zmieniać!
 
-
-
-### TODO:
+### TODO
 
 str() vs repr() in Python
 
@@ -688,11 +686,7 @@ output of the `__str__` should be *highly readable* and the output of the `__rep
 
 A good rule is to always define the `__repr__` method first since it is the method used by developers in debugging. It is also a fallback method for `__str__`which means that if the `__str__` method isn't defined, in the situations where it's needed, the `__repr__` will be called instead.
 
-
-
 stdin, stdout, stderr vs print()
-
-
 
 try:
 

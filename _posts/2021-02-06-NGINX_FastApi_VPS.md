@@ -9,8 +9,7 @@ W [I części](https://mgurg.github.io/python/2020/12/16/FastApi.html) zbudował
 
 ## Serwer WWW - NGINX
 
-Do wyboru jest Apache i NGINX. Rzut monetą wskazał na drugi webserver (ok, tak naprawdę to wybrany z premedytacją). 
-
+Do wyboru jest Apache i NGINX. Rzut monetą wskazał na drugi webserver (ok, tak naprawdę to wybrany z premedytacją).
 
 Instalacja serwera:
 
@@ -59,7 +58,6 @@ sudo systemctl status nginx
              |-15737 nginx: master process /usr/sbin/nginx -g daemon on; master_process on;
              `-15738 nginx: worker process
 ```
-
 
 ### Firewall
 
@@ -116,6 +114,7 @@ pip install  wheel
 ```
 
 Instalacja FastApi,  Gunicorn, Unicorn
+
 ```bash
 pip install fastapi[all]
 pip install gunicorn
@@ -123,6 +122,7 @@ pip install unicorn
 ```
 
 Dotychczasowy kod aplikacji:
+
 ```python
 from fastapi import FastAPI
 
@@ -134,6 +134,7 @@ async def root():
 ```
 
 Tak jak w przypadku instrukcji dla Flask zaczniemy testy od ręcznego uruchomienia  (`/var/www/fastapi_www/app`):
+
 ```bash
 gunicorn main:app -w 2 -k uvicorn.workers.UvicornWorker -b "0.0.0.0:5000"
 ```
@@ -146,10 +147,10 @@ sudo ufw allow 5000
 
 Teraz przejście na `remontmaszyn.pl:5000` powinno pokazać naszą stronę.
 
-
 ### Konfiguracja systemd
 
-Utworzenie pliku 
+Utworzenie pliku
+
 ```bash
 sudo nano /etc/systemd/system/fastapi.service
 ```
@@ -179,7 +180,7 @@ WanterBy=multi-user.target
 
 Jest to odpowiednik ręcznej komendy którą testowałem akapit wcześniej.
 
-Uruchomianie 
+Uruchomianie
 
 ```bash
 sudo systemctl start fastapi
@@ -292,8 +293,6 @@ sudo systemctl status fastapi
              └─50951 /var/www/fastapi_www/fast_ve/bin/python3 /var/www/fastapi_www/fast_ve/bin/gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker -b unix:fastapi.sock -m 007
 
 ```
-
-
 
 [Dodatkowe informacje](https://www.fatalerrors.org/a/uvicorn-a-lightweight-and-fast-python-asgi-framework.html)
 
@@ -412,10 +411,6 @@ server {
 
 ```
 
-
-
-
-
 Ubuntu 20.04 (remontmaszyn + imion)
 
 ```nginx
@@ -428,25 +423,25 @@ server {
 
         location / {
                 root /var/www/html;
-		try_files $uri $uri/ /index.html;
-		add_header 'Access-Control-Allow-Origin' 'origin-list';
+  try_files $uri $uri/ /index.html;
+  add_header 'Access-Control-Allow-Origin' 'origin-list';
                 proxy_set_header   Host             $host;
-        	proxy_set_header   X-Real-IP        $remote_addr;
-        	proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
-	        proxy_headers_hash_max_size 512;
-     		proxy_headers_hash_bucket_size 128; 
-		}
+         proxy_set_header   X-Real-IP        $remote_addr;
+         proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+         proxy_headers_hash_max_size 512;
+       proxy_headers_hash_bucket_size 128; 
+  }
 
 #        location /idd {
 #                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 #                proxy_set_header Host $http_host;
 #                proxy_http_version 1.1;
-#		proxy_pass http://unix:/var/www/fastapi_www/app/fastapi.sock;
+#  proxy_pass http://unix:/var/www/fastapi_www/app/fastapi.sock;
 #        }
 
 #        location /api {
 #                include proxy_params;
-#		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+#  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 #                proxy_set_header Host $http_host;
 #                proxy_http_version 1.1;
 #                proxy_pass http://192.166.219.228:5000/api;
@@ -471,11 +466,11 @@ server {
                 proxy_set_header Host $http_host;
                 proxy_http_version 1.1;
                 proxy_pass http://unix:/var/www/fastapi_www/app/fastapi.sock;
-        	proxy_set_header   Host             $host;
-        	proxy_set_header   X-Real-IP        $remote_addr;
-	        proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
-     		proxy_headers_hash_max_size 512;
-     		proxy_headers_hash_bucket_size 128; 
+         proxy_set_header   Host             $host;
+         proxy_set_header   X-Real-IP        $remote_addr;
+         proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+       proxy_headers_hash_max_size 512;
+       proxy_headers_hash_bucket_size 128; 
         }
 
 
@@ -546,8 +541,6 @@ server {
 
 }
 ```
-
-
 
 ## Wdrażanie zmian na serwerze
 

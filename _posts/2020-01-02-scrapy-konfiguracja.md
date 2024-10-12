@@ -8,6 +8,7 @@ author: "Michał"
 Opisałem drogę w wyniku której zacząłem używać scrapy, dzisiaj chciałym pokazać jak skonfigurowałem to narzędzie żeby móc pobierać dane z otomoto.
 
 ## Instalacja i pierwsze testy
+
 Scrapy instalowałem z pomocą pip:
 
 ```bash
@@ -62,11 +63,15 @@ Jeżeli nie ma potrzeby przetwarzania dużej ilości stron (lub tak jak u mnie c
 [s]   view(response)    View response in a browser
 >>>
 ```
+
 Pojawi się wtedy lista potrzebnych komend, spróbujmy pobrać przykładowa stronę komendą
+
 ```bash
 >>> fetch("https://www.otomoto.pl/osobowe/toyota/yaris/ii-2005-2011/")
 ```
+
 Niestety pierwszy rezultat może być rozczarowujący, nie udało się pobrać niczego (przekroczony czas oczekiwania)
+
 ```bash
 >>> fetch("https://www.otomoto.pl/osobowe/toyota/yaris/ii-2005-2011/")
 2020-01-09 18:51:05 [scrapy.core.engine] INFO: Spider opened
@@ -102,11 +107,13 @@ Podgląd pobranych danych w przeglądarce umożliwia komenda `view(response)`
 Jeżeli chcemy zobaczyć kod strony to możemy go wyświetlić przy pomocy `print(response.text)`
 
 ---
+
 ## część II
+
 Ponieważ  pierwsze próby używania Scrapy wyszły pomyślnie, to zacząłem dostosowywać to narzędzie do swoich potrzeb.
 
-
 ### Tworzenie projektu
+
 Wykorzystując komendę:
 
 ```bash
@@ -114,6 +121,7 @@ scrapy startproject scrapy_otomoto
 ```
 
 Utworzymy na dysku następującą strukturę plików
+
 ```bash
 >tree /f
 
@@ -135,6 +143,7 @@ D:.
         └───__pycache__
 
 ```
+
 ### Wygenerowanie pająka
 
 Kolejnym krokiem jest wygenerowanie "pająka":
@@ -142,7 +151,9 @@ Kolejnym krokiem jest wygenerowanie "pająka":
 ```batch
 scrapy genspider otomoto otomoto.pl
 ```
+
 Wynikiem tej komendy jest utworzenie nowego pliku w folderze `spiders`
+
 ```batch
 D:.
 │   scrapy.cfg
@@ -165,7 +176,9 @@ D:.
             settings.cpython-37.pyc
             __init__.cpython-37.pyc
 ```
+
 Zawartość pliku `otomoto.py`:
+
 ```python
 # -*- coding: utf-8 -*-
 import scrapy
@@ -179,7 +192,9 @@ class OtomotoSpider(scrapy.Spider):
     def parse(self, response):
         pass
 ```
+
 Plik konfiguracyjny `scrapy.cfg`:
+
 ```
 # Automatically created by: scrapy startproject
 #
@@ -290,14 +305,16 @@ class OtomotoSpider(scrapy.Spider):
             json.dump(data, j, indent=4)
 
     # def parse_item(self, response):
-	#       with open('page.html', 'wb') as html_file:
-	# 	        html_file.write(response.body)
+ #       with open('page.html', 'wb') as html_file:
+ #          html_file.write(response.body)
     #     #pass
 
 ```
 
 ---
+
 ## Część IV
+
 Kolejnym krokiem jest sprawienie żeby zadanie pobierania ogłoszeń wykonywało się samo co jakiś czas. W moim przypadku będzie to raz na dobę, w środku nocy. Korzystam przy tym z dobrodziejstwa własnego serwera VPS.
 
 ### Automatyczne pobieranie stron (cron + Scrapy)
@@ -320,6 +337,7 @@ scrapy runspider otomoto.py
 ```
 
 Zrobienie z pliku `getdata.sh` pliku wykonywalnego:
+
 ```bash
 chmod +x hello_world.sh 
 ```
@@ -349,7 +367,7 @@ Skrypt bash można uruchomić ręcznie dodając `./` przed nazwą pliku wykonywa
 
 ### cron
 
-Zadanie będzie wykonywane codziennie o 4:33 w nocy. 
+Zadanie będzie wykonywane codziennie o 4:33 w nocy.
 
 ```
 crontab -e
@@ -394,7 +412,7 @@ MAILTO=""
 33 4 * * * ~/scrapy/getdata.sh
 ```
 
-Ułatwieniem przy definiowaniu powtarzalny reguł w cron może być strona [crontab.guru](https://crontab.guru/#33_4_*_*_*) 
+Ułatwieniem przy definiowaniu powtarzalny reguł w cron może być strona [crontab.guru](https://crontab.guru/#33_4_*_*_*)
 
 Weryfikacja działania cron:
 
