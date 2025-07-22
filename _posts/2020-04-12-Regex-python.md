@@ -7,7 +7,7 @@ author: "Michał"
 
 Wprawadzenie do wyrażen regularnych zacznę od złotej mysli :)
 > Some people, when confronted with a problem, think:
-> “I know, I'll use regular expressions.” Now they have two problems. 
+> “I know, I'll use regular expressions.” Now they have two problems.
 
 # Wyrażenia regularne
 
@@ -36,9 +36,9 @@ Wprawadzenie do wyrażen regularnych zacznę od złotej mysli :)
 
 ## Powtórzenia
 
-`?` - 0 lub 1 
+`?` - 0 lub 1
 
-`* ` - 0 lub więcej
+`*` - 0 lub więcej
 
 `+` - 1 lub więcej
 
@@ -58,12 +58,11 @@ Wzorzec `a+` dla frazy `aaa` zwróci najdłuższy możliwy substring (`aaa`)
 
 Jeśli chcemy zmienić to zachowanie, musimy postawić znak zapytania `?` tuż za kwantyfikatorem: `+?`, `*?`, `{n,m}?`. Wtedy otrzymamy najkrótsze dopasowanie.
 
-Znak zapytania gdy następuje bezpośrednio po kwantyfikatorze to przełącza ten kwantyfikator z trybu "chciwego" na "leniwy". 
+Znak zapytania gdy następuje bezpośrednio po kwantyfikatorze to przełącza ten kwantyfikator z trybu "chciwego" na "leniwy".
 
 Przełączenie trybu nia działa dla `{n}` - ściśle określona liczba powtórzeń.
 
-
-### Python 
+### Python
 
 ```python
 import re
@@ -74,6 +73,7 @@ pattern.search('sample text') # szuka w całym ciągu znaków
 ```
 
 Przydatne metody dostępne w module re:
+
 - compile(pattern) – kompiluje zapytanie, co przyspiesza wyszukiwanie
 
 - findall(pattern, string) – zwraca obiekt z wszystkimi dopasowaniami
@@ -82,9 +82,6 @@ Przydatne metody dostępne w module re:
 
 - match(pattern, string) – zwraca dopasowanie o ile jest na początku string’a
 
-  
-
 ### Regex101
 
 Narzędzie do budowania i testowania zapytań : [Regex101](https://regex101.com/)
-

@@ -13,19 +13,20 @@ Serwer VPS kosztuje tyle co droższe kraftowe piwo. Kupiłem I nie żałuje. Za 
 
 Od czasu, gdy pisałem pierwszą wersję instrukcji minęło ponad pół roku. W tym czasie wyszło bardzo wiele niedociągnięć, które popełniłem za pierwszym razem. Z okazjis wyjścia Ubuntu 20.04 postanowiłem przeinstalować wszystko od zera, starając się wdrożyć to wszystko, o czym dowiedziałem się w tym czasie.
 
-
 # Podstawowa konfiguracja serwera
 
-Opis na podstawie tekstu Łukasza Prokulskiego: [Stawiamy własny serwer](https://blog.prokulski.science/index.php/2018/06/14/serwer-vps-dla-r-python/) uzupełnianego o inne źródła. Za radą Łukasza wybrałem serwer webh.pl i ogólnie nie żałuję, miał być tani i taki jest. Ma jednak jedną istotną wadę, która na początku może spędzać sen z powiek. 
+Opis na podstawie tekstu Łukasza Prokulskiego: [Stawiamy własny serwer](https://blog.prokulski.science/index.php/2018/06/14/serwer-vps-dla-r-python/) uzupełnianego o inne źródła. Za radą Łukasza wybrałem serwer webh.pl i ogólnie nie żałuję, miał być tani i taki jest. Ma jednak jedną istotną wadę, która na początku może spędzać sen z powiek.
 
 Jest nią niepoprawna obsługa rozszerzenia instrukcji procesora AVX2 przez wirtualna maszynę (problem z biblioteką **OpenBLAS**). Link do szerszego [opisu dla dociekliwych](https://github.com/xianyi/OpenBLAS/issues/2306).
 
 Rozwiązaniem jest ręczne określenie typu procesora w zmiennych systemowych, co można zrobić ręcznie z poziomu konsoli instrukcją:
+
 ```bash
 export OPENBLAS_CORETYPE="Skylake"
 ```
 
 Ewentualnie z poziomu skryptu pythona:
+
 ```python
 import os
 os.environ["OPENBLAS_CORETYPE"] ="Skylake"
@@ -33,6 +34,7 @@ os.getenv("OPENBLAS_CORETYPE")
 ```
 
 W jupyter możemy skorzystać z magiczej funkcji:
+
 ```bash
 %env OPENBLAS_CORETYPE=Skylake
 ```
@@ -42,6 +44,7 @@ Polecam rozwiązać to w sposób permanentny, poprzez modyfikację `sudo nano /e
 ```bash
 OPENBLAS_CORETYPE="Skylake"
 ```
+
 Pozostaje przeładować zmienne systemowe i można sprawdzić czy wszystko jest ok:
 
 ```bash
@@ -52,7 +55,6 @@ Skylake
 ```
 
 Jeżeli mimo tego nadal pojawiałyby się problemy, to należy zrestartować serwer.
-
 
 ## Użytkownicy i logowanie
 
@@ -78,7 +80,7 @@ sudo nano /etc/ssh/sshd_config
 PermitRootLogin yes
 ```
 
-zamienić na: 
+zamienić na:
 
 ```bash
 PermitRootLogin no
@@ -86,19 +88,23 @@ PermitRootLogin no
 
 O tym dlaczego warto to zrobić dla własnego bezpieczenstwa, można poczytać w artykule [Lessons Learned from SSH Credential Honeypots](https://systemoverlord.com/2020/09/04/lessons-learned-from-ssh-credential-honeypots.html)
 
-Jeżeli mimo wszystko potrzebujesz naocznie przekonać się na jakie zagrożenia narażone sa komputery podłączone do internetu to polecam wykonanie komendy 
+Jeżeli mimo wszystko potrzebujesz naocznie przekonać się na jakie zagrożenia narażone sa komputery podłączone do internetu to polecam wykonanie komendy
+
 ```bash
 grep "Failed password" /var/log/auth.log
 ```
 
 Aktywacja firewalla, dodanie reguły dla OpenSSH
+
 ```
 sudo ufw app list
 sudo ufw allow OpenSSH
 sudo ufw enable
 sudo ufw status
 ```
+
 Poprawna konfiguracja:
+
 ```
 Status: active
 
@@ -112,28 +118,31 @@ restart
 ```bash
 sudo service ssh restart
 ```
+
 Aktualizacja systemu:
+
 ```bash
 sudo apt-get update
 sudo apt-get upgrade
 ```
 
 Przydatne programy:
+
 ```bash
 sudo apt install mc
 ```
 
 Jeżeli planujemy instalację biblioteki OpenCV z `conda-forge` to można od razu doinstalować:
+
 ```bash
 sudo apt install libgl1-mesa-glx
 ```
 
 W ten sposób nie musimy pózniej google-ować co powoduje błąd (*ImportError: libGL.so.1: cannot open shared object file: No such file or directory*). Zaoszczedziliśmy właśnie 30s życia :)
 
-
 ## 3) Python
 
-### Instalacja podstawowych pakietów 
+### Instalacja podstawowych pakietów
 
 ```bash
 python3 -V
@@ -151,15 +160,17 @@ sudo -H pip3 install --upgrade pip
 pip3 -V
 >pip 9.0.1 from /usr/lib/python3/dist-packages (python 3.6)
 ```
+
 Menadżer pakietów dla  Python, komendy w wierszu poleceń:
+
 ```bash
-pip list 				# – lista zainstalowanych pakietów
-pip search 				# – szuka pakietów w repozytorium online
-pip install pakiet 		# – instalowanie modułu
-pip uninstall pakiet	# - odinstalowanie
-pip list –o 			# - sprawdzenie nieaktualnych pakietów
-pip install –U pakiet 	# - update pakietu
-pip freeze> plik.txt 	# – zapisanie informacji do pliku o pakietach
+pip list     # – lista zainstalowanych pakietów
+pip search     # – szuka pakietów w repozytorium online
+pip install pakiet   # – instalowanie modułu
+pip uninstall pakiet # - odinstalowanie
+pip list –o    # - sprawdzenie nieaktualnych pakietów
+pip install –U pakiet  # - update pakietu
+pip freeze> plik.txt  # – zapisanie informacji do pliku o pakietach
 pip install –r plik.txt # – zainstaluje wszystkie wymagane pakiety
 ```
 
@@ -168,20 +179,24 @@ Biblioteki systemowe:
 ```bash
 sudo apt install build-essential libssl-dev libffi-dev 
 ```
+
 Przykład pliku requirements.txt:
+
 ```
 # Moduł warunek wersja
 numpy >= 1.15.2
 pandas == 0.23.4
 ```
+
 # Conda & JupyterLab
-Za pierwszym razem instalowałem Jupyter Notebook i JupyterLab wykorzystując venv. Tym razem zdecydowałem się bardziej odseparować od systemowego pythona i wykorzystałem menadżer pakietów conda. 
+
+Za pierwszym razem instalowałem Jupyter Notebook i JupyterLab wykorzystując venv. Tym razem zdecydowałem się bardziej odseparować od systemowego pythona i wykorzystałem menadżer pakietów conda.
 
 Opisane na podstawie:
+
 * [Upgrading to JupyterLab on Ubuntu](https://hackersandslackers.com/upgrading-to-jupyter-lab-on-ubuntu/)
 
-* [Setting up a Jupyter Lab remote server ](https://agent-jay.github.io/2018/03/jupyterserver/)
-
+* [Setting up a Jupyter Lab remote server](https://agent-jay.github.io/2018/03/jupyterserver/)
 
 Odblokowanie portów firewalla:
 
@@ -219,10 +234,13 @@ Instalacja:
 #sh Anaconda3-2020.07-Linux-x86_64.sh
 sh Miniconda3-latest-Linux-x86_64.sh
 ```
-W celu inicjalizacji po zakończeniu procesu instalacji, najpierw należy uruchomić: 
+
+W celu inicjalizacji po zakończeniu procesu instalacji, najpierw należy uruchomić:
+
 ```bash
 <ścieżka do conda>/bin/activate
 ```
+
 a następnie uruchomić `conda init` Można to też zrobić w trakcie instalacji wyrażając zgodę pod koniec instalacji.
 
 Po instalacji:
@@ -251,6 +269,7 @@ conda install -c conda-forge jupyterlab
 ```
 
 Polecam też doinstalować od razu podstawowe biblioteki:
+
 ```bash
 conda install -y -c conda-forge numpy 
 conda install -y -c conda-forge pandas
@@ -262,6 +281,7 @@ conda install -y -c conda-forge missingno
 # Zyskamy dostęp do dodatkowych modułów:
 pip install opencv-contrib-python
 ```
+
 Stworzenie pliku konfiguracyjnego:
 
 ```bash
@@ -324,7 +344,7 @@ conda activate env
 jupyter lab
 ```
 
-### 
+###
 
 ## Dlib
 
@@ -363,6 +383,7 @@ sudo apt-get install -y nodejs
 ### Dodatki
 
 Jeżeli wszystko działa to możemy na koniec doinstalować ciemny motyw:
+
 ```bash
 jupyter labextension install @telamonian/theme-darcula
 ```
@@ -374,12 +395,15 @@ jupyter labextension install @telamonian/theme-darcula
 Lokalnie pracuję korzystając z [Dockera](https://mgurg.github.io/docker/2020/08/05/Docker.html)
 
 Sprawdzanie pisowni:
+
 ```bash
 jupyter labextension install @ijmbarr/jupyterlab_spellchecker
 ```
 
 ## Git
+
 Od razu zainstalujemy git tak żeby od razu synchronizować całą pracę.
+
 ```
 sudo apt-get install git
 ```
@@ -404,4 +428,3 @@ git clone https://github.com/xxx/py_otomoto.git
 sudo apt-get install openssh-server
 sudo apt-get install sshfs
 ```
-

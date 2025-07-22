@@ -8,8 +8,11 @@ author: "Michał"
 Machine learning podział i informacje ogólne.
 
 ## Klasyczne uczenie maszynowe
+
 ### Supervised
+
 #### Classification
+
 * K-NN
 * Naive Bayes
 * SVM
@@ -17,6 +20,7 @@ Machine learning podział i informacje ogólne.
 * Logistic Regression
 
 #### Regression
+
 * Linear Regression
 * Polynominal regression
 * Ridge/Lasso regression
@@ -24,6 +28,7 @@ Machine learning podział i informacje ogólne.
 ### Unsupervised
 
 #### Clustering
+
 * DBSCAN
 * K-Means (Flat)
 * Agglomerative (Divisive: Bottom-up)
@@ -33,11 +38,13 @@ Machine learning podział i informacje ogólne.
 📺 [How does k-nearest neighbors work?](https://www.youtube.com/watch?v=0p0o5cmgLdE)
 
 #### Pattern Search
+
 * Euclat
 * Apriori
 * FP-Growth
 
 #### Dimension Reduction
+
 * t-SNE
 * PCA
 * LSA
@@ -45,6 +52,7 @@ Machine learning podział i informacje ogólne.
 * LDA
 
 ## Ensemble Methods
+
 * Stacking
 * Bagging
 * Boosting
@@ -54,6 +62,7 @@ Machine learning podział i informacje ogólne.
   * LightGbm
 
 ## Reinforcement Learning
+
 * Genetic Algoritm
 * Q-Learning
 * Deep Q-Network (DQN)
@@ -61,43 +70,42 @@ Machine learning podział i informacje ogólne.
 * A3C
 
 ## Sieci neuronowe
+
 ### Perceptron (MLP)
+
 ### Konwolucujne Sieci Neuronowe (CNN)
+
 * DCNN
+
 ### Recurrent Neutral Networks (RNN)
+
 * LSM
 * LSTM
 * GRU
+
 ### Autoencoders
+
 * seq2seq
 
 ### Generative Adversaliar Networks
 
 ---
 
+<https://renanmf.com/machine-learning-and-deep-learning-software-engineers/>
 
+<https://youtu.be/JXhC8iNQvxE>
 
-https://renanmf.com/machine-learning-and-deep-learning-software-engineers/
-
-https://youtu.be/JXhC8iNQvxE
-
-
-- Korelacja
-  - Represents the relationship between two variables
-  - Shows that two variables move together (no matter in which direction)
-  - A single point (a number)
-- Regresja
-  - Represents the relationship between two or more variables
-  - Shows cause and effect (one variable is affected by the other)
-  - One way – – there is always only one variable that is causally dependent
-  - A line (in 2D space)
-
-
-
+* Korelacja
+  * Represents the relationship between two variables
+  * Shows that two variables move together (no matter in which direction)
+  * A single point (a number)
+* Regresja
+  * Represents the relationship between two or more variables
+  * Shows cause and effect (one variable is affected by the other)
+  * One way – – there is always only one variable that is causally dependent
+  * A line (in 2D space)
 
 ### Confusion matrix / ROC Curve
-
-
 
 ### Underfitting - Overfiting
 
@@ -110,8 +118,6 @@ https://youtu.be/JXhC8iNQvxE
 ### Loss function
 
 [Common Loss functions in machine learning](https://towardsdatascience.com/common-loss-functions-in-machine-learning-46af0ffc4d23)
-
-
 
 # Sieci neuronowe (ANN)
 
@@ -129,16 +135,16 @@ Architektura najprostszej sieci neuronowej (MLP):
 
 Najczęstsze typy aktywacji
 
-- *Sigmoid* (funkcja logistyczna). Zakres : (0,1) 
-- *TanH* (tangens hiperboliczny). Zakres (-1, 1)
-- *ReLu* (rectified linear unit). Zakres (0, inf)
-- *SoftMax*. Zakres:  (0,1) Suma jest równa 1 (prawdopodobieństwo)
+* *Sigmoid* (funkcja logistyczna). Zakres : (0,1)
+* *TanH* (tangens hiperboliczny). Zakres (-1, 1)
+* *ReLu* (rectified linear unit). Zakres (0, inf)
+* *SoftMax*. Zakres:  (0,1) Suma jest równa 1 (prawdopodobieństwo)
 
 Przejście od warstwy wejściowej do wyjściowej to *Feed Forward*, Droga powrotna (OUT -> IN)  to *Back Propagation*. Sieć uczy się i optymalizuje swój stan wewnętrzny poprzez minimalizowanie funkcji straty.  Backdrop jest potrzebny żeby ustalić właściwe wagi i bias. Wykorzystuje gradienty, a żeby uniknąć pozostania w lokalnym minimum stosuje się [Momentum](https://distill.pub/2017/momentum/).
 
 **Epoch** is when an ENTIRE dataset is passed forward and backward through the neural network only ONCE
 
-**Batch** - is a number of samples fed to NN during single iteration. Total number of training examples present in a single batch. 
+**Batch** - is a number of samples fed to NN during single iteration. Total number of training examples present in a single batch.
 
 **Iterations** is the number of batches needed to complete one epoch.
 
@@ -156,7 +162,7 @@ Usually, this computational advantage is leveraged by performing many more itera
 
 The way I like to think of how SGD works is to imagine that I have  one point that represents my input distribution.  My model is attempting to learn that input distribution.  Surrounding the input distribution  is a shaded area that represents the input distributions of all of the  possible minibatches I could sample.  It's usually a fair assumption  that the minibatch input distributions are close in proximity to the  true input distribution.  Batch gradient descent, at all steps, takes  the steepest route to reach the true input distribution.  SGD, on the  other hand, chooses a random point within the shaded area, and takes the steepest route towards this point.  At each iteration, though, it  chooses a new point.  The average of all of these steps will approximate the true input distribution, usually quite well.
 
-https://stats.stackexchange.com/questions/49528/batch-gradient-descent-versus-stochastic-gradient-descent
+<https://stats.stackexchange.com/questions/49528/batch-gradient-descent-versus-stochastic-gradient-descent>
 
 ---
 
@@ -164,11 +170,11 @@ https://stats.stackexchange.com/questions/49528/batch-gradient-descent-versus-st
 
 Więcej: [Batch Normalization — Speed up Neural Network Training](https://medium.com/@ilango100/batch-normalization-speed-up-neural-network-training-245e39a62f85)
 
-- Batch Gradient Descent  (Batch Size == Number of samples) 
+* Batch Gradient Descent  (Batch Size == Number of samples)
 
-- Mini-Batch Gradient Descent  ( 1 < Batch Size < Number of samples)
+* Mini-Batch Gradient Descent  ( 1 < Batch Size < Number of samples)
 
-- Stochasting Gradient Descent ( Batch Size ==1)
+* Stochasting Gradient Descent ( Batch Size ==1)
 
 ### Regularyzacja
 
@@ -183,19 +189,17 @@ Warstwa konwolucyjna + pooling + ANN = CNN
 ```python
 # simple_cnn
 Sequential([
-	Conv2D(32, kernel_size=(3, 3), activation='relu', input_shape=input_shape),
-	MaxPool2D(pool_size=(2, 2)),
-	Dropout(0.25), 
+ Conv2D(32, kernel_size=(3, 3), activation='relu', input_shape=input_shape),
+ MaxPool2D(pool_size=(2, 2)),
+ Dropout(0.25), 
        
-	Flatten(), # spłaszczanie, aby połączyć warstwy konwolucyjne z fully connected layers
+ Flatten(), # spłaszczanie, aby połączyć warstwy konwolucyjne z fully connected layers
         
-	Dense(1024, activation='relu'),
-	Dropout(0.5),
-	Dense(num_classes, activation='softmax')
+ Dense(1024, activation='relu'),
+ Dropout(0.5),
+ Dense(num_classes, activation='softmax')
     ])
 ```
-
-
 
 Konwolucja - nakładanie filtru ([Image Kernels Explained Visually](https://setosa.io/ev/image-kernels/))
 
@@ -204,4 +208,3 @@ Pooling - sposób na zmniejszanie zdjęć przy jednoczesnym zachowaniu najważni
 **Capsule Networks** - rozpoznawanie twarzy [Blog post: capsule networks](https://cezannec.github.io/Capsule_Networks/)
 
 Image augmentation - technika przeciwdziałania dla Rotate/scale/translation invariance (PyTorch: torchvision.transforms)
-

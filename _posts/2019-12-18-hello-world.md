@@ -11,6 +11,7 @@ math: true
 Zażółć gęślą jaźń – zdanie zawierające wszystkie polskie znaki diakrytyczne, służące do demonstrowania możliwości edytorów tekstu w zakresie obsługi alfabetu polskiego
 
 # Great heading (h1)
+
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce bibendum neque eget nunc mattis eu sollicitudin enim tincidunt. Vestibulum lacus tortor, ultricies id dignissim ac, bibendum in velit.
 
 ## Some great heading (h2)
@@ -51,7 +52,6 @@ Vestibulum lacus tortor, ultricies id dignissim ac, bibendum in velit. Proin con
 </html>
 ```
 
-
 In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.
 
 #### You might want a sub-subheading (h4)
@@ -73,7 +73,7 @@ In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla e
 - Third item, what what?!
 - Fourth item, fo sheezy my neezy
 
-### Oh hai, an ordered list!!
+### Oh hai, an ordered list
 
 In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla et felis ullamcorper bibendum. Phasellus et hendrerit mauris.
 
@@ -81,8 +81,6 @@ In arcu magna, aliquet vel pretium et, molestie et arcu. Mauris lobortis nulla e
 2. Second item, dawg
 3. Third item, what what?!
 4. Fourth item, fo sheezy my neezy
-
-
 
 ## Headings are cool! (h2)
 
@@ -100,7 +98,6 @@ lorem                 | lorem ipsum           | lorem ipsum dolor     | lorem ip
 lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit
 lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit
 lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit | lorem ipsum dolor sit
-
 
 ## Test for Python
 
@@ -173,7 +170,6 @@ class ExitNotifyThread(Thread):
         set."""
         return self.exitmessage
 ```
-
 
 <div class="mermaid">
 graph LR

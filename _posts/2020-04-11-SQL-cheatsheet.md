@@ -7,12 +7,10 @@ author: "Michał"
 
 
 
-Bazy danych 
+Bazy danych
 
 - relacyjne (SQL)
 - nierelacyjne (NoSQL)
-
-  
 
 ## Główny podział poleceń w SQL
 
@@ -35,7 +33,6 @@ Bazy danych
 
 - REVOKE
 - GRANT
-
 
 **Transaction Control Language (TCL)**
 
@@ -61,7 +58,6 @@ parent table - referenced table
 
 child table - referencing table
 
-
 ```sql
 -- add FK
 ALTER TABLE sales
@@ -86,7 +82,6 @@ ALTER TABLE customers
 DROP INDEX email_address;
 ```
 
-
 ### Relacje
 
 - Jeden do wielu
@@ -108,10 +103,6 @@ Całość można pogrupować jak poniżej:
 
 ---
 
-  
-
-
-
 ## SELECT
 
 Kolejność komend:
@@ -126,11 +117,9 @@ ORDER BY column_name(s)
 LIMIT number;
 ```
 
-
-
 Podstawowe operacje:
 
-1: `AND` / `OR` 
+1: `AND` / `OR`
 
 ```sql
 SELECT
@@ -236,8 +225,6 @@ ORDER BY salaries DESC -- odpowiednik pandas.head(10) .tail(10)
 LIMIT 100;
 ```
 
-
-
 ## INSERT
 
 Przykładowa składnia:
@@ -266,8 +253,6 @@ WHERE
 ```
 
 Pamiętać o COMMIT i ROLLBACK
-
-
 
 ## DELETE
 
@@ -301,8 +286,6 @@ DROP vs TRUNCATE vs DELETE
 - wartości auto-increment pozostają zachowane ()
 - Jest wolniejsze od TRUNCATE (jeżeli używamy go w taki sam sposób, tzn. bez WHERE)
 
-
-
 ## AGG
 
 Przykłady funkcji agregujących: COUNT() SUM() MIN() MAX() AVG()
@@ -313,8 +296,6 @@ SELECT
 FROM
    employees
 ```
-
-
 
 ```sql
 COUNT() --  zlicza wartości, jako jedyna działa z non-numeruc data
@@ -331,8 +312,6 @@ ROUND(#, decimal_places) -- decimal place jest opcjonalny
 IFNULL(expression_not_null, expression_null)
 COALESCE(expr_1, expr_2, exp_n3 ...)--IFNULL z więcej niż dwoma parametrami
 ```
-
-
 
 ## JOINS
 
@@ -375,8 +354,6 @@ FROM   employees e
 WHERE  e.emp_no > 109990;  
 ```
 
-
-
 ## SQL VIEW
 
 Wirtualna tabela utworzona z innej istniejącej tabeli lub tabel. "Migawka" z zapisanym stanem zdefiniowanego wcześniej zapytania. Jest ona uaktualniana automatycznie wraz ze zmieniającymi się danymi w oryginalnej tabeli.
@@ -389,8 +366,6 @@ AS
          join dept_manager m
            ON s.emp_no = m.emp_no;  
 ```
-
-
 
 ## Indeksy
 
@@ -408,11 +383,9 @@ FROM   salaries
 WHERE  salary > 89000;  
 ```
 
-
-
 ## Stored routines
 
-- stored procedures (nie zwracają wartości) Użycie: `call` procedure; 
+- stored procedures (nie zwracają wartości) Użycie: `call` procedure;
 - functions (user defined, built-in - zwracają pojedynczą wartość) Użycie: `select` function;
 
 Procedura:
@@ -422,10 +395,10 @@ DELIMITER $$
 
 CREATE PROCEDURE avg_salary()
 BEGIN
-	SELECT
-		AVG(salary)
-	FROM
-	salaries;
+ SELECT
+  AVG(salary)
+ FROM
+ salaries;
 END$$
 
 DELIMITER ;
@@ -480,44 +453,43 @@ SELECT
 
 ## SQLite
 
-Pierwszym podejściem do baz danych był dla mnie SQLite, wypisałem sobie tutaj kilka informacji które zwróciły moją uwagę. 
-
-
+Pierwszym podejściem do baz danych był dla mnie SQLite, wypisałem sobie tutaj kilka informacji które zwróciły moją uwagę.
 
 ### Tworzenie nowej tabeli
 
 Ogólny kod:
+
 ```sql
 CREATE TABLE [IF NOT EXISTS] [schema_name].table_name (
-	column_1 data_type PRIMARY KEY,
-   	column_2 data_type NOT NULL,
-	column_3 data_type DEFAULT 0,
-	table_constraints
+ column_1 data_type PRIMARY KEY,
+    column_2 data_type NOT NULL,
+ column_3 data_type DEFAULT 0,
+ table_constraints
 ) [WITHOUT ROWID];
 ```
 
-
-Przykład w python: 
+Przykład w python:
 
 ```sql
 """CREATE TABLE "{table_name}" (
-	"offer_id"	INTEGER NOT NULL,
-	"city"	TEXT,
-	"region"	TEXT,
-	"model"	TEXT,
-	"year"	INTEGER,
-	"mileage"	INTEGER,
-	"fuel_type"	TEXT,
-	"displacement"	INTEGER,
-	"price"	INTEGER,
-	"currency"	TEXT,
-	"pub_date"	TEXT,
-	"duration"	INTEGER,
-	"end_price"	INTEGER
+ "offer_id" INTEGER NOT NULL,
+ "city" TEXT,
+ "region" TEXT,
+ "model" TEXT,
+ "year" INTEGER,
+ "mileage" INTEGER,
+ "fuel_type" TEXT,
+ "displacement" INTEGER,
+ "price" INTEGER,
+ "currency" TEXT,
+ "pub_date" TEXT,
+ "duration" INTEGER,
+ "end_price" INTEGER
     );""".format(table_name=table_name)
 ```
 
 ### Kopiowanie danych do kolejnej tabeli
+
 ```sql
 INSERT INTO new_table (offer_id,city,region,model)
 SELECT offer_id,city,region,model FROM otomoto_20200101
@@ -537,8 +509,10 @@ WHERE (mtable.offer_id) = (otomoto_20200102.offer_id))
 WHERE pub_date is null AND ((offer_id) IN (SELECT offer_id FROM otomoto_20200102));
 ```
 
-### Zapisywanie długich zapytań 
+### Zapisywanie długich zapytań
+
 W pythonie powinno się to robić od trzech apostrofów, cudzysłowów, można wtedy dowolnie łamać tekst wewnątrz.
+
 ```sq
 create_users = """
     INSERT INTO

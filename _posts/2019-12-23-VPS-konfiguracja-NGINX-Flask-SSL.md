@@ -13,19 +13,18 @@ Teoria: 📺 [WSGI for Web Developers](https://www.youtube.com/watch?v=WqrCnVAkL
 
 **v2**
 
-Cześc druga poprawionej instrukcji stawiania środowiska do celów nauki Pythona/ML. W stosunku do porzedniej głowną zmianą jest chęć obsługi połączen poprzez HTTPS. 
-
+Cześc druga poprawionej instrukcji stawiania środowiska do celów nauki Pythona/ML. W stosunku do porzedniej głowną zmianą jest chęć obsługi połączen poprzez HTTPS.
 
 ## Serwer WWW - NGINX
 
-Do wyboru jest Apache i nginx. Rzut monetą wskazał na drugi webserver (ok, tak naprawdę to wybrany z premedytacją). 
-
+Do wyboru jest Apache i nginx. Rzut monetą wskazał na drugi webserver (ok, tak naprawdę to wybrany z premedytacją).
 
 Instalacja serwera:
 
 ```bash
 sudo apt-get install nginx
 ```
+
 Po wpisaniu IP servera (`192.166.219.228`) powinien pojawić się komunikat powitalny nginx
 
 ```
@@ -68,7 +67,6 @@ sudo systemctl status nginx
              `-15738 nginx: worker process
 ```
 
-
 ### Firewall
 
 Do konfiguracji firewalla można użyć (wyświetli dostępne domyślnie tryby):
@@ -90,7 +88,9 @@ Sprawdzenie statusu:
 sudo ufw enable
 sudo ufw status
 ```
+
 Wynik:
+
 ```
 Status: active
 
@@ -101,6 +101,7 @@ Nginx Full                 ALLOW       Anywhere
 OpenSSH (v6)               ALLOW       Anywhere (v6)             
 Nginx Full (v6)            ALLOW       Anywhere (v6)  
 ```
+
 # Flask
 
 Przed instalacją utworzymy wirtualne środowisko – kopię Pythona, ze specyficznymi  ustawieniami, zainstalowanymi modułami itp. Dzięki virtualenv możemy  mieć środowiska z różnymi wersjami tych samych modułów odseparowane od systemowego Pythona.
@@ -148,6 +149,7 @@ Poprawność wykonywania komendy powinna być widoczna w oknie konsoli:
 ```bash
 (www_env) (base) lambda@michal:~$ 
 ```
+
 Mając aktywne środowisko www  zainstalujemy od razu Flask-a
 
 ```bash
@@ -199,6 +201,7 @@ from myproject import app
 if __name__ == "__main__":
     app.run()
 ```
+
 Odblokowujemy port 5000 żeby przerowadzić kolejny krok:
 
 ```bash
@@ -273,13 +276,17 @@ http {
 ```bash
 sudo ln -s /etc/ngnix/sites-available/helloworld /etc/ngnix/sites-enabled/
 ```
+
 Z niewiadomego powodu powyższa komenda nie chciała tym razem działać obszedłem to poprzez:
+
 ```bash
 cd /etc/nginx/sites-enabled/
 sudo ln -s ../sites-available/helloworld
 ls -l
 ```
+
 Rezultat:
+
 ```bash
 total 0
 lrwxrwxrwx 1 root root 34 Jul 13 14:35 default -> /etc/nginx/sites-available/default
@@ -300,7 +307,8 @@ sudo systemctl restart nginx
 
 Jeżeli wszystko poszło ok, to po wejściu na stronę główną pojawi się komunikat.... `403 Forbidden`. Co oznacza że pora wrócić do konfiguracji Gunicorn.
 
-### Konfiguracja systemd 
+### Konfiguracja systemd
+
 Stworzenie pliku *systemd unit* pozwoli systemowi init Ubuntu na automatyczne uruchomienie Gunicorna i obsługę aplikacji Flask przy każdym uruchomieniu serwera.
 
 Należy stworzyć plik o rozszerzeniu `.service` w katalogu `/etc/systemd/system`:
@@ -371,6 +379,7 @@ Sep 09 13:52:39 michal gunicorn[26721]: [2020-09-09 13:52:39 +0200] [26721] [INF
 Sep 09 13:52:39 michal gunicorn[26722]: [2020-09-09 13:52:39 +0200] [26722] [INFO] Booting worker with pid: 26722
 
 ```
+
 Jeżeli potrzeba wprowadzić zmian w pliku to restart można zrobić poprzez:
 
 ```bash
@@ -432,7 +441,6 @@ Oznacza to że nasza strona w Flask działa poprawnie
 
 W przypadku błędu *502 Bad gateway* należy sprawdzić dokładnie składnie plików z dwóch ostatnich punktów.
 
-
 ## Domena
 
 Powyższy opis był już pisany z uwzględnienime podpiecia domeny. Kroki po stronie dostawcy domeny:
@@ -476,7 +484,7 @@ Restart NGINX żeby zmiany weszły w życie:
 sudo systemctl reload nginx
 ```
 
-### Wiecej informacji: 
+### Wiecej informacji
 
 Opisane na podstawie: [How To Serve Flask Applications with Gunicorn and Nginx on Ubuntu 18.04](https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-18-04)
 
@@ -491,6 +499,7 @@ sudo apt-get install certbot python3-certbot-nginx
 ```
 
 Uruchomienie kreatora instalacji:
+
 ```bash
 sudo certbot --nginx
 ```
@@ -500,11 +509,12 @@ Końcowy komunikat:
 > Congratulations! You have successfully enabled https://your_domain.pl
 >
 > You should test your configuration at:
-> https://www.ssllabs.com/ssltest/analyze.html?d=your_domain.pl
+> <https://www.ssllabs.com/ssltest/analyze.html?d=your_domain.pl>
 > - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 >
 > IMPORTANT NOTES:
->  - Congratulations! Your certificate and chain have been saved at:
+>
+> - Congratulations! Your certificate and chain have been saved at:
    /etc/letsencrypt/live/your_domain.pl/fullchain.pem
    Your key file has been saved at:
    /etc/letsencrypt/live/your_domain.pl/privkey.pem
@@ -512,7 +522,7 @@ Końcowy komunikat:
    version of this certificate in the future, simply run certbot again
    with the "certonly" option. To non-interactively renew *all* of
    your certificates, run "certbot renew"
->  - Your account credentials have been saved in your Certbot
+> - Your account credentials have been saved in your Certbot
    configuration directory at /etc/letsencrypt. You should make a
    secure backup of this folder now. This configuration directory will
    also contain certificates and private keys obtained by Certbot so
@@ -521,10 +531,10 @@ Końcowy komunikat:
 Po przejściu na adres [strony głównej](https://your_domain.pl) powinnien być widoczny domyślny komunikat NGINX:
 
 > Welcome to nginx!
-> 
+>
 > If you see this page, the nginx web server is successfully installed and working. Further configuration is required.
-> 
+>
 > For online documentation and support please refer to nginx.org.
 Commercial support is available at nginx.com.
-> 
+>
 > Thank you for using nginx.
